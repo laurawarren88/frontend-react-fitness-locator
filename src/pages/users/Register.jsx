@@ -10,7 +10,7 @@ const Register = () => {
 
             <div className="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
 
-        {/* Form Container */}
+            {/* Form Container */}
                 <div className="form-container">
                     <div className="form-layout">
                         <h1 className="form-title">Register</h1>

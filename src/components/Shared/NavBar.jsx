@@ -2,15 +2,22 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/images/Picture 1.png'
+import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const navLink = ({ isActive }) => isActive 
   ? 'font-roborto py-2 px-3 mr-2 bg-lightGray text-deepBlue rounded'
-  : 'font-roborto py-2 px-3 mr-2 text-darkGray';
+  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-lightGray hover:text-deepBlue';
 
   const specialNavLink = ({ isActive }) => isActive 
   ? 'font-roborto py-2 px-3 mr-2 bg-deepBlue rounded text-lightGray'
   : 'font-roborto btn-primary';
+
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     // <!-- overall nav -->
@@ -22,7 +29,7 @@ const Navbar = () => {
           {/* <!-- left size --> */}
           <div className="flex items-center space-x-1">
             <div>
-              <Link to="/" className="flex items-center py-3 px-3">
+              <Link to="/" className="flex items-center py-3 px-3" onClick={closeMobileMenu}>
                 <img src={logo} alt="logo" className="h-12 w-14" />
               </Link>
             </div>
@@ -45,17 +52,23 @@ const Navbar = () => {
           </div>
           {/* <!-- mobile menu button --> */}
           <div className="md:hidden flex items-center">
-            <button className="text-gray-500 focus:outline-none">
-            <i className='fas-fa-times fas-fa-bars text-xl'></i>
+            <button className="text-darkGray focus:outline-none" onClick={toggleMenu}>
+            {isMenuOpen ? (
+                <FaTimes className="text-2xl" />
+              ) : (
+                <FaBars className="text-2xl" />
+              )}
             </button>
           </div>
         </div>
       </div>
       {/* Mobile Menu */}
-      <div className='md:hidden bg-black/75 text-center'>
-        <NavLink to="/" className="font-roborto block py-2 px-4 text-sm text-gray-500 hover:bg-gray-700">Home</NavLink>
-        <NavLink to="/about" className="font-roborto block py-2 px-4 text-sm text-gray-500 hover:bg-gray-700">About</NavLink>
-        <NavLink to="/blog" className="font-roborto block py-2 px-4 text-sm text-gray-500 hover:bg-gray-700">Blog</NavLink>
+      <div className={`md:hidden font-roborto text-center text-darkGray transform transition-transform 
+        ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+        style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}>
+        <NavLink to="/" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Home</NavLink>
+        <NavLink to="/about" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>About</NavLink>
+        <NavLink to="/blog" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Blog</NavLink>
       </div>
     </nav>  
   )

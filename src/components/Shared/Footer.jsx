@@ -4,12 +4,11 @@ import logo from '../../assets/images/Picture 1.png'
 
 const Footer = () => {
   return (
-    <footer className="bg-darkGray">
-    <div className="mx-auto max-w-7xl p-4 py-6 lg:py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-darkGray mx-auto max-w-7xl p-4 py-6 lg:py-8">
+        <div className="grid grid-cols-1 text-center md:grid-cols-4 gap-8">
             {/* Logo Column*/}
             <div className="col-span-1">
-                <Link to="/" className="flex">
+                <Link to="/" className="flex justify-center">
                     <img src={logo} alt="logo" className="h-20 w-20" />
                 </Link>
             </div>
@@ -18,8 +17,8 @@ const Footer = () => {
             <div>
                 <h2 className="font-oswald mb-4 font-semibold text-lightGray uppercase">Company</h2>
                 <ul className="space-y-2">
-                    <li><Link to="/" className="font-roborto font-sm text-lightGray hover:text-deepRed">Title</Link></li>
-                    <li><Link to="/" className="font-roborto font-sm text-lightGray hover:text-deepRed">Title</Link></li>
+                    <li><Link to="/about" className="font-roborto font-sm text-lightGray hover:text-deepRed">About</Link></li>
+                    <li><Link to="/blog" className="font-roborto font-sm text-lightGray hover:text-deepRed">Blog</Link></li>
                 </ul>
             </div>
 
@@ -76,7 +75,6 @@ const Footer = () => {
             </Link>
             </div>
         </div>
-    </div>
     </footer>
   )
 }
