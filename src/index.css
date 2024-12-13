@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  /* buttons */
+  .btn-primary {
+    @apply py-2 px-3 font-roborto bg-deepRed hover:bg-deepBlue text-lightGray rounded transition duration-300;
+  }
