@@ -6,8 +6,8 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const navLink = ({ isActive }) => isActive 
-  ? 'font-roborto py-2 px-3 mr-2 bg-lightGray text-deepBlue rounded'
-  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-lightGray hover:text-deepBlue';
+  ? 'font-roborto py-2 px-3 mr-2 bg-deepBlue text-lightGray rounded'
+  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-royalBlue';
 
   const specialNavLink = ({ isActive }) => isActive 
   ? 'font-roborto py-2 px-3 mr-2 bg-deepBlue rounded text-lightGray'

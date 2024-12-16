@@ -16,7 +16,7 @@ const ForgotPassword = () => {
             
                         <form className="space-y-4 md:space-y-6">
                             <div>
-                                <label className="form-label" for="email">Email Address</label>
+                                <label className="form-label" htmlFor="email">Email Address</label>
                                 <input type="email" name="email" className="form-input" placeholder="name@company.com" required />
                             </div>
                             

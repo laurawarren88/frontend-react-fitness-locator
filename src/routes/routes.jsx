@@ -1,6 +1,7 @@
 import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
+import Profile from '../pages/users/Profile'
 import Register from '../pages/users/Register';
 import Login from '../pages/users/Login';
 import Logout from '../pages/users/Logout';
@@ -13,6 +14,7 @@ const routes = createRoutesFromElements(
     <Route index element={<Home />} />
 
     {/* user routes */}
+    <Route path="/users/profile" element={<Profile />} />
     <Route path="/users/register" element={<Register />} />
     <Route path="/users/login" element={<Login />} />
     <Route path="/users/logout" element={<Logout />} />

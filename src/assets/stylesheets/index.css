@@ -4,9 +4,22 @@
 
 
 @layer components {
+  .title-section {
+    @apply text-center mt-8;
+  }
+
+  .h1-primary {
+    @apply text-4xl font-oswald font-bold text-darkGray leading-tight mb-2 py-4 border-t-4 border-b-4;
+    border-image: linear-gradient(to right, #4169E1, #002147, #4169E1 ) 1;
+  }
+
   /* buttons */
   .btn-primary {
-    @apply py-2 px-3 font-roborto bg-deepRed hover:bg-deepBlue text-lightGray rounded transition duration-300;
+    @apply py-2 px-3 font-roborto bg-deepBlue hover:bg-royalBlue text-lightGray rounded transition duration-300;
+  }
+
+  .btn-secondary {
+    @apply py-2 px-3 font-roborto bg-royalBlue hover:bg-deepBlue text-softWhite rounded transition duration-300;
   }
 
   .link {
