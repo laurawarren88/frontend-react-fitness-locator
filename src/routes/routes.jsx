@@ -14,7 +14,7 @@ const routes = createRoutesFromElements(
     <Route index element={<Home />} />
 
     {/* user routes */}
-    <Route path="/users/profile" element={<Profile />} />
+    <Route path="/users/profile/:id" element={<Profile />} />
     <Route path="/users/register" element={<Register />} />
     <Route path="/users/login" element={<Login />} />
     <Route path="/users/logout" element={<Logout />} />

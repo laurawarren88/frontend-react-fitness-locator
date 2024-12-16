@@ -25,4 +25,21 @@
   .link {
     @apply font-roborto text-deepBlue hover:text-royalBlue;
   }
+
+  /* Error Message */
+  .message-container, .loading-container {
+    @apply flex items-center justify-center py-48;
+  }
+
+  .message-layout, .loading-layout  {
+    @apply text-center;
+  }
+
+  .message-title, .loading-title {
+    @apply font-oswald text-2xl text-darkGray mb-4;
+  }
+
+  .message-text {
+    @apply font-roborto text-lightGray;
+  }  
 }

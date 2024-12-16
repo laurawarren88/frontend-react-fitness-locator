@@ -20,8 +20,9 @@ const Login = () => {
 
         if (result.success) {
             const { user } = result.data;
+            console.log(user._id);
             localStorage.setItem('currentUser', JSON.stringify({ id: user._id }));
-            window.location.href = `/profile/${user._id}`;
+            window.location.href = `/users/profile/${user._id}`;
         }
     };
 
