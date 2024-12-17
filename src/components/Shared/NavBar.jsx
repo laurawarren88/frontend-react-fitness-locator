@@ -1,16 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/images/Picture 1.png'
+import logo from '../../assets/images/fitnessTracker.png'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const navLink = ({ isActive }) => isActive 
-  ? 'font-roborto py-2 px-3 mr-2 bg-deepBlue text-lightGray rounded'
-  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-royalBlue';
+  ? 'font-roborto py-2 px-3 mr-2 bg-vibrantBlue text-lightGray rounded'
+  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-vibrantBlue';
 
   const specialNavLink = ({ isActive }) => isActive 
-  ? 'font-roborto py-2 px-3 mr-2 bg-deepBlue rounded text-lightGray'
+  ? 'font-roborto py-2 px-3 mr-2 bg-vibrantBlue rounded text-lightGray'
   : 'font-roborto btn-primary';
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -35,7 +35,7 @@ const Navbar = () => {
             </div>
             <div className="hidden md:flex items-center space-x-3">
               <NavLink to="/" className={navLink}>Home</NavLink>
-              <NavLink to="/about" className={navLink}>About</NavLink>
+              <NavLink to="/gyms/new" className={navLink}>Create Gym</NavLink>
               <NavLink to="/blog" className={navLink}>Blog</NavLink>
             </div>
           </div>

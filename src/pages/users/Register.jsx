@@ -1,8 +1,8 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
-import { submitForm } from '../../controllers/authController';
+import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
-import AuthForm from '../../components/Shared/authForm';
+import Form from '../../components/Shared/Form';
 
 const Register = () => {
     const handleSubmit = async (e) => {
@@ -28,7 +28,7 @@ const Register = () => {
     };
     
   return (
-    <AuthForm
+    <Form
         title="Register"
         fields={[
             { label: 'Username', name: 'username', type: 'text', placeholder: 'Username' },

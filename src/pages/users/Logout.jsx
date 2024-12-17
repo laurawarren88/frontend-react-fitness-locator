@@ -2,7 +2,7 @@
 
 const Logout = () => {
   return (
-    <section class="bg-softWhite">
+    <section class="bg-white">
         {/* Alert container */}
         <div id="alertContainer" class="hidden"></div>
 

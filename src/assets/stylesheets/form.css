@@ -3,24 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-    .form-container {
-        @apply w-full bg-softWhite rounded-lg border border-deepRed sm:max-w-md xl:p-0;
-      }
-    
-      .form-layout {
-        @apply p-3 space-y-4 md:space-y-6 sm:p-8;
-      }
-    
-      .form-title {
-        @apply text-xl font-bold font-oswald leading-tight tracking-tight text-darkGray;
-      }
-    
-      .form-label {
-        @apply block mb-2 font-roborto text-sm font-medium text-darkGray;
-      }
-    
-      .form-input {
-        @apply bg-softWhite border border-darkGray font-roborto text-darkGray rounded-lg block w-full p-2.5 focus:border-deepRed focus:outline-none;
-      }
-    
+  .form-container {
+    @apply w-full bg-white rounded-lg border border-vibrantBlue sm:max-w-md xl:p-0 shadow-lg; /* Add shadow for better visibility */
+  }
+  
+  .form-layout {
+    @apply p-6 space-y-4 md:space-y-6 sm:p-8; /* Increased padding for spacing */
+  }
+  
+  .form-title {
+    @apply text-2xl font-bold font-oswald leading-tight tracking-tight text-darkGray text-center; /* Center the title */
+  }
+  
+  .form-label {
+    @apply block mb-2 font-roborto text-sm font-medium text-darkGray;
+  }
+  
+  .form-input {
+    @apply bg-white border border-darkGray font-roborto text-darkGray rounded-lg block w-full p-2.5 focus:border-vibrantBlue focus:ring focus:ring-vibrantBlue focus:outline-none; /* Add focus ring */
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { submitForm } from '../../controllers/authController';
+import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
-import AuthForm from '../../components/Shared/authForm';
+import Form from '../../components/Shared/Form';
 
 const Login = () => {
     const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ const Login = () => {
     };
 
   return (
-    <AuthForm
+    <Form
         title="Sign in to your account"
         fields={[
             { label: 'Email', name: 'email', type: 'email', placeholder: 'name@company.com' },

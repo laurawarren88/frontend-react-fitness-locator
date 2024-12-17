@@ -1,13 +1,13 @@
 import React from 'react';
 
-const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
+const Form = ({ fields, onSubmit, title, buttonText, footer }) => {
     return (
-        <section className="bg-softWhite">
-            <div className="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
+        <section className="bg-white py-36">
+            <div class="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
                 <div className="form-container">
                     <div className="form-layout">
                         <h1 className="form-title">{title}</h1>
-                        <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
+                        <form onSubmit={onSubmit} className="space-y-6">
                             {fields.map(({ label, name, type, placeholder }) => (
                                 <div key={name}>
                                     <label className="form-label" htmlFor={name}>{label}</label>
@@ -21,8 +21,8 @@ const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
                                     />
                                 </div>
                             ))}
-                            {footer && <div className="flex items-center justify-between">{footer}</div>}
                             <button type="submit" className="btn-primary w-full">{buttonText}</button>
+                            {footer && <div className="flex items-center justify-between">{footer}</div>}
                         </form>
                     </div>
                 </div>
@@ -31,4 +31,4 @@ const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
     );
 };
 
-export default AuthForm;
+export default Form;

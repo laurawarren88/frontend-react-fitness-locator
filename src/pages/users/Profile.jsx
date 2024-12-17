@@ -27,7 +27,7 @@ const Profile = () => {
     const isAdminUser = user?.isAdmin;
 
     return (
-        <section className="bg-softWhite min-h-screen py-20">
+        <section className="bg-white min-h-screen py-20">
           <div className="max-w-7xl mx-auto px-4">
             {/* Heading Section */}
             <div className="title-section mb-16">
@@ -50,8 +50,8 @@ const Profile = () => {
     };
     
     const AdminControls = ({ navigate }) => (
-      <div className="bg-white rounded-lg shadow-lg p-8 border border-deepBlue/20">
-        <h2 className="font-oswald text-2xl text-darkGray mb-8 pb-4 border-b border-deepBlue/30">
+      <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
+        <h2 className="font-oswald text-2xl text-darkGray mb-8 pb-4 border-b border-vibrantBlue/30">
           Admin Controls
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -73,7 +73,7 @@ const Profile = () => {
     
     const UserControls = ({ navigate }) => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-deepBlue/20">
+        <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-xl text-darkGray mb-4">Quick Actions</h2>
           <button className="btn-primary block text-center mb-4" onClick={() => navigate("/")}>
             Home Page
@@ -83,7 +83,7 @@ const Profile = () => {
           </button>
         </div>
     
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-deepBlue/20">
+        <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-xl text-darkGray mb-4">Discover Books</h2>
           <p className="font-roborto text-lightGray mb-4">Let's find your next literary adventure!</p>
           <button className="btn-secondary block text-center mb-4" onClick={() => navigate("/books")}>
@@ -91,8 +91,8 @@ const Profile = () => {
           </button>
         </div>
     
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-deepBlue/20 md:col-span-2">
-          <h2 className="font-oswald text-xl text-deepBlue mb-4">Looking for Something Specific?</h2>
+        <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20 md:col-span-2">
+          <h2 className="font-oswald text-xl text-vibrantBlue mb-4">Looking for Something Specific?</h2>
           <p className="font-roborto text-lightGray mb-4">
             Use our search feature to find exactly what you want.
           </p>
