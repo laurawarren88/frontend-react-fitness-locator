@@ -4,10 +4,7 @@ export const submitForm = async ({url, payload, alertContainerId}) => {
   try {
     const response = await fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+        body: payload,
         credentials: 'include', 
     });
 
