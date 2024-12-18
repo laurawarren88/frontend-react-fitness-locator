@@ -1,11 +1,12 @@
 import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
-import Locator from '../pages/locator/Locator';
-import Gyms from '../pages/gyms/Gyms';
-import ShowGym from '../pages/gyms/ShowGym';
-import CreateGym from '../pages/gyms/CreateGym';
-import UpdateGym from '../pages/gyms/UpdateGym';
+
+import Activities from '../pages/activities/Activities';
+import CreateActivity from '../pages/activities/CreateActivity';
+import Locator from '../pages/activities/Locator';
+import ShowActivity from '../pages/activities/ShowActivity';
+import UpdateActivity from '../pages/activities/UpdateActivity';
 
 import Profile from '../pages/users/Profile'
 import Register from '../pages/users/Register';
@@ -19,14 +20,12 @@ const routes = createRoutesFromElements(
     {/* Home page */}
     <Route index element={<Home />} />
 
-    {/* Locator routes */}
-    <Route path="/locator" element={<Locator />} />
-
     {/* Gym routes */}
-    <Route path="/gyms" element={<Gyms />} />
-    <Route path="/gyms/new" element={<CreateGym />} />
-    <Route path="/gyms/:id/edit" element={<UpdateGym />} />
-    <Route path="/gyms/:id" element={<ShowGym />} />
+    <Route path="/activities" element={<Activities />} />
+    <Route path="/activities/new" element={<CreateActivity />} />
+    <Route path="/activities/locator" element={<Locator />} />
+    <Route path="/activities/:id/edit" element={<UpdateActivity />} />
+    <Route path="/activities/:id" element={<ShowActivity />} />
 
     {/* user routes */}
     <Route path="/users/profile/:id" element={<Profile />} />

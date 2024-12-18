@@ -9,8 +9,8 @@ const HomePage = () => {
       <section className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           <div className="col-span-1 bg-gradient-to-br from-vibrantBlue to-energeticGreen text-white p-8 flex flex-col justify-center">
-            <h1 className="font-oswald text-4xl font-semibold leading-tight">Find your Fitness:</h1>
-            <p className="font-roborto mt-4 text-lg">Discover gyms, activities, clubs and more near you!</p>
+            <h1 className="font-oswald text-4xl font-semibold leading-tight">Unlock Fitness</h1>
+            <p className="font-roborto mt-4 text-lg">Discover local Gyms, Classes, Clubs and Activities!</p>
           </div>
           <div className="col-span-1 relative">
           <div className="absolute inset-0 bg-cover bg-center bg-opacity-40" style={{ backgroundImage: 'url("/images/streetMap.jpg")' }}></div>

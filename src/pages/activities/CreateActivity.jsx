@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateGymForm from '../../components/CreateGymForm'; 
+import CreateActivitiesForm from '../../components/CreateActivitiesForm'; 
 import useForm from "../../hooks/useForm";
 
-const CreateGym = () => {
+const CreateActivity = () => {
     const initialState = {
         business_name: "",
         address: "",
@@ -36,14 +36,14 @@ const CreateGym = () => {
         });
 
         const result = await submitForm({
-            url: `${BASE_URL}/gyms/new`,
+            url: `${BASE_URL}/activities/new`,
             payload: formData,
             alertContainerId: "alertContainer",
         });
 
         if (result.success) {
-            alert("Gym created successfully! Redirecting...");
-            window.location.href = "/gyms";
+            alert("Activity created successfully! Redirecting...");
+            window.location.href = "/activities";
         }
     };
 
@@ -51,15 +51,15 @@ const CreateGym = () => {
 
     return (
         <>
-            <CreateGymForm
-                title="Create Gym"
+            <CreateActivitiesForm
+                title="Create Activity"
                 formData={formData}
                 onSubmit={handleSubmit}
                 onChange={handleChange}
                 buttonText="Create"
                 footer={
                     <>
-                        <Link to="/gyms" className="link">Cancel</Link>
+                        <Link to="/activities" className="link">Cancel</Link>
                     </>
                 }
             />
@@ -68,4 +68,4 @@ const CreateGym = () => {
     )
 }
 
-export default CreateGym;
+export default CreateActivity;

@@ -35,9 +35,7 @@ const Navbar = () => {
             </div>
             <div className="hidden md:flex items-center space-x-3">
               <NavLink to="/" className={navLink}>Home</NavLink>
-              <NavLink to="/locator" className={navLink}>Locator</NavLink>
-              <NavLink to="/gyms" className={navLink}>Gyms</NavLink>
-              <NavLink to="/blog" className={navLink}>Blog</NavLink>
+              <NavLink to="/activities/locator" className={navLink}>Locator</NavLink>
             </div>
           </div>
           {/* <!-- right side --> */}
@@ -68,8 +66,8 @@ const Navbar = () => {
         ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
         style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}>
         <NavLink to="/" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Home</NavLink>
-        <NavLink to="/about" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>About</NavLink>
-        <NavLink to="/blog" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Blog</NavLink>
+        <NavLink to="/activities" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Activities</NavLink>
+        <NavLink to="/activities/locator" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Locator</NavLink>
       </div>
     </nav>  
   )

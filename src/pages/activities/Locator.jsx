@@ -114,7 +114,7 @@ const LocatorPage = () => {
     <section className="max-w-7xl mx-auto bg-darkGray text-white py-12 text-center">
         <h1 className="text-3xl font-semibold">Join our ever growing number of users to find your next fitness journey</h1>
         <p className="mt-4 text-lg">From gyms to personal trainers, sports clubs and outdoor activities - Discover 10,000+ fitness options across the UK</p>
-        <Link to="/gyms" className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
+        <Link to="/activities" className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
     </section>
 
     {/* results */}

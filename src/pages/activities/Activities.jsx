@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-const gyms = () => {
+const Activities = () => {
   const [postcode, setPostcode] = useState("");
   const [radius, setRadius] = useState("");
-  const [gyms, setGyms] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   const handleSearch = async () => {
     try {
-      const response = await fetch('http://localhost:8080/gyms');
-      const data = await response.json(); // Convert the response to JSON
-      setGyms(data); // Assuming backend sends an array of gyms
+      const response = await fetch('http://localhost:8080/activities');
+      const data = await response.json(); 
+      setActivities(data); 
     } catch (error) {
-      console.error("Error fetching gyms:", error);
+      console.error("Error fetching activities:", error);
     }
   };
   return (
@@ -20,7 +20,7 @@ const gyms = () => {
     {/* Hero Section */}
     <header className="text-center py-12">
       <h1 className="text-4xl md:text-6xl font-bold">Find Your Fitness Spot</h1>
-      <p className="mt-4 text-lg">Search gyms, classes, and fitness clubs near you.</p>
+      <p className="mt-4 text-lg">Search activities, classes, and fitness clubs near you.</p>
     </header>
 
     {/* Search Bar */}
@@ -47,27 +47,27 @@ const gyms = () => {
       </button>
     </div>
 
-    {/* Gym Results */}
+    {/* Activity Results */}
     <div className="mt-12 w-full max-w-5xl">
-      {gyms.length > 0 ? (
+      {activities.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {gyms.map((gym) => (
+          {activities.map((activities) => (
             <div
-              key={gym.id}
+              key={activities.id}
               className="bg-white rounded-lg p-4 shadow-lg text-darkGray"
             >
-              <h3 className="text-xl font-semibold">{gym.name}</h3>
-              <p>{gym.address}</p>
-              <p className="text-energeticGreen">Distance: {gym.distance} km</p>
+              <h3 className="text-xl font-semibold">{activities.name}</h3>
+              <p>{activities.address}</p>
+              <p className="text-energeticGreen">Distance: {activities.distance} km</p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-center mt-6">No gyms found. Try a different search.</p>
+        <p className="text-center mt-6">No activities found. Try a different search.</p>
       )}
     </div>
   </div>
 );
 };
 
-export default gyms
+export default Activities

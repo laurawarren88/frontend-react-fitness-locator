@@ -1,9 +1,9 @@
 import React from 'react'
 
-const showGym = () => {
+const showActivity = () => {
   return (
     <div>showGym</div>
   )
 }
 
-export default showGym
+export default showActivity

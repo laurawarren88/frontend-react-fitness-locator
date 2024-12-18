@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateGymForm = ({ onSubmit, title, buttonText, footer, onChange, formData }) => {
+const CreateActivitiesForm = ({ onSubmit, title, buttonText, footer, onChange, formData }) => {
     return (
     <>
         <section className="bg-white py-12">
@@ -149,7 +149,7 @@ const CreateGymForm = ({ onSubmit, title, buttonText, footer, onChange, formData
                   </div>
 
                   <div className="col-span-1">
-                    <label className="form-label" htmlFor="logo">Gym Logo</label>
+                    <label className="form-label" htmlFor="logo">Activity Logo</label>
                     <input
                       type="file"
                       name="logo"
@@ -184,4 +184,4 @@ const CreateGymForm = ({ onSubmit, title, buttonText, footer, onChange, formData
   );
 };
 
-export default CreateGymForm;
+export default CreateActivitiesForm;
