@@ -1,73 +1,75 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
+import logo from '../assets/images/fitnessTracker.png'
 
 const HomePage = () => {
-  const [postcode, setPostcode] = useState("");
-  const [radius, setRadius] = useState("");
-  const [gyms, setGyms] = useState([]);
-
-  const handleSearch = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/home');
-      const data = await response.json(); // Convert the response to JSON
-      setGyms(data); // Assuming backend sends an array of gyms
-    } catch (error) {
-      console.error("Error fetching gyms:", error);
-    }
-  };
   return (
-      <div className="min-h-screen bg-gradient-to-br from-vibrantBlue to-energeticGreen text-white flex flex-col items-center">
-      
-      {/* Hero Section */}
-      <header className="text-center py-12">
-        <h1 className="text-4xl md:text-6xl font-bold">Find Your Fitness Spot</h1>
-        <p className="mt-4 text-lg">Search gyms, classes, and fitness clubs near you.</p>
-      </header>
-
-      {/* Search Bar */}
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Enter your postcode"
-          className="p-3 rounded border border-lightGray focus:outline-none focus:ring focus:ring-energeticGreen text-darkGray"
-          value={postcode}
-          onChange={(e) => setPostcode(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Radius in km"
-          className="p-3 rounded border border-lightGray focus:outline-none focus:ring focus:ring-energeticGreen text-darkGray"
-          value={radius}
-          onChange={(e) => setRadius(e.target.value)}
-        />
-        <button
-          onClick={handleSearch}
-          className="bg-gradient-to-br from-energeticGreen to-vibrantBlue text-white py-3 px-6 rounded-lg font-bold hover:opacity-90"
-        >
-          Search
-        </button>
-      </div>
-
-      {/* Gym Results */}
-      <div className="mt-12 w-full max-w-5xl">
-        {gyms.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {gyms.map((gym) => (
-              <div
-                key={gym.id}
-                className="bg-white rounded-lg p-4 shadow-lg text-darkGray"
-              >
-                <h3 className="text-xl font-semibold">{gym.name}</h3>
-                <p>{gym.address}</p>
-                <p className="text-energeticGreen">Distance: {gym.distance} km</p>
-              </div>
-            ))}
+    <>
+    {/* hero section */}
+      <section className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+          <div className="col-span-1 bg-gradient-to-br from-vibrantBlue to-energeticGreen text-white p-8 flex flex-col justify-center">
+            <h1 className="font-oswald text-4xl font-semibold leading-tight">Find your Fitness:</h1>
+            <p className="font-roborto mt-4 text-lg">Discover gyms, activities, clubs and more near you!</p>
           </div>
-        ) : (
-          <p className="text-center mt-6">No gyms found. Try a different search.</p>
-        )}
-      </div>
-    </div>
-  );
-};
+          <div className="col-span-1 relative">
+          <div className="absolute inset-0 bg-cover bg-center bg-opacity-40" style={{ backgroundImage: 'url("/images/streetMap.jpg")' }}></div>
+            <img src={logo} alt="Fitness Locator Logo" className="relative z-10 mx-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* About section */}
+      <section className="max-w-7xl mx-auto py-8">
+        <div className="title-section">
+          <h1 className="h1-primary">Discover Your Next Fitness Adventure</h1>
+        </div>
+        <div>
+          <p className="mt-4 text-lg leading-relaxed">Looking for fitness activities nearby? Whether it’s a gym, personal trainer, local club, or the perfect spot for a run, Fitness Locator makes it easy to find options in your area. Our user-friendly search and interactive map help you explore local venues, read reviews, access pricing, contact details, and links to their websites. With everything in one place, you can easily find what suits you, making fitness more accessible and helping you stay motivated as you begin your journey.</p>
+        </div>
+      </section>
+
+      {/* Banner section */}
+      <section className="max-w-7xl mx-auto bg-darkGray text-white py-12 text-center">
+          <h1 className="text-3xl font-semibold">Join our ever growing number of users to find your next fitness journey</h1>
+          <p className="mt-4 text-lg">From gyms to personal trainers, sports clubs and outdoor activities - Discover 10,000+ fitness options across the UK</p>
+          <Link to="/gyms" className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
+      </section>
+
+      {/* How to section */}
+      <section className="max-w-7xl mx-auto py-8">
+        <div className="title-section">
+          <h1 class="h1-primary">How to use Fitness Locator</h1>
+        </div>
+        <div className="mt-8 space-y-12">
+          <div>
+            <h2 className="text-xl font-semibold">Search for Fitness Options</h2>
+            <p>Simply enter your location (postcode or city) in the search bar to find fitness-related activities near you, including gyms, personal trainers, fitness clubs, and outdoor workout spots.</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">Step 2: Filter Your Results</h2>
+            <p>Use our filter options to narrow down your search by type of activity, distance, or facility. Whether you’re looking for a gym with specific equipment, a personal trainer, or a local running trail, we’ve got you covered.</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">Step 3: Explore with the Map</h2>
+            <p>Our interactive map gives you a visual overview of the fitness options available in your area. Zoom in and out to see more details, or click on a location for more information.</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">Step 4: Review and Compare</h2>
+            <p>Check out ratings, reviews, and facility details to help you choose the best option for your needs. See what others have said and make an informed decision about where you want to work out.</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">Step 5: Get in Touch</h2>
+            <p>Once you’ve found a spot that fits, you can easily access contact information, pricing details, and links to websites or booking pages. Reach out directly or sign up to get started on your fitness journey!</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">Step 6: Stay Motivated</h2>
+            <p>With your new fitness options at your fingertips, it’s easier than ever to find something that keeps you moving and motivated. Fitness Locator helps you maintain momentum and achieve your fitness goals, no matter where you are.</p>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
 
 export default HomePage;

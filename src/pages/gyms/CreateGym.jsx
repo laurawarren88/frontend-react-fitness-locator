@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateGymForm from '../../components/CreateGymForm'; 
@@ -58,7 +59,7 @@ const CreateGym = () => {
                 buttonText="Create"
                 footer={
                     <>
-                        <a href="/gyms" className="link">Cancel</a>
+                        <Link to="/gyms" className="link">Cancel</Link>
                     </>
                 }
             />

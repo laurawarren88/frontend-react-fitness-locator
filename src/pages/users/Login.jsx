@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
@@ -37,7 +38,7 @@ const Login = () => {
         buttonText="Sign In"
         footer={
             <>
-                <a href="/users/forgot_password" className="link">Forgot password?</a>
+                <Link to="/users/forgot_password" className="link">Forgot password?</Link>
             </>
         }
     />

@@ -1,5 +1,6 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
@@ -40,8 +41,8 @@ const Register = () => {
         buttonText="Sign Up"
         footer={
             <>
-                <a href="/users/login" className="link">Already have an account?</a>
-                <a href="/users/forgot_password" className="link">Forgot password?</a>
+                <Link to="/users/login" className="link">Already have an account?</Link>
+                <Link to="/users/forgot_password" className="link">Forgot password?</Link>
             </>
         }
     />

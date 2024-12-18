@@ -1,6 +1,7 @@
 import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
+import Locator from '../pages/locator/Locator';
 import Gyms from '../pages/gyms/Gyms';
 import ShowGym from '../pages/gyms/ShowGym';
 import CreateGym from '../pages/gyms/CreateGym';
@@ -17,6 +18,9 @@ const routes = createRoutesFromElements(
   <Route path="/" element={<Boilerplate />}>
     {/* Home page */}
     <Route index element={<Home />} />
+
+    {/* Locator routes */}
+    <Route path="/locator" element={<Locator />} />
 
     {/* Gym routes */}
     <Route path="/gyms" element={<Gyms />} />

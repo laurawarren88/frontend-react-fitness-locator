@@ -45,7 +45,7 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <span className="font-roborto text-sm text-vibrantBlue ml-20">© 2024 Iron Edge</span>
+        <span className="font-roborto text-sm text-vibrantBlue ml-20">© 2024 Fitness Locator</span>
             
             {/* Social Icons */}
             <div className="flex space-x-4 mr-20">
