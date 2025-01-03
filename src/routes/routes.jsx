@@ -2,6 +2,9 @@ import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
 
+import ShowMap from '../pages/ShowMap.jsx'; 
+import Tester from '../pages/Tester';
+
 import Activities from '../pages/activities/Activities';
 import CreateActivity from '../pages/activities/CreateActivity';
 import Locator from '../pages/activities/Locator';
@@ -17,10 +20,15 @@ import ForgotPassword from '../pages/users/ForgotPassword';
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<Boilerplate />}>
+
     {/* Home page */}
     <Route index element={<Home />} />
 
-    {/* Gym routes */}
+    {/* map page */}
+    <Route path="/map" element={<ShowMap />} />
+    <Route path="/tester" element={<Tester />} />
+
+    {/* Activities routes */}
     <Route path="/activities" element={<Activities />} />
     <Route path="/activities/new" element={<CreateActivity />} />
     <Route path="/activities/locator" element={<Locator />} />

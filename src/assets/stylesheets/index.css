@@ -4,6 +4,7 @@
 
 
 @layer components {
+  /* main title section */
   .title-section {
     @apply text-center mt-8;
   }
@@ -13,17 +14,26 @@
     border-image: linear-gradient(to right, #28A745, #007BFF, #28A745 ) 1;
   }
 
+  /* text section */
+  .h2-primary {
+    @apply text-xl font-semibold font-oswald text-darkGray tracking-wide mb-2;
+  }
+
+  .p-primary {
+    @apply font-openSans text-darkGray leading-loose
+  }
+
   /* buttons */
   .btn-primary {
-    @apply py-2 px-3 font-roborto bg-vibrantBlue hover:bg-energeticGreen text-lightGray rounded transition duration-300;
+    @apply py-2 px-3 font-poppins bg-vibrantBlue hover:bg-energeticGreen text-lightGray rounded transition duration-300;
   }
 
   .btn-secondary {
-    @apply py-2 px-3 font-roborto bg-energeticGreen hover:bg-vibrantBlue text-white rounded transition duration-300;
+    @apply py-2 px-3 font-poppins bg-energeticGreen hover:bg-vibrantBlue text-white rounded transition duration-300;
   }
 
   .link {
-    @apply font-roborto text-vibrantBlue hover:text-energeticGreen;
+    @apply font-poppins text-vibrantBlue hover:text-energeticGreen;
   }
 
   /* Error Message */
@@ -40,6 +50,6 @@
   }
 
   .message-text {
-    @apply font-roborto text-lightGray;
+    @apply font-poppins text-lightGray;
   }  
 }

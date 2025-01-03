@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const LocatorPage = () => {
     const [viewMode, setViewMode] = useState("card"); 
@@ -55,7 +55,7 @@ const LocatorPage = () => {
             <h1 className="h1-primary">Find your Fitness</h1>
         </div>
         <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-lg">
-            <form className="grid grid-cols-12 gap-4 justify-center items-center font-roborto">
+            <form className="grid grid-cols-12 gap-4 justify-center items-center font-poppins">
             {/* Activity Type Dropdown */}
                 <div className="col-span-3">
                     <select
@@ -111,9 +111,9 @@ const LocatorPage = () => {
     </section>
 
     {/* Banner section */}
-    <section className="max-w-7xl mx-auto bg-darkGray text-white py-12 text-center">
-        <h1 className="text-3xl font-semibold">Join our ever growing number of users to find your next fitness journey</h1>
-        <p className="mt-4 text-lg">From gyms to personal trainers, sports clubs and outdoor activities - Discover 10,000+ fitness options across the UK</p>
+    <section className="max-w-7xl mx-auto bg-vibrantBlue/65 text-white py-12 text-center">
+        <h1 className="font-oswald text-3xl font-semibold">Join our ever growing number of users to find your next fitness journey</h1>
+        <p className="font-poppins mt-4 text-lg">From gyms to personal trainers, sports clubs and outdoor activities - Discover 10,000+ fitness options across the UK</p>
         <Link to="/activities" className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
     </section>
 
@@ -145,8 +145,8 @@ const LocatorPage = () => {
             <div className="pt-8 pr-8">
               <h3 className="font-oswald font-bold pb-4">Filter Results</h3>
               <div>
-                <label className="font-roborto block mb-2">Activity Type</label>
-                <select className="w-full font-roborto p-2 border rounded">
+                <label className="font-poppins block mb-2">Activity Type</label>
+                <select className="w-full font-poppins p-2 border rounded">
                   <option value="">Select Type</option>
                   {activityTypes.map((type, index) => (
                     <option key={index} value={type}>
@@ -157,8 +157,8 @@ const LocatorPage = () => {
               </div>
 
               <div>
-                <label className="font-roborto block mb-2 mt-4">Location</label>
-                <input type="text" placeholder="Enter location" className="w-full font-roborto p-2 border rounded" />
+                <label className="font-poppins block mb-2 mt-4">Location</label>
+                <input type="text" placeholder="Enter location" className="w-full font-poppinss p-2 border rounded" />
               </div>
             </div>
           </div>
@@ -179,9 +179,9 @@ const LocatorPage = () => {
                       />
                     </div>
                     <div className="w-2/3 pl-6">
-                      <h3 className="font-bold text-xl mb-2">Business Title</h3>
-                      <p className="text-sm mb-2">Location: Placeholder</p>
-                      <p className="text-xs mb-3 text-gray-500">Description of the business...</p>
+                      <h3 className="font-oswald font-bold text-xl mb-2">Business Title</h3>
+                      <p className="font-openSans text-sm mb-2">Location: Placeholder</p>
+                      <p className="font-openSans text-xs mb-3 text-gray-500">Description of the business...</p>
                       <div className="flex justify-start gap-4">
                         <Link to="" className="btn-primary w-24 text-center">
                           View

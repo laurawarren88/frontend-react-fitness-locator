@@ -8,8 +8,8 @@ export default {
     extend: {
       fontFamily: {
         oswald: ['Oswald', 'sans-serif'],
-        roborto: ['Roborto', 'serif'],
-        bebasNeue: ['Bebas Neue', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        openSans: ['Open Sans', 'sans-serif'],
       },
     colors: {
       vibrantBlue: '#007BFF',

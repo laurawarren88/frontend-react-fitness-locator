@@ -17,8 +17,8 @@ const Footer = () => {
             <div>
                 <h2 className="font-oswald mb-4 font-semibold text-lightGray uppercase">Company</h2>
                 <ul className="space-y-2">
-                    <li><Link to="/about" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">About</Link></li>
-                    <li><Link to="/blog" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">Blog</Link></li>
+                    <li><Link to="/about" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">About</Link></li>
+                    <li><Link to="/blog" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">Blog</Link></li>
                 </ul>
             </div>
 
@@ -26,8 +26,8 @@ const Footer = () => {
             <div>
                 <h2 className="font-oswald mb-4 font-semibold text-lightGray uppercase">Follow us</h2>
                 <ul className="space-y-2">
-                    <li><Link to="https://github.com/" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">Github</Link></li>
-                    <li><Link to="https://discord.gg/" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">Discord</Link></li>
+                    <li><Link to="https://github.com/" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">Github</Link></li>
+                    <li><Link to="https://discord.gg/" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">Discord</Link></li>
                 </ul>
             </div>
 
@@ -35,8 +35,8 @@ const Footer = () => {
             <div>
                 <h2 className="font-oswald mb-4 font-semibold text-lightGray uppercase">Legal</h2>
                 <ul className="space-y-2">
-                    <li><Link to="#" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">Privacy Policy</Link></li>
-                    <li><Link to="#" className="font-roborto font-sm text-lightGray hover:text-vibrantBlue">Terms & Conditions</Link></li>
+                    <li><Link to="#" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">Privacy Policy</Link></li>
+                    <li><Link to="#" className="font-poppins font-sm text-lightGray hover:text-vibrantBlue">Terms & Conditions</Link></li>
                 </ul>
             </div>
         </div>
@@ -45,7 +45,7 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <span className="font-roborto text-sm text-vibrantBlue ml-20">© 2024 Fitness Locator</span>
+        <span className="font-poppins text-sm text-vibrantBlue ml-20">© 2024 Fitness Locator</span>
             
             {/* Social Icons */}
             <div className="flex space-x-4 mr-20">

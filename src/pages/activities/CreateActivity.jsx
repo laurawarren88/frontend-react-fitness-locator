@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { submitForm } from '../../controllers/submitFormController';
+import { submitForm } from '../../controllers/newActivityFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateActivitiesForm from '../../components/CreateActivitiesForm'; 
 import useForm from "../../hooks/useForm";

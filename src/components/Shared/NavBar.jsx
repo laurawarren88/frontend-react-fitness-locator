@@ -1,23 +1,27 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import { getCookie } from '../../utils/fetchCookie';
 import logo from '../../assets/images/fitnessTracker.png'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const navLink = ({ isActive }) => isActive 
-  ? 'font-roborto py-2 px-3 mr-2 bg-vibrantBlue text-lightGray rounded'
-  : 'font-roborto py-2 px-3 mr-2 text-darkGray rounded hover:bg-vibrantBlue';
+  ? 'font-poppins py-2 px-3 mr-2 bg-vibrantBlue text-lightGray rounded'
+  : 'font-poppins py-2 px-3 mr-2 text-darkGray rounded hover:bg-vibrantBlue';
 
   const specialNavLink = ({ isActive }) => isActive 
-  ? 'font-roborto py-2 px-3 mr-2 bg-vibrantBlue rounded text-lightGray'
-  : 'font-roborto btn-primary';
+  ? 'font-poppins py-2 px-3 mr-2 bg-vibrantBlue rounded text-lightGray'
+  : 'font-poppins btn-primary';
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-  const closeMobileMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const closeMobileMenu = () => setIsMenuOpen(false);
+
+  const token = getCookie('access_token');
+  const isLoggedIn = !!token;
+
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const userId = currentUser ? currentUser.id : null;
 
   return (
     // <!-- overall nav -->
@@ -39,15 +43,20 @@ const Navbar = () => {
             </div>
           </div>
           {/* <!-- right side --> */}
-          <div className="hidden md:flex items-center space-x-1">  
-            <div className="auth-public">
+          <div className="hidden md:flex items-center space-x-1"> 
+          {!isLoggedIn ? ( 
+            <div>
               <NavLink to="/users/login" className={navLink}>Login</NavLink>
-              <NavLink to="/users/register" className={specialNavLink}>Register</NavLink>
+              {userId && (
+                  <NavLink to={"/users/register"} className={specialNavLink}>Register</NavLink>
+                )}
             </div>
-            <div className="auth-private hidden">
+             ) : (
+            <div>
               <NavLink to="/users/logout" className={navLink}>Logout</NavLink>
-              <NavLink to="/profile" className={specialNavLink}>Profile</NavLink>
+              <NavLink to={`/users/profile/${userId}`} className={specialNavLink}>Profile</NavLink>
             </div>
+            )}
           </div>
           {/* <!-- mobile menu button --> */}
           <div className="md:hidden flex items-center">
@@ -62,7 +71,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Mobile Menu */}
-      <div className={`md:hidden font-roborto text-center text-darkGray transform transition-transform 
+      <div className={`md:hidden font-poppins text-center text-darkGray transform transition-transform 
         ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
         style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}>
         <NavLink to="/" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Home</NavLink>

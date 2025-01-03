@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BASE_URL } from "../../utils/config";
 
 const Activities = () => {
   const [postcode, setPostcode] = useState("");
@@ -7,7 +8,7 @@ const Activities = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch('http://localhost:8080/activities');
+      const response = await fetch(`${BASE_URL}/activities`);
       const data = await response.json(); 
       setActivities(data); 
     } catch (error) {

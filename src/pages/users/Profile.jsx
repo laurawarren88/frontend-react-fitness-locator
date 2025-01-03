@@ -6,13 +6,14 @@ import ErrorMessage from "../../components/Shared/ErrorMessage";
 import LoadingMessage from "../../components/Shared/LoadingMessage";
 
 const Profile = () => {
-    const { id } = useParams();
-    const token = getCookie('access_token')
+  const { id } = useParams();
+  const navigate = useNavigate(); // Call here at the top level
+  const token = getCookie('access_token');
 
-    if (!token) {
-      useNavigate("/login");
+  if (!token) {
+      navigate("/login"); // Correct usage here
       return <ErrorMessage message="You are not authenticated. Please log in." />;
-    }
+  }
   
     const { user, error } = useFetchUser(id, token);
   
@@ -40,10 +41,10 @@ const Profile = () => {
             </div>
     
             {isAdminUser ? (
-              <AdminControls navigate={useNavigate} />
-            ) : (
-              <UserControls navigate={useNavigate} />
-            )}
+                    <AdminControls navigate={navigate} /> // Pass the navigate function correctly
+                ) : (
+                    <UserControls navigate={navigate} /> // Pass the navigate function correctly
+                )}
           </div>
         </section>
       );
@@ -51,25 +52,28 @@ const Profile = () => {
     
     const AdminControls = ({ navigate }) => (
       <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
-        <h2 className="font-oswald text-2xl text-darkGray mb-8 pb-4 border-b border-vibrantBlue/30">
-          Admin Controls
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <button className="btn-primary text-center" onClick={() => navigate("/")}>
-            Home Page
-          </button>
-          <button className="btn-secondary text-center" onClick={() => navigate("/books/new")}>
-            Add a new book
-          </button>
-          <button className="btn-secondary text-center" onClick={() => navigate("/books")}>
-            Manage Books
-          </button>
-          <button className="btn-secondary text-center" onClick={() => navigate("/reviews")}>
-            Manage Reviews
-          </button>
-        </div>
+          <h2 className="font-oswald text-2xl text-darkGray mb-8 pb-4 border-b border-vibrantBlue/30">
+              Admin Controls
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <button className="btn-primary text-center" onClick={() => {
+                console.log("Navigating to home page...");
+                navigate("/");
+              }}>
+                  Home Page
+              </button>
+              <button className="btn-secondary text-center" onClick={() => navigate("/activities/new")}>
+                  Add a new Activity
+              </button>
+              <button className="btn-secondary text-center" onClick={() => navigate("/activities/locator")}>
+                  Search Activity
+              </button>
+              <button className="btn-secondary text-center" onClick={() => navigate("/activities")}>
+                  View Activities
+              </button>
+          </div>
       </div>
-    );
+  );
     
     const UserControls = ({ navigate }) => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -78,14 +82,17 @@ const Profile = () => {
           <button className="btn-primary block text-center mb-4" onClick={() => navigate("/")}>
             Home Page
           </button>
-          <button className="btn-secondary block text-center mb-4" onClick={() => navigate("/reviews")}>
-            Leave a review
+          <button className="btn-secondary text-center" onClick={() => navigate("/activities/locator")}>
+            Search Activity
+          </button>
+          <button className="btn-secondary text-center" onClick={() => navigate("/activities")}>
+            View Activities
           </button>
         </div>
     
         <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-xl text-darkGray mb-4">Discover Books</h2>
-          <p className="font-roborto text-lightGray mb-4">Let's find your next literary adventure!</p>
+          <p className="font-poppins text-lightGray mb-4">Let's find your next literary adventure!</p>
           <button className="btn-secondary block text-center mb-4" onClick={() => navigate("/books")}>
             Browse All Books
           </button>
@@ -93,7 +100,7 @@ const Profile = () => {
     
         <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20 md:col-span-2">
           <h2 className="font-oswald text-xl text-vibrantBlue mb-4">Looking for Something Specific?</h2>
-          <p className="font-roborto text-lightGray mb-4">
+          <p className="font-poppins text-lightGray mb-4">
             Use our search feature to find exactly what you want.
           </p>
           <button className="btn-secondary block text-center" onClick={() => navigate("/books/search")}>

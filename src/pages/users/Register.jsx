@@ -41,7 +41,7 @@ const Register = () => {
         buttonText="Sign Up"
         footer={
             <>
-                <Link to="/users/login" className="link">Already have an account?</Link>
+                <Link to="/users/login" className="link pr-6">Already have an account?</Link>
                 <Link to="/users/forgot_password" className="link">Forgot password?</Link>
             </>
         }
