@@ -3,8 +3,7 @@ import { APIProvider, Map, Marker, AdvancedMarker } from '@vis.gl/react-google-m
 import { GOOGLE_API_KEY, MAP_ID } from '../../../utils/config';
 import defaultImage from '../../../assets/images/default_gym.jpg'
 
-const MapComponent = ({ setCoordinates, coordinates, places }) => {
-  const [placeImage, setPlaceImage] = useState(null);
+const MapComponent = ({ setCoordinates, coordinates, places, setChildClicked }) => {
 
   return (
     <div>
@@ -33,8 +32,13 @@ const MapComponent = ({ setCoordinates, coordinates, places }) => {
         const position = new google.maps.LatLng(lat, lng);
 
             return (
-              <AdvancedMarker key={index} position={position}>
-                <div className="bg-white shadow-lg rounded-lg p-3 w-48">
+              <AdvancedMarker 
+                key={index} 
+                position={position}
+                onClick={() => {
+                  setChildClicked(index);
+                }} >
+                <div className="bg-white shadow-lg rounded-lg p-3 w-48 cursor-pointer">
                   <h4 className="text-sm font-semibold mb-1">{place.name}</h4>
                   <img
                     className="w-full h-20 object-cover rounded-md mb-2"

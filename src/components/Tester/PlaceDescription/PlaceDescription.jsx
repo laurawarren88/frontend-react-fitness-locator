@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { GOOGLE_API_KEY } from '../../../utils/config';
 import defaultImage from '../../../assets/images/default_gym.jpg'
 
-const PlaceDescription = ({ place }) => {
+const PlaceDescription = ({ place, selected, refProp }) => {
   const [placeImage, setPlaceImage] = useState(null);
   const [placeDetails, setPlaceDetails] = useState({});
 
+  useEffect(() => {
+    if (selected) {
+      refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [selected, refProp]);
+  
   useEffect(() => {
     // Fetch detailed place information
     const fetchPlaceDetails = async () => {

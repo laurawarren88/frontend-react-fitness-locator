@@ -2,7 +2,6 @@ import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
 
-import ShowMap from '../pages/ShowMap.jsx'; 
 import Tester from '../pages/Tester';
 
 import Activities from '../pages/activities/Activities';
@@ -25,7 +24,6 @@ const routes = createRoutesFromElements(
     <Route index element={<Home />} />
 
     {/* map page */}
-    <Route path="/map" element={<ShowMap />} />
     <Route path="/tester" element={<Tester />} />
 
     {/* Activities routes */}
