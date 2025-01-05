@@ -1,58 +1,111 @@
-import React, { useState } from 'react';
-import { APIProvider, Map, Marker, AdvancedMarker } from '@vis.gl/react-google-maps';
+import React, { useRef, useEffect } from 'react';
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { GOOGLE_API_KEY, MAP_ID } from '../../../utils/config';
-import defaultImage from '../../../assets/images/default_gym.jpg'
+import defaultImage from '../../../assets/images/default_gym.jpg';
+import markerIconDefault from '../../../assets/images/fitnesstracker.png';
+import markerIconHighlighted from '../../../assets/images/fitnesstracker-highlighted.png';
 
-const MapComponent = ({ setCoordinates, coordinates, places, setChildClicked }) => {
+const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setChildClicked }) => {
+  const mapRef = useRef();
+
+  useEffect(() => {
+    if (mapRef.current && places?.length > 0) {
+      const bounds = new google.maps.LatLngBounds();
+      places.forEach((place) => {
+        bounds.extend({
+          lat: Number(place.geometry?.location?.lat),
+          lng: Number(place.geometry?.location?.lng)
+        });
+      });
+      mapRef.current.fitBounds(bounds);
+    }
+  }, [places]);
 
   return (
-    <div>
+    <div className="h-full w-full">
       <APIProvider apiKey={GOOGLE_API_KEY}>
         <Map
           mapId={MAP_ID}
-          style={{width: '100vw', height: '100vh'}}
+          style={{width: '100%', height: '100vh'}}
           defaultCenter={coordinates}
           center={coordinates}
           defaultZoom={14}
           gestureHandling={'greedy'}
           margin={[50, 50, 50, 50]}
-          options={{ disableDefaultUI: true, zoomControl: true }}
-          onChange={(e) => {
-            setCoordinates({ lat: e.center.lat(), lng: e.center.lng() });
+          options={{ 
+            disableDefaultUI: true, 
+            zoomControl: true,
+            draggable: true,
+            scrollwheel: true,
+          }}
+          onLoad={(map) => (mapRef.current = map)}
+          onCenterChanged={() => {
+            if (mapRef.current) {
+              const center = mapRef.current.getCenter();
+              const radius = mapRef.current.getBounds()
+                ? google.maps.geometry.spherical.computeDistanceBetween(
+                    center,
+                    mapRef.current.getBounds().getNorthEast()
+                  )
+                : 8000;
+              setCoordinates({ 
+                lat: center.lat(), 
+                lng: center.lng(),
+                radius: Math.floor(radius)
+              });
+            }
           }}
         >
-        {places?.map((place, index) => {
-        const lat = place.geometry?.location?.lat;
-        const lng = place.geometry?.location?.lng;
-        if (isNaN(lat) || isNaN(lng)) {
-          console.error(`Invalid coordinates for place: ${place.name}`, lat, lng);
-          return null; 
-        }
 
-        const position = new google.maps.LatLng(lat, lng);
+          {places?.map((place, index) => {
+            const lat = Number(place.geometry?.location?.lat);
+            const lng = Number(place.geometry?.location?.lng);
+            
+            if (isNaN(lat) || isNaN(lng)) return null;
 
             return (
-              <AdvancedMarker 
-                key={index} 
-                position={position}
+              <AdvancedMarker
+                key={index}
+                position={{ lat, lng }}
                 onClick={() => {
                   setChildClicked(index);
-                }} >
-                <div className="bg-white shadow-lg rounded-lg p-3 w-48 cursor-pointer">
-                  <h4 className="text-sm font-semibold mb-1">{place.name}</h4>
-                  <img
-                    className="w-full h-20 object-cover rounded-md mb-2"
-                    src={
-                      place.photos && place.photos[0]
-                        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.photos[0].photo_reference}&key=${GOOGLE_API_KEY}`
-                        : defaultImage
-                    }
-                    alt={place.name}
+                  const element = document.getElementById(`place-${index}`);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                <div style={{
+                  cursor: 'pointer',
+                  transform: childClicked === index ? 'scale(1.2)' : 'scale(1)',
+                  transition: 'transform 0.3s ease'
+                }}>
+                  <img 
+                    src={childClicked === index ? markerIconHighlighted : markerIconDefault}
+                    alt="marker"
+                    style={{
+                      width: childClicked === index ? '60px' : '50px',
+                      height: childClicked === index ? '60px' : '50px'
+                    }}
                   />
-                  <div className="text-yellow-400 text-sm">
-                    {'★'.repeat(Math.floor(place.rating || 0)) +
-                      '☆'.repeat(5 - Math.floor(place.rating || 0))}
-                  </div>
+                  {childClicked === index && (
+                    <div className="absolute bg-white shadow-lg rounded-lg p-3 w-48">
+                      <h4 className="text-sm font-semibold mb-1">{place.name}</h4>
+                      <img
+                        className="w-full h-20 object-cover rounded-md mb-2"
+                        src={
+                          place.photos?.[0]
+                            ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.photos[0].photo_reference}&key=${GOOGLE_API_KEY}`
+                            : defaultImage
+                        }
+                        alt={place.name}
+                      />
+                      <div className="text-yellow-400 text-sm">
+                        {'★'.repeat(Math.floor(place.rating || 0)) +
+                          '☆'.repeat(5 - Math.floor(place.rating || 0))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </AdvancedMarker>
             );
@@ -60,7 +113,7 @@ const MapComponent = ({ setCoordinates, coordinates, places, setChildClicked }) 
         </Map>
       </APIProvider>
     </div>
-  )
-}
+  );
+};
 
 export default MapComponent;

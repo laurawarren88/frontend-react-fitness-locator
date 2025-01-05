@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import  { getPlacesData } from '../api';
-
 import Header from '../components/Tester/Header/Header';
 import List from '../components/Tester/List/List';
 import MapComponent from '../components/Tester/Map/Map';
@@ -11,24 +9,34 @@ const Tester = () => {
   const [childClicked, setChildClicked] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [type, setType] = useState('gym');
+  const [radius, setRadius] = useState('8000');
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
   // Use the users current location as the default coordinates
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-      setCoordinates({ lat: latitude, lng: longitude });
-    });
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+      },
+      () => {
+        setCoordinates({ lat: 51.5074, lng: -0.1278 }); // Default to London
+      }
+    );
   }, []);
 
   useEffect(() => {
+    // console.log("Fetching places for:", { type, coordinates, radius });
     setIsLoading(true);
-    if (coordinates) {
-      getPlacesData(coordinates)
-        .then((data) => {
-          setPlaces(data);
-          setIsLoading(false);
-        });
-    }
-  }, [coordinates]); 
+    const fetchPlaces = async () => {
+      const results = await getPlacesData(type, coordinates, radius);
+      // console.log("Fetched places:", results);
+      setPlaces(results);
+      setIsLoading(false);
+    };
+  
+    fetchPlaces();
+  }, [type, coordinates, radius]);
 
   return (
     <>
@@ -45,6 +53,10 @@ const Tester = () => {
               childClicked={childClicked}
               setChildClicked={setChildClicked} 
               isLoading={isLoading}
+              type={type}
+              setType={setType}
+              radius={radius}
+              setRadius={setRadius}
             />
           </div>
 
