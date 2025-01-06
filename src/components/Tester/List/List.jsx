@@ -62,12 +62,19 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
           </form>
           <form className='mb-7'>
             <label htmlFor="radius">Radius</label>
-            <select value={radius} onChange={(e) => setRadius(e.target.value)}>
-              <option value="8047">Within 5 miles</option>
+            <select 
+            value={radius} 
+            onChange={(e) => setRadius(e.target.value)}>
+              {/* <option value="8047">Within 5 miles</option>
               <option value="16093">Within 10 miles</option>
               <option value="24140">Within 15 miles</option>
               <option value="32187">Within 20 miles</option>
-              <option value="80467">Within 50 miles</option>
+              <option value="80467">Within 50 miles</option> */}
+              <option value="1600">Within 1 mile</option>
+              <option value="3200">Within 2 miles</option>
+              <option value="4800">Within 3 miles</option>
+              <option value="6400">Within 4 miles</option>
+              <option value="8000">Within 5 miles</option>
             </select>
 
           </form>

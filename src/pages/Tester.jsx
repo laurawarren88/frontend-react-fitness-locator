@@ -26,16 +26,16 @@ const Tester = () => {
   }, []);
 
   useEffect(() => {
-    // console.log("Fetching places for:", { type, coordinates, radius });
-    setIsLoading(true);
-    const fetchPlaces = async () => {
-      const results = await getPlacesData(type, coordinates, radius);
-      // console.log("Fetched places:", results);
-      setPlaces(results);
-      setIsLoading(false);
-    };
-  
-    fetchPlaces();
+    if (coordinates) {
+      setIsLoading(true);
+      const fetchPlaces = async () => {
+        const results = await getPlacesData(type, coordinates, radius);
+        console.log("Fetching places for:", { type, coordinates, radius });
+        setPlaces(results);
+        setIsLoading(false);
+      };
+      fetchPlaces();
+    }
   }, [type, coordinates, radius]);
 
   return (

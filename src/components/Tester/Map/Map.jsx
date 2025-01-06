@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { GOOGLE_API_KEY, MAP_ID } from '../../../utils/config';
 import defaultImage from '../../../assets/images/default_gym.jpg';
@@ -7,6 +7,7 @@ import markerIconHighlighted from '../../../assets/images/fitnesstracker-highlig
 
 const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setChildClicked }) => {
   const mapRef = useRef();
+  const [hoveredPlace, setHoveredPlace] = useState(null);
 
   useEffect(() => {
     if (mapRef.current && places?.length > 0) {
@@ -63,10 +64,14 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
             
             if (isNaN(lat) || isNaN(lng)) return null;
 
+            const isActive = childClicked === index || hoveredPlace === index;
+
             return (
               <AdvancedMarker
                 key={index}
                 position={{ lat, lng }}
+                onMouseEnter={() => setHoveredPlace(index)}
+                onMouseLeave={() => setHoveredPlace(null)}
                 onClick={() => {
                   setChildClicked(index);
                   const element = document.getElementById(`place-${index}`);
@@ -80,15 +85,15 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
                   transform: childClicked === index ? 'scale(1.2)' : 'scale(1)',
                   transition: 'transform 0.3s ease'
                 }}>
-                  <img 
-                    src={childClicked === index ? markerIconHighlighted : markerIconDefault}
+                  <img
+                    src={isActive ? markerIconHighlighted : markerIconDefault}
                     alt="marker"
                     style={{
-                      width: childClicked === index ? '60px' : '50px',
-                      height: childClicked === index ? '60px' : '50px'
+                      width: isActive ? '60px' : '50px',
+                      height: isActive ? '60px' : '50px',
                     }}
                   />
-                  {childClicked === index && (
+                  {isActive && (
                     <div className="absolute bg-white shadow-lg rounded-lg p-3 w-48">
                       <h4 className="text-sm font-semibold mb-1">{place.name}</h4>
                       <img
