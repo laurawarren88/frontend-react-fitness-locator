@@ -25,6 +25,34 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
     }
   }, [places]);
 
+  const handleCenterChange = () => {
+    if (mapRef.current) {
+      const center = mapRef.current.getCenter();
+      const radius = mapRef.current.getBounds()
+        ? google.maps.geometry.spherical.computeDistanceBetween(
+            center,
+            mapRef.current.getBounds().getNorthEast()
+          )
+        : 8000;
+
+      const sw = mapRef.current.getBounds().getSouthWest();
+      const ne = mapRef.current.getBounds().getNorthEast();
+
+      setCoordinates((prev) => {
+        const isSame = prev.lat === center.lat() && prev.lng === center.lng();
+        if (!isSame) {
+          setBounds({ ne, sw });
+          return {
+            lat: center.lat(),
+            lng: center.lng(),
+            radius: Math.floor(radius)
+          };
+        }
+        return prev;
+      });
+    }
+  };
+
   return (
     <div className="h-full w-full">
       <APIProvider apiKey={GOOGLE_API_KEY}>
@@ -32,33 +60,17 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
           mapId={MAP_ID}
           style={{width: '100%', height: '100vh'}}
           defaultCenter={coordinates}
-          center={coordinates}
           defaultZoom={14}
-          gestureHandling={'greedy'}
           margin={[50, 50, 50, 50]}
-          options={{ 
-            disableDefaultUI: true, 
+          options={{
+            disableDefaultUI: true,
             zoomControl: true,
             draggable: true,
             scrollwheel: true,
+            gestureHandling: 'greedy',
           }}
           onLoad={(map) => (mapRef.current = map)}
-          onCenterChanged={() => {
-            if (mapRef.current) {
-              const center = mapRef.current.getCenter();
-              const radius = mapRef.current.getBounds()
-                ? google.maps.geometry.spherical.computeDistanceBetween(
-                    center,
-                    mapRef.current.getBounds().getNorthEast()
-                  )
-                : 8000;
-              setCoordinates({ 
-                lat: center.lat(), 
-                lng: center.lng(),
-                radius: Math.floor(radius)
-              });
-            }
-          }}
+          onCenterChanged={handleCenterChange}
         >
 
           {places?.map((place, index) => {

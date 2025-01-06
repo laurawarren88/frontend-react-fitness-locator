@@ -1,6 +1,5 @@
 import { GOOGLE_API_KEY } from "../utils/config";
 
-// Haversine formula to calculate distance in meters between two coordinates
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const toRadians = (degree) => (degree * Math.PI) / 180;
   const R = 6371000; // Radius of the Earth in meters
@@ -21,7 +20,6 @@ const textSearchBaseUrl = "https://maps.googleapis.com/maps/api/place/textsearch
 
 export const getPlacesData = async (type, coordinates, radius) => {
   try {
-    // Fetch places from the Text Search API
     const textSearchUrl = `${textSearchBaseUrl}?query=${type}&location=${coordinates.lat},${coordinates.lng}&key=${GOOGLE_API_KEY}`;
     const textSearchResponse = await fetch(textSearchUrl);
     const textSearchResult = await textSearchResponse.json();
@@ -31,7 +29,6 @@ export const getPlacesData = async (type, coordinates, radius) => {
       return [];
     }
 
-    // Filter results based on the specified radius
     const filteredPlaces = textSearchResult.results.filter((place) => {
       const placeLat = place.geometry.location.lat;
       const placeLng = place.geometry.location.lng;
