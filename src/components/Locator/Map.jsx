@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
-import { GOOGLE_API_KEY, MAP_ID } from '../../../utils/config';
-import defaultImage from '../../../assets/images/default_gym.jpg';
-import markerIconDefault from '../../../assets/images/fitnesstracker.png';
-import markerIconHighlighted from '../../../assets/images/fitnesstracker-highlighted.png';
+import { GOOGLE_API_KEY, MAP_ID } from '../../utils/config';
+import defaultImage from '../../assets/images/default_gym.jpg';
+import markerIconDefault from '../../assets/images/fitnesstracker.png';
+import markerIconHighlighted from '../../assets/images/fitnesstracker-highlighted.png';
 
-import mapStyles from './mapStyles';
 
 const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setChildClicked }) => {
   const mapRef = useRef();

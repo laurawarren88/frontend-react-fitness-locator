@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { GOOGLE_API_KEY } from '../../../utils/config';
-import defaultImage from '../../../assets/images/default_gym.jpg'
+import { GOOGLE_API_KEY } from '../../utils/config';
+import defaultImage from '../../assets/images/default_gym.jpg'
 
 const PlaceDescription = ({ place, selected, refProp }) => {
   const [placeImage, setPlaceImage] = useState(null);
