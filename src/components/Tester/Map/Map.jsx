@@ -18,6 +18,9 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
           lng: Number(place.geometry?.location?.lng)
         });
       });
+      // console.log("Map Places:", places);
+      // console.log("Latitude:", place.geometry?.location?.lat);
+      // console.log("Longitude:", place.geometry?.location?.lng);
       mapRef.current.fitBounds(bounds);
     }
   }, [places]);
@@ -59,6 +62,10 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
         >
 
           {places?.map((place, index) => {
+            // console.log("Marker position:", {
+            //   lat: Number(place.geometry?.location?.lat),
+            //   lng: Number(place.geometry?.location?.lng),
+            // });
             const lat = Number(place.geometry?.location?.lat);
             const lng = Number(place.geometry?.location?.lng);
             

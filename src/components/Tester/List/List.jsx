@@ -9,6 +9,7 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
     .fill()
     .map((_, index) => elRefs[index] || createRef());
     setElRefs(refs);
+    // console.log("List Places:", places);
   }, [places]);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
 
           {places.length === 0 ? (
             <div className="text-center text-gray-500">
-              No options found for the selected type and radius.
+              <p>No options found for the selected type and radius.</p>
             </div>
           ) : (
             <div className='grid h-screen overflow-auto'>

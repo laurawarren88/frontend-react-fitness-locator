@@ -30,8 +30,8 @@ const Tester = () => {
       setIsLoading(true);
       const fetchPlaces = async () => {
         const results = await getPlacesData(type, coordinates, radius);
-        console.log("Fetching places for:", { type, coordinates, radius });
-        setPlaces(results);
+        // console.log("Fetching places for:", { type, coordinates, radius });
+        setPlaces(results?.filter((place) => place.name ));
         setIsLoading(false);
       };
       fetchPlaces();
@@ -42,7 +42,7 @@ const Tester = () => {
     <>
       <section className="max-w-7xl mx-auto py-20">
         <div className="bg-energeticGreen">
-          <Header />
+          <Header setCoordinates={setCoordinates} />
         </div>
       
         <div className="grid grid-cols-12 gap-8">
