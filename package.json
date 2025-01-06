@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
-    "@reach/combobox": "^0.18.0",
-    "@react-google-maps/api": "^2.20.3",
+    "@react-google-maps/api": "^2.20.5",
     "@vis.gl/react-google-maps": "^1.4.2",
     "dotenv-webpack": "^8.1.0",
     "google-map-react": "^2.2.1",

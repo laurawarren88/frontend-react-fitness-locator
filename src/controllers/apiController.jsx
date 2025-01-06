@@ -42,8 +42,8 @@ export const getPlacesData = async (type, coordinates, radius) => {
 
       return distance <= Number(radius);
     });
-    console.log("Radius:", radius);
-    console.log("Filtered Places:", filteredPlaces);
+    // console.log("Radius:", radius);
+    // console.log("Filtered Places:", filteredPlaces);
     return filteredPlaces;
   } catch (error) {
     console.error("Error fetching places data:", error);

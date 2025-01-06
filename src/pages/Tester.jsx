@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import  { getPlacesData } from '../api';
+import { getPlacesData } from '../controllers/apiController';
 import Header from '../components/Tester/Header/Header';
 import List from '../components/Tester/List/List';
 import MapComponent from '../components/Tester/Map/Map';
@@ -12,6 +12,7 @@ const Tester = () => {
   const [type, setType] = useState('gym');
   const [radius, setRadius] = useState('8000');
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [initialized, setInitialized] = useState(false);
 
   // Use the users current location as the default coordinates
   useEffect(() => {
@@ -26,14 +27,17 @@ const Tester = () => {
   }, []);
 
   useEffect(() => {
-    if (coordinates) {
-      setIsLoading(true);
+    // console.log("useEffect triggered by:", { type, coordinates, radius });
       const fetchPlaces = async () => {
         const results = await getPlacesData(type, coordinates, radius);
         // console.log("Fetching places for:", { type, coordinates, radius });
         setPlaces(results?.filter((place) => place.name ));
         setIsLoading(false);
       };
+      
+      if (coordinates && type && radius && !initialized) {
+      setIsLoading(true);
+      setInitialized(true);
       fetchPlaces();
     }
   }, [type, coordinates, radius]);
@@ -43,6 +47,7 @@ const Tester = () => {
       <section className="max-w-7xl mx-auto py-20">
         <div className="bg-energeticGreen">
           <Header setCoordinates={setCoordinates} />
+          {/* <Header /> */}
         </div>
       
         <div className="grid grid-cols-12 gap-8">

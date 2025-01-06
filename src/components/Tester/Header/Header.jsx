@@ -15,7 +15,7 @@ const Header = ({ setCoordinates }) => {
   
     const place = autocomplete.getPlace();
     if (!place.geometry) {
-      // console.error("Place has no geometry");
+      alert('Place has no geometry. Please try another location.');
       return;
     }
   

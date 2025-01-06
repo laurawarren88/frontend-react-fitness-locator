@@ -5,18 +5,29 @@ import defaultImage from '../../../assets/images/default_gym.jpg';
 import markerIconDefault from '../../../assets/images/fitnesstracker.png';
 import markerIconHighlighted from '../../../assets/images/fitnesstracker-highlighted.png';
 
+import mapStyles from './mapStyles';
+
 const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setChildClicked }) => {
   const mapRef = useRef();
   const [hoveredPlace, setHoveredPlace] = useState(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!window.google) {
+      console.log("Google Maps API is not loaded yet.");
+    } else {
+      setIsMapLoaded(true); 
+    }
+  }, []);
 
   useEffect(() => {
     if (mapRef.current && places?.length > 0) {
       const bounds = new google.maps.LatLngBounds();
       places.forEach((place) => {
-        bounds.extend({
-          lat: Number(place.geometry?.location?.lat),
-          lng: Number(place.geometry?.location?.lng)
-        });
+        const { lat, lng } = place.geometry?.location || {};
+        if (lat && lng) {
+          bounds.extend({ lat, lng });
+        }
       });
       // console.log("Map Places:", places);
       // console.log("Latitude:", place.geometry?.location?.lat);
@@ -60,14 +71,17 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
           mapId={MAP_ID}
           style={{width: '100%', height: '100vh'}}
           defaultCenter={coordinates}
+          center={coordinates}
           defaultZoom={14}
           margin={[50, 50, 50, 50]}
+          loadingElement={<div>Loading Map...</div>}
           options={{
             disableDefaultUI: true,
             zoomControl: true,
             draggable: true,
             scrollwheel: true,
             gestureHandling: 'greedy',
+            // styles: mapStyles
           }}
           onLoad={(map) => (mapRef.current = map)}
           onCenterChanged={handleCenterChange}
@@ -81,7 +95,7 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
             const lat = Number(place.geometry?.location?.lat);
             const lng = Number(place.geometry?.location?.lng);
             
-            if (isNaN(lat) || isNaN(lng)) return null;
+            if (!lat || !lng || isNaN(lat) || isNaN(lng)) return null;
 
             const isActive = childClicked === index || hoveredPlace === index;
 
@@ -93,10 +107,8 @@ const MapComponent = ({ setCoordinates, coordinates, places, childClicked, setCh
                 onMouseLeave={() => setHoveredPlace(null)}
                 onClick={() => {
                   setChildClicked(index);
-                  const element = document.getElementById(`place-${index}`);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
+                  mapRef.current.panTo({ lat, lng });  
+                  mapRef.current.setZoom(15); 
                 }}
               >
                 <div style={{

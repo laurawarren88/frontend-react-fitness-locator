@@ -26,7 +26,7 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
         <h4>Gyms, Leisure Centres, Running routes and more</h4>
       {isLoading ? (
         <div className='flex justify-center items-center h-screen'>
-          <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
+          <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500">“Loading…”</div>
         </div>
       ) : (
         <>
