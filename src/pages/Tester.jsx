@@ -11,34 +11,16 @@ const Tester = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
   const [radius, setRadius] = useState('8000');
+  const [viewMode, setViewMode] = useState('list');
 
   const activityTypes = [
-    'Gyms',
-    'Personal Trainers',
-    'Leisure Centers',
-    'Sports Clubs',
-    'Yoga Studios',
-    'Pilates Studios',
-    'Crossfit Boxes',
-    'Fitness Bootcamps',
-    'Health Clubs',
-    'Running Tracks',
-    'Dance Studios',
-    'Martial Arts',
-    'Swimming Pools',
-    'Basketball Courts',
-    'Tennis Courts',
-    'Golf Courses',
-    'Skiing/Snowboarding Centers',
-    'Cycling Routes',
-    'Hiking Trails',
-    'Rock Climbing Centers',
-    'Spa and Wellness Centers',
-    'Boxing Gyms',
-    'Cycling Studios',
-    'Rowing Centers',
-    'Horse Riding Centers',
-    'Meditation Centers',
+    'Gyms', 'Personal Trainers', 'Leisure Centers', 'Sports Clubs',
+    'Yoga Studios', 'Pilates Studios', 'Crossfit Boxes', 'Fitness Bootcamps',
+    'Health Clubs', 'Running Tracks', 'Dance Studios', 'Martial Arts',
+    'Swimming Pools', 'Basketball Courts', 'Tennis Courts', 'Golf Courses',
+    'Skiing/Snowboarding Centers', 'Cycling Routes', 'Hiking Trails',
+    'Rock Climbing Centers', 'Spa and Wellness Centers', 'Boxing Gyms',
+    'Cycling Studios', 'Rowing Centers', 'Horse Riding Centers', 'Meditation Centers',
   ];
 
   useEffect(() => {
@@ -62,47 +44,58 @@ const Tester = () => {
   }, [type, coordinates, radius]);
 
   return (
-    <>
       <section className="max-w-7xl mx-auto py-20">
 
         {/* Search Component */}
-        <div className="">
         <Header
           setCoordinates={setCoordinates}
           setType={setType}
           setRadius={setRadius}
           activityTypes={activityTypes}
         />
-        </div>
-      
-        <div className="grid grid-cols-12 gap-8">
-          {/* List Information/Display */}
-          <div className="col-span-4">
-            <List 
-              places={places}
-              type={type}
-              setType={setType}
-              radius={radius}
-              setRadius={setRadius}
-              childClicked={childClicked}
-              setChildClicked={setChildClicked}
-              isLoading={isLoading}
-            />
-          </div>
 
-          {/* Map Information/Display */}
-          <div className="col-span-8 cursor-pointer">
-            <MapComponent 
-              setCoordinates={setCoordinates}
-              coordinates={coordinates}
-              places={places}
-              setChildClicked={setChildClicked}
-            />
-          </div>
+        {/* View Mode Toggle */}
+        <div className="flex justify-end mb-4 space-x-4">
+          <button
+            onClick={() => setViewMode('list')}
+            className={`btn-primary ${viewMode === 'list' ? 'bg-darkGray' : ''}`}
+          >
+            List View
+          </button>
+          <button
+            onClick={() => setViewMode('map')}
+            className={`btn-primary ${viewMode === 'map' ? 'bg-darkGray' : ''}`}
+          >
+            Map View
+          </button>
         </div>
-      </section>
-    </>
+
+      {/* Content Section */}
+      {viewMode === 'list' ? (
+        <div>
+          <List
+            places={places}
+            type={type}
+            setType={setType}
+            radius={radius}
+            setRadius={setRadius}
+            childClicked={childClicked}
+            setChildClicked={setChildClicked}
+            isLoading={isLoading}
+          />
+        </div>
+      ) : (
+        <div className="flex justify-center w-3/4 h-96 rounded-lg">
+          <MapComponent
+            setCoordinates={setCoordinates}
+            coordinates={coordinates}
+            places={places}
+            setChildClicked={setChildClicked}
+          />
+        </div>
+      )}
+    </section>
   );
 };
 
-export default Tester;
+export default Tester
