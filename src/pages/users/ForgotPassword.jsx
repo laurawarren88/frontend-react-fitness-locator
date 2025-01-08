@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import Form from '../../components/Shared/Form';
 
 const ForgotPassword = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -30,7 +34,7 @@ const ForgotPassword = () => {
             buttonText="Reset Password"
             footer={
                 <>
-                    <Link to="/" className="link">Home</Link>
+                    <Link to="/" onClick={handleClick} className="link">Home</Link>
                 </>
             }
         />

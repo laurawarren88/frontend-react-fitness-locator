@@ -6,6 +6,10 @@ import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 
 const Register = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -41,8 +45,8 @@ const Register = () => {
         buttonText="Sign Up"
         footer={
             <>
-                <Link to="/users/login" className="link pr-6">Already have an account?</Link>
-                <Link to="/users/forgot_password" className="link">Forgot password?</Link>
+                <Link to="/users/login" onClick={handleClick} className="link pr-6">Already have an account?</Link>
+                <Link to="/users/forgot_password" onClick={handleClick} className="link">Forgot password?</Link>
             </>
         }
     />

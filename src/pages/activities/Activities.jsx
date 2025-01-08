@@ -15,6 +15,7 @@ const Activities = () => {
       console.error("Error fetching activities:", error);
     }
   };
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-vibrantBlue to-energeticGreen text-white flex flex-col items-center">
       

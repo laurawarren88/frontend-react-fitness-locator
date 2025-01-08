@@ -6,6 +6,10 @@ import CreateActivitiesForm from '../../components/CreateActivitiesForm';
 import useForm from "../../hooks/useForm";
 
 const CreateActivity = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+    }; 
+    
     const initialState = {
         business_name: "",
         address: "",
@@ -59,7 +63,7 @@ const CreateActivity = () => {
                 buttonText="Create"
                 footer={
                     <>
-                        <Link to="/activities" className="link">Cancel</Link>
+                        <Link to="/activities" onClick={handleClick} className="link">Cancel</Link>
                     </>
                 }
             />

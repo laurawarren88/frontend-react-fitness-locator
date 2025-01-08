@@ -6,12 +6,16 @@ import ErrorMessage from "../../components/Shared/ErrorMessage";
 import LoadingMessage from "../../components/Shared/LoadingMessage";
 
 const Profile = () => {
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   const { id } = useParams();
-  const navigate = useNavigate(); // Call here at the top level
+  const navigate = useNavigate(); 
   const token = getCookie('access_token');
 
   if (!token) {
-      navigate("/login"); // Correct usage here
+      navigate("/login"); 
       return <ErrorMessage message="You are not authenticated. Please log in." />;
   }
   
@@ -41,16 +45,16 @@ const Profile = () => {
             </div>
     
             {isAdminUser ? (
-                    <AdminControls navigate={navigate} /> // Pass the navigate function correctly
+                    <AdminControls navigate={navigate} /> 
                 ) : (
-                    <UserControls navigate={navigate} /> // Pass the navigate function correctly
+                    <UserControls navigate={navigate} /> 
                 )}
           </div>
         </section>
       );
     };
     
-    const AdminControls = ({ navigate }) => (
+    const AdminControls = ({ navigate, handleClick }) => (
       <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-2xl text-darkGray mb-8 pb-4 border-b border-vibrantBlue/30">
               Admin Controls
@@ -58,34 +62,53 @@ const Profile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <button className="btn-primary text-center" onClick={() => {
                 console.log("Navigating to home page...");
+                handleClick();
                 navigate("/");
               }}>
-                  Home Page
+                Home Page
               </button>
-              <button className="btn-secondary text-center" onClick={() => navigate("/activities/new")}>
-                  Add a new Activity
+              <button className="btn-secondary text-center" onClick={() => {
+                handleClick();
+                navigate("/activities/new")
+              }}>
+                Add a new Activity
               </button>
-              <button className="btn-secondary text-center" onClick={() => navigate("/activities/locator")}>
-                  Search Activity
+              <button className="btn-secondary text-center" onClick={() => {
+                handleClick();
+                navigate("/activities/locator")
+              }}>
+                Search Activity
               </button>
-              <button className="btn-secondary text-center" onClick={() => navigate("/activities")}>
-                  View Activities
+              <button className="btn-secondary text-center" onClick={() => {
+                handleClick();
+                navigate("/activities")
+              }}>
+                View Activities
               </button>
           </div>
       </div>
   );
     
-    const UserControls = ({ navigate }) => (
+    const UserControls = ({ navigate, handleClick }) => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-xl text-darkGray mb-4">Quick Actions</h2>
-          <button className="btn-primary block text-center mb-4" onClick={() => navigate("/")}>
+          <button className="btn-primary block text-center mb-4" onClick={() => {
+            handleClick();
+            navigate("/")
+          }}>
             Home Page
           </button>
-          <button className="btn-secondary text-center" onClick={() => navigate("/activities/locator")}>
+          <button className="btn-secondary text-center" onClick={() => {
+            handleClick();
+            navigate("/activities/locator")
+          }}>
             Search Activity
           </button>
-          <button className="btn-secondary text-center" onClick={() => navigate("/activities")}>
+          <button className="btn-secondary text-center" onClick={() => {
+            handleClick();
+            navigate("/activities")
+          }}>
             View Activities
           </button>
         </div>
@@ -93,7 +116,10 @@ const Profile = () => {
         <div className="bg-white rounded-lg shadow-lg p-8 border border-vibrantBlue/20">
           <h2 className="font-oswald text-xl text-darkGray mb-4">Discover Books</h2>
           <p className="font-poppins text-lightGray mb-4">Let's find your next literary adventure!</p>
-          <button className="btn-secondary block text-center mb-4" onClick={() => navigate("/books")}>
+          <button className="btn-secondary block text-center mb-4" onClick={() => {
+            handleClick();
+            navigate("/books")
+          }}>
             Browse All Books
           </button>
         </div>
@@ -103,7 +129,10 @@ const Profile = () => {
           <p className="font-poppins text-lightGray mb-4">
             Use our search feature to find exactly what you want.
           </p>
-          <button className="btn-secondary block text-center" onClick={() => navigate("/books/search")}>
+          <button className="btn-secondary block text-center" onClick={() => {
+            handleClick();
+            navigate("/books/search")
+          }}>
             Search for a book
           </button>
         </div>
