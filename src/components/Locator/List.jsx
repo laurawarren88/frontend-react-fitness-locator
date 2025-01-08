@@ -1,7 +1,8 @@
 import React, { useState, useEffect, createRef } from 'react';
 import PlaceDescription from './PlaceDescription'
+import PropTypes from 'prop-types';
 
-const List = ({ places, type, setType, radius, setRadius, childClicked, setChildClicked, isLoading }) => {
+const List = ({ places, childClicked, setChildClicked, isLoading }) => {
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
@@ -37,11 +38,15 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
           ) : (
             <div className='grid h-screen overflow-auto'>
             {places?.map((place, index) => (
-              <div
-                key={index}
-                className={`grid ${childClicked === index ? 'bg-blue-100' : ''}`} 
-                onClick={() => {setChildClicked(index);}}
-                ref={elRefs[index]}
+              // <div
+              //   key={index}
+              //   className={`grid ${childClicked === index ? 'bg-blue-100' : ''}`} 
+              //   onClick={() => {setChildClicked(index);}}
+              //   ref={elRefs[index]}
+              // >
+              <div 
+                key={place.id} 
+                className={`list-item ${childClicked === index ? 'highlight' : ''}`}
               >
                   <PlaceDescription 
                     place={place}
@@ -57,5 +62,20 @@ const List = ({ places, type, setType, radius, setRadius, childClicked, setChild
     </div>
   );
 };
+
+List.propTypes = {
+  places: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      postcode: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    })
+  ).isRequired,
+  childClicked: PropTypes.number,
+};
+
 
 export default List;

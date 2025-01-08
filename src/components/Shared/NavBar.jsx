@@ -40,7 +40,6 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-3">
               <NavLink to="/" className={navLink}>Home</NavLink>
               <NavLink to="/activities/locator" className={navLink}>Locator</NavLink>
-              <NavLink to="/tester" className={navLink}>Tester</NavLink>
             </div>
           </div>
           {/* <!-- right side --> */}
