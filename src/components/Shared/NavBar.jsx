@@ -52,9 +52,7 @@ const Navbar = () => {
           {!isLoggedIn ? ( 
             <div>
               <NavLink to="/users/login" onClick={handleClick} className={navLink}>Login</NavLink>
-              {userId && (
-                  <NavLink to={"/users/register"} onClick={handleClick} className={specialNavLink}>Register</NavLink>
-                )}
+              <NavLink to="/users/register" onClick={handleClick} className={specialNavLink}>Register</NavLink>
             </div>
              ) : (
             <div>

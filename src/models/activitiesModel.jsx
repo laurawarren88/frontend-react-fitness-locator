@@ -13,4 +13,6 @@
  * @property {string} type 
  * @property {number} latitude 
  * @property {number} longitude 
+ * @property {string} photo
+ * @property {string} website
  */

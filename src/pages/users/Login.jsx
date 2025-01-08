@@ -28,6 +28,7 @@ const Login = () => {
             console.log(user._id);
             localStorage.setItem('currentUser', JSON.stringify({ id: user._id }));
             window.location.href = `/users/profile/${user._id}`;
+            window.scrollTo(0, 0);
         }
     };
 
