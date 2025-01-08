@@ -28,71 +28,75 @@ const Header = ({ setCoordinates, setType, setRadius, activityTypes }) => {
 
   return (
     // {/* Header Bar Container */}
-    <div className="static bg-white p-6 rounded-lg border border-gray-300 shadow-lg"> 
-    <div className="title-section pb-8">
-      <h1 className="h1-primary">Find your Fitness</h1>
-    </div>
-    <form className="grid grid-cols-12 gap-4 items-center">
-        {/* Activity Type Dropdown */}
-        <div className="col-span-3">
-          <select
-            id="activity-type"
-            name="activity-type"
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
-            onChange={handleTypeChange}
-            required
-          >
-            <option value="">Select a type</option>
-            {activityTypes.map((type, index) => (
-              <option key={index} value={type.toLowerCase().replace(/\s+/g, '+')}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className="max-w-7xl mx-auto static bg-white p-6 m-6 rounded-lg border border-gray-300 shadow-lg"> 
+      
+      {/* Title Section */}
+      <div className="title-section pb-8">
+        <h1 className="h1-primary">Find your Fitness</h1>
+      </div>
 
-        {/* Radius Selector */}
-        <div className="col-span-2">
-          <select
-            id="radius"
-            name="radius"
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
-            onChange={handleRadiusChange}
-          >
-            <option value="1600">Within 1 mile</option>
-            <option value="3200">Within 2 miles</option>
-            <option value="4800">Within 3 miles</option>
-            <option value="6400">Within 4 miles</option>
-            <option value="8000">Within 5 miles</option>
-          </select>
-        </div>
+      {/* Search Bar */}
+      <form className="grid grid-cols-12 gap-4 items-center">
+          {/* Activity Type Dropdown */}
+          <div className="col-span-3">
+            <select
+              id="activity-type"
+              name="activity-type"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
+              onChange={handleTypeChange}
+              required
+            >
+              <option value="">Select a type</option>
+              {activityTypes.map((type, index) => (
+                <option key={index} value={type.toLowerCase().replace(/\s+/g, '+')}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        {/* Location Search */}
-        <div className="col-span-5">
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <div className="relative rounded bg-white width-full">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <LiaSearchLocationSolid />
+          {/* Radius Selector */}
+          <div className="col-span-2">
+            <select
+              id="radius"
+              name="radius"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
+              onChange={handleRadiusChange}
+            >
+              <option value="1600">Within 1 mile</option>
+              <option value="3200">Within 2 miles</option>
+              <option value="4800">Within 3 miles</option>
+              <option value="6400">Within 4 miles</option>
+              <option value="8000">Within 5 miles</option>
+            </select>
+          </div>
+
+          {/* Location Search */}
+          <div className="col-span-5">
+            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+              <div className="relative rounded bg-white width-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <LiaSearchLocationSolid />
+                </div>
+                <input
+                  id="location"
+                  type="text"
+                  name="location"
+                  placeholder="Enter postcode or location"
+                  className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-energeticGreen"
+                  required
+                />
               </div>
-              <input
-                id="location"
-                type="text"
-                name="location"
-                placeholder="Enter postcode or location"
-                className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-energeticGreen"
-                required
-              />
-            </div>
-          </Autocomplete>
-        </div>
+            </Autocomplete>
+          </div>
 
-        {/* Search Button */}
-        <div className="col-span-2">
-          <button type="submit" className="btn-primary w-full">
-            Search
-          </button>
-        </div>
-      </form>
+          {/* Search Button */}
+          <div className="col-span-2">
+            <button type="submit" className="btn-primary w-full">
+              Search
+            </button>
+          </div>
+        </form>
     </div>
   );
 };

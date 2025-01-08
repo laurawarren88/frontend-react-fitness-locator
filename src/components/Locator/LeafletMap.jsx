@@ -91,7 +91,7 @@ const LeafletMap = ({coordinates, places, setChildClicked}) => {
   return (
     <div
         id="leaflet-map"
-        className="h-screen w-full rounded-xl shadow-md"
+        className="h-[70vh] w-full rounded-xl shadow-md"
     />
   )
 };

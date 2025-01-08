@@ -4,6 +4,10 @@
 
 
 @layer components {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   /* main title section */
   .title-section {
     @apply text-center mt-8;

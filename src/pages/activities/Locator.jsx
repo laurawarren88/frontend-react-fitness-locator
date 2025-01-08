@@ -82,7 +82,7 @@ const Tester = () => {
         />
 
         {/* Content Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full gap-6">
           <List
             places={places}
             // type={type}

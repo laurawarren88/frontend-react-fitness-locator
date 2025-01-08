@@ -5,6 +5,11 @@ import logo from '../../assets/images/fitnessTracker.png'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+    closeMobileMenu();
+  };
+
   const navLink = ({ isActive }) => isActive 
   ? 'font-poppins py-2 px-3 mr-2 bg-vibrantBlue text-lightGray rounded'
   : 'font-poppins py-2 px-3 mr-2 text-darkGray rounded hover:bg-vibrantBlue';
@@ -33,28 +38,28 @@ const Navbar = () => {
           {/* <!-- left size --> */}
           <div className="flex items-center space-x-1">
             <div>
-              <Link to="/" className="flex items-center py-3 px-3" onClick={closeMobileMenu}>
+              <Link to="/" onClick={handleClick} className="flex items-center py-3 px-3">
                 <img src={logo} alt="logo" className="h-12 w-14" />
               </Link>
             </div>
             <div className="hidden md:flex items-center space-x-3">
-              <NavLink to="/" className={navLink}>Home</NavLink>
-              <NavLink to="/activities/locator" className={navLink}>Locator</NavLink>
+              <NavLink to="/" onClick={handleClick} className={navLink}>Home</NavLink>
+              <NavLink to="/activities/locator" onClick={handleClick} className={navLink}>Locator</NavLink>
             </div>
           </div>
           {/* <!-- right side --> */}
           <div className="hidden md:flex items-center space-x-1"> 
           {!isLoggedIn ? ( 
             <div>
-              <NavLink to="/users/login" className={navLink}>Login</NavLink>
+              <NavLink to="/users/login" onClick={handleClick} className={navLink}>Login</NavLink>
               {userId && (
-                  <NavLink to={"/users/register"} className={specialNavLink}>Register</NavLink>
+                  <NavLink to={"/users/register"} onClick={handleClick} className={specialNavLink}>Register</NavLink>
                 )}
             </div>
              ) : (
             <div>
-              <NavLink to="/users/logout" className={navLink}>Logout</NavLink>
-              <NavLink to={`/users/profile/${userId}`} className={specialNavLink}>Profile</NavLink>
+              <NavLink to="/users/logout" onClick={handleClick} className={navLink}>Logout</NavLink>
+              <NavLink to={`/users/profile/${userId}`} onClick={handleClick} className={specialNavLink}>Profile</NavLink>
             </div>
             )}
           </div>
@@ -74,12 +79,12 @@ const Navbar = () => {
       <div className={`md:hidden font-poppins text-center text-darkGray transform transition-transform 
         ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
         style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}>
-        <NavLink to="/" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Home</NavLink>
-        <NavLink to="/activities" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Activities</NavLink>
-        <NavLink to="/activities/locator" className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit" onClick={closeMobileMenu}>Locator</NavLink>
+        <NavLink to="/" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Home</NavLink>
+        <NavLink to="/activities" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Activities</NavLink>
+        <NavLink to="/activities/locator" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Locator</NavLink>
       </div>
     </nav>  
   )
-}
+};
 
-export default Navbar
+export default Navbar;

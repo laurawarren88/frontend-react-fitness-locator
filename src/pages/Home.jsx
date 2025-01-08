@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/images/fitnessTracker.png'
 
 const HomePage = () => {
+  const handleAnchorClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
     {/* hero section */}
@@ -33,7 +37,7 @@ const HomePage = () => {
       <section className="max-w-7xl mx-auto bg-vibrantBlue/65 text-white py-12 text-center">
           <h1 className="text-3xl font-semibold">Join our ever growing number of users to find your next fitness journey</h1>
           <p className="font-poppins mt-4 text-lg">From gyms to personal trainers, sports clubs and outdoor activities - Discover 10,000+ fitness options across the UK</p>
-          <Link to="/activities" className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
+          <Link to="/activities/locator" onClick={handleAnchorClick} className="btn-primary mt-6 inline-block px-6 py-3 bg-vibrantBlue text-white font-semibold rounded-lg">Search</Link>
       </section>
 
       {/* How to section */}
