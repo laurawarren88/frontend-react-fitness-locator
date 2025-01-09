@@ -55,7 +55,11 @@ const LeafletMap = ({coordinates, places, setChildClicked}) => {
   
         if (lat && lng) {
           const marker = L.marker([lat, lng], { icon: defaultIcon }).bindPopup(
-            `<b>${place.name}</b><br>${place.address}`
+            `<b>${place.name}</b><br>
+            ${place.address}<br>
+            ${place.postcode}<br>
+            ${'★'.repeat(Math.floor(place.rating || 0)) +
+              '☆'.repeat(5 - Math.floor(place.rating || 0))}`
           );
 
           marker.on('mouseover', () => {
