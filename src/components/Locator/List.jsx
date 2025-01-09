@@ -38,6 +38,7 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
           ) : (
             <div>
               {places?.map((place, index) => (
+                // console.log("List Place:", place),
                 <div
                   // key={index}
                   key={place.id} 
@@ -61,20 +62,5 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
     </div>
   );
 };
-
-List.propTypes = {
-  places: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      address: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      postcode: PropTypes.string.isRequired,
-      description: PropTypes.string,
-    })
-  ).isRequired,
-  childClicked: PropTypes.number,
-};
-
 
 export default List;

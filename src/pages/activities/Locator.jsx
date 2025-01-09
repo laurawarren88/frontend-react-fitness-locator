@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getPlacesData } from '../../controllers/apiController';
+import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/Header';
 import List from '../../components/Locator/List';
 import MapComponent from '../../components/Locator/Map';
@@ -12,18 +13,8 @@ const Tester = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
   const [radius, setRadius] = useState('8000');
-  const [viewMode, setViewMode] = useState('list');
   const [useMockData, setUseMockData] = useState(true); 
-
-  const activityTypes = [
-    'Gyms', 'Personal Trainers', 'Leisure Centers', 'Sports Clubs',
-    'Yoga Studios', 'Pilates Studios', 'Crossfit Boxes', 'Fitness Bootcamps',
-    'Health Clubs', 'Running Tracks', 'Dance Studios', 'Martial Arts',
-    'Swimming Pools', 'Basketball Courts', 'Tennis Courts', 'Golf Courses',
-    'Skiing/Snowboarding Centers', 'Cycling Routes', 'Hiking Trails',
-    'Rock Climbing Centers', 'Spa and Wellness Centers', 'Boxing Gyms',
-    'Cycling Studios', 'Rowing Centers', 'Horse Riding Centers', 'Meditation Centers',
-  ];
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -49,16 +40,27 @@ const Tester = () => {
     if (!coordinates || !type) return;
   
     setIsLoading(true);
-    const fetchPlaces = async () => {
-      const results = await getPlacesData(type, coordinates, radius, useMockData);
-      // console.log(results); 
-      setPlaces(results);
-      setIsLoading(false);
-    };
-  
-    fetchPlaces();
 
+    const fetchPlaces = async () => {
+      try {
+        const results = await getPlacesData(type, coordinates, radius, useMockData);
+        // console.log("Locator fetched results 1:", results); 
+        setPlaces(results);
+      } catch (error) {
+        console.error('Error fetching places:', error);
+        setError(error);
+        } finally {
+          setIsLoading(false);
+          }
+      }
+        // console.log("Locator Fetched results 2:", places);
+        // console.log("Coordinates in LeafletMap:", coordinates);
+        fetchPlaces();
   }, [coordinates, type, radius, useMockData]);
+
+  const handleTypeChange = (e) => setType(e.target.value);
+  const handleRadiusChange = (e) => setRadius(e.target.value);
+  const handleMockToggle = () => setUseMockData((prev) => !prev); 
 
   return (
       <section className="max-w-7xl mx-auto py-20">

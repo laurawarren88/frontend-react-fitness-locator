@@ -1,11 +1,13 @@
 import { GOOGLE_API_KEY } from "../utils/config";
 import { generateMockPlaces } from "../utils/mockPlaces";
+import activitiesMap from "../utils/activitiesMap";
 
 /**
  * Fetches data from the API based on type, coordinates, and radius.
  * @param {string} type 
  * @param {{lat: number, lng: number}} coordinates 
- * @param {string} radius 
+ * @param {string} radius
+ * @param {boolean} useMockData
  * @returns {Promise<Place[]>} 
  */
 
@@ -14,7 +16,9 @@ const textSearchBaseUrl = "https://maps.googleapis.com/maps/api/place/textsearch
 export const getPlacesData = async (type, coordinates, radius, useMockData = false) => {
   if (useMockData) {
     console.log("Using mock data for places.");
-    return generateMockPlaces(type, coordinates, 20); // Generate 20 mock places dynamically
+    const mockPlaces = generateMockPlaces(type, coordinates, 20); // Generate mock data
+    // console.log("Mock Places from api controller:", mockPlaces);
+    return mockPlaces.map((place) => activitiesMap(place, type)); // Use activitiesMap to format the mock data
   }
 
   try {
@@ -31,21 +35,11 @@ export const getPlacesData = async (type, coordinates, radius, useMockData = fal
   
     if (!data || data.status !== 'OK') {
       console.warn(`API returned status: ${data?.status || "No status"}`);
+      setIsLoading(false);
       return [];
     }
-  
-    return data.results.map((place) => ({
-      id: place.place_id,
-      name: place.name || "Unknown Place",
-      address: place.vicinity || "No address available",
-      city: place.plus_code?.compound_code.split(',')[1]?.trim() || "Unknown City",
-      postcode: place.plus_code?.compound_code.split(',')[2]?.trim() || "Unknown Postcode",
-      description: place.types?.join(', ') || "No description available",
-      typeId: type,
-      type: type,
-      latitude: place.geometry.location.lat,
-      longitude: place.geometry.location.lng,
-    }));
+
+    return data.results.map((place) => activitiesMap(place, type));
   } catch (error) {
     console.error("Error fetching places data:", error);
     return [];
