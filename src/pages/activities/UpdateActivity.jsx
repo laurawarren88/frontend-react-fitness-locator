@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/submitFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateactivitiesForm from '../../components/CreateActivitiesForm';
+import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
 import useForm from "../../hooks/useForm";
 
 const UpdateActivities = ({ activitiesId }) => {
