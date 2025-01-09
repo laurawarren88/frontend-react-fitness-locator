@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/newActivityFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateActivitiesForm from '../../components/CreateActivitiesForm'; 
+import CreateActivitiesForm from '../../components/Activity/CreateActivitiesForm'; 
 import useForm from "../../hooks/useForm";
 
 const CreateActivity = () => {
@@ -15,11 +15,13 @@ const CreateActivity = () => {
         address: "",
         city: "",
         postcode: "",
+        description: "",
+        rating: "",
         phone: "",
         email: "",         
         website: "",      
         opening_hours: "",
-        activities: "",  
+        type: "",  
         facilities: "",
         logo: null,
         facilities_image: null,
