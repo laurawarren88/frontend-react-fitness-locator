@@ -45,6 +45,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-3">
               <NavLink to="/" onClick={handleClick} className={navLink}>Home</NavLink>
               <NavLink to="/activities/locator" onClick={handleClick} className={navLink}>Locator</NavLink>
+              <NavLink to="/activities/new" onClick={handleClick} className={navLink}>Add Activity</NavLink>
             </div>
           </div>
           {/* <!-- right side --> */}
