@@ -3,10 +3,18 @@ import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import youAreHereLocationIcon from '../../assets/images/youarehere.png';
 import fitnessIcon from '../../assets/images/fitnesstracker.png';
 import highlightedFitnessIcon from '../../assets/images/fitnesstracker-highlighted.png';
 
-const LeafletMap = ({coordinates, places, setChildClicked}) => {
+const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap}) => {
+  var youAreHereIcon = L.icon({
+      iconUrl: youAreHereLocationIcon,
+      iconSize: [32, 40],
+      iconAnchor: [15, 35],
+      popupAnchor: [0, -32],
+  });
+
   var defaultIcon = L.icon({
       iconUrl: fitnessIcon,
       iconSize: [48, 48],
@@ -22,38 +30,50 @@ const LeafletMap = ({coordinates, places, setChildClicked}) => {
   });
 
   useEffect(() => {
-      if (!coordinates) return;
+    if (!coordinates || !places) {
+      console.log("Missing required props:", { coordinates, places });
+      return;
+    }
+
+    console.log("Updating map with:", {
+      coordinates,
+      radius,
+      placesCount: places.length
+    });
 
       const map = L.map('leaflet-map', {
         center: [coordinates.lat, coordinates.lng],
         zoom: 13,
       });
 
-      // Standard Map
-      // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //   maxZoom: 19,
-      //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      // }).addTo(map);
+      setLeafletMap(map);
 
       L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
-        minZoom: 10,
+        minZoom: 5,
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
       // You are here marker
-      // L.marker([coordinates.lat, coordinates.lng], { icon: defaultIcon })
-      // .addTo(map)
-      // .bindPopup('You are here!');
+      L.marker([coordinates.lat, coordinates.lng], { icon: youAreHereIcon })
+      .addTo(map)
+      .bindPopup('You are here!');
 
       const markerCluster = L.markerClusterGroup();
-      const bounds = L.latLngBounds();
+      let circleLayer;
 
-      places.forEach((place, index) => {
-        const lat = place.geometry?.location?.lat || place.latitude;
-        const lng = place.geometry?.location?.lng || place.longitude;
-  
+      const updateMarkers = () => {
+        markerCluster.clearLayers();
+        const bounds = L.latLngBounds();
+
+        places.forEach((place, index) => {
+          const lat = place.geometry?.location?.lat || place.latitude;
+          const lng = place.geometry?.location?.lng || place.longitude;
+
         if (lat && lng) {
+          console.log("Number of places:", places.length);
+          console.log("Place:", place);
+          console.log("Coordinates:", lat, lng);
           const marker = L.marker([lat, lng], { icon: defaultIcon }).bindPopup(
             `<b>${place.name}</b><br>
             ${place.address}<br>
@@ -82,15 +102,26 @@ const LeafletMap = ({coordinates, places, setChildClicked}) => {
       });
 
       map.addLayer(markerCluster);
+      };
   
-      if (bounds.isValid()) {
-        map.fitBounds(bounds);
-      }
-  
+      const updateCircle = () => {
+        if (circleLayer) {
+          map.removeLayer(circleLayer);
+        }
+        circleLayer = L.circle([coordinates.lat, coordinates.lng], {
+          radius,
+          color: 'blue',
+          fillOpacity: 0.2,
+        }).addTo(map);
+      };
+    
+      updateCircle();
+      updateMarkers();
+    
       return () => {
         map.remove();
       };
-    }, [coordinates, places, setChildClicked]);
+    }, [coordinates, radius, places, setChildClicked, setLeafletMap]);
 
   return (
     <div
