@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
 import PlaceDescription from './PlaceDescription'
-import PropTypes from 'prop-types';
 
 const List = ({ places, childClicked, setChildClicked, isLoading }) => {
   const [elRefs, setElRefs] = useState([]);
