@@ -14,7 +14,7 @@ const Locator = () => {
   const [leafletMap, setLeafletMap] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
-  const [radius, setRadius] = useState('8000');
+  const [radius, setRadius] = useState('1600');
   const [useMockData, setUseMockData] = useState(true); 
   const [error, setError] = useState(null);
 
@@ -88,6 +88,7 @@ const Locator = () => {
           setRadius={setRadius}
           setLeafletRadius={setLeafletRadius}
           places={places}
+          setPlaces={setPlaces}
           setFilteredPlaces={setFilteredPlaces}
           leafletMap={leafletMap}
         />

@@ -1,27 +1,10 @@
 import React, {useState} from 'react'
-import { Autocomplete } from '@react-google-maps/api'
-import { LiaSearchLocationSolid } from "react-icons/lia";
+import SearchBox from './searchBox';
 
-const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {
-  const [autocomplete, setAutocomplete] = useState(null);
-
-  const onLoad = (autoC) => {
-    // console.log("Autocomplete instance loaded:", autoC);
-    setAutocomplete(autoC);
-  };
-
-  const onPlaceChanged = () => {
-    if (!autocomplete) return;
+const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setPlaces, setFilteredPlaces, leafletMap }) => {
   
-    const place = autocomplete.getPlace();
-    if (place.geometry) {
-      const lat = place.geometry.location.lat();
-      const lng = place.geometry.location.lng();
-      setCoordinates({ lat, lng });
-    } else {
-      alert('Please select a valid location.');
-    }
-  };
+
+  
 
   const handleTypeChange = (e) => {
     const selectedType = e.target.value;
@@ -56,7 +39,7 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
       {/* Search Bar */}
       <form className="grid grid-cols-12 gap-4 items-center">
           {/* Activity Type Dropdown */}
-          <div className="col-span-3">
+          <div className="col-span-4">
             <select
               id="activity-type"
               name="activity-type"
@@ -74,7 +57,7 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
           </div>
 
           {/* Radius Selector */}
-          <div className="col-span-2">
+          <div className="col-span-3">
             <select
               id="radius"
               name="radius"
@@ -90,32 +73,12 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
           </div>
 
           {/* Location Search */}
-          <div className="col-span-5">
-            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-              <div className="relative rounded bg-white width-full">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LiaSearchLocationSolid />
-                </div>
-                <input
-                  id="location"
-                  type="text"
-                  name="location"
-                  placeholder="Enter postcode or location"
-                  className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-energeticGreen"
-                  required
-                />
-              </div>
-            </Autocomplete>
-          </div>
-
-          {/* Search Button */}
-          <div className="col-span-2">
-            <button type="submit" className="btn-primary w-full">
-              Search
-            </button>
-          </div>
+          <SearchBox 
+            setCoordinates={setCoordinates}
+            setPlaces={() => {}}
+          />
         </form>
-    </div>
+      </div>
   );
 };
 

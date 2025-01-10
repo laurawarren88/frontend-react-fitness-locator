@@ -59,7 +59,7 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
       .addTo(map)
       .bindPopup('You are here!');
 
-      const zoomLevel = Math.max(13, Math.min(18, 13 + Math.log(radius) / Math.log(2))); // Zoom between levels 13 to 18 based on radius
+      const zoomLevel = Math.max(13, Math.min(18, 13 + Math.log(radius) / Math.log(2))); 
       map.setZoom(zoomLevel);
 
       const markerCluster = L.markerClusterGroup();
@@ -122,6 +122,8 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
         fillOpacity: 0.15,
       }).addTo(map);
       };
+
+      map.setView([coordinates.lat, coordinates.lng], map.getZoom());
     
       updateCircle();
       updateMarkers();
@@ -134,7 +136,7 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
   return (
     <div
         id="leaflet-map"
-        className="h-[70vh] w-full rounded-xl shadow-md"
+        className="h-[70vh] z-20 w-full rounded-xl shadow-md"
     />
   )
 };

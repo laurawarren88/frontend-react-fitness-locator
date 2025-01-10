@@ -129,6 +129,4 @@ const PlaceDescription = ({ place, selected, refProp }) => {
   );
 };
 
-// description
-
 export default PlaceDescription;
