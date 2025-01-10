@@ -81,7 +81,6 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
               className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
               onChange={handleRadiusChange}
             >
-              <option value="">Select a radius</option>
               <option value="1600">Within 1 mile</option>
               <option value="3200">Within 2 miles</option>
               <option value="4800">Within 3 miles</option>
