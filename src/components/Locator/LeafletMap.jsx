@@ -59,6 +59,9 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
       .addTo(map)
       .bindPopup('You are here!');
 
+      const zoomLevel = Math.max(13, Math.min(18, 13 + Math.log(radius) / Math.log(2))); // Zoom between levels 13 to 18 based on radius
+      map.setZoom(zoomLevel);
+
       const markerCluster = L.markerClusterGroup();
       let circleLayer;
 
@@ -102,6 +105,9 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
       });
 
       map.addLayer(markerCluster);
+      if (bounds.isValid()) {
+        map.fitBounds(bounds);
+      }
       };
   
       const updateCircle = () => {
