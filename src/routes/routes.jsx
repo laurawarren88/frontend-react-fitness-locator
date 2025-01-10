@@ -2,9 +2,10 @@ import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
 
+import Locator from '../pages/places/Locator';
+
 import Activities from '../pages/activities/Activities';
 import CreateActivity from '../pages/activities/CreateActivity';
-import Locator from '../pages/activities/Locator';
 import ShowActivity from '../pages/activities/ShowActivity';
 import UpdateActivity from '../pages/activities/UpdateActivity';
 
@@ -21,10 +22,12 @@ const routes = createRoutesFromElements(
     {/* Home page */}
     <Route index element={<Home />} />
 
+    {/* places routes */}
+    <Route path="/places/locator" element={<Locator />} />
+
     {/* Activities routes */}
     <Route path="/activities" element={<Activities />} />
     <Route path="/activities/new" element={<CreateActivity />} />
-    <Route path="/activities/locator" element={<Locator />} />
     <Route path="/activities/:id/edit" element={<UpdateActivity />} />
     <Route path="/activities/:id" element={<ShowActivity />} />
 
