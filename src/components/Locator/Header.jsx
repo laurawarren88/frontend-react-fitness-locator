@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Autocomplete } from '@react-google-maps/api'
 import { LiaSearchLocationSolid } from "react-icons/lia";
 
-const Header = ({ setCoordinates, setType, setRadius, activityTypes }) => {
+const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {
   const [autocomplete, setAutocomplete] = useState(null);
 
   const onLoad = (autoC) => {
@@ -23,8 +23,26 @@ const Header = ({ setCoordinates, setType, setRadius, activityTypes }) => {
     }
   };
 
-  const handleTypeChange = (e) => setType(e.target.value);
-  const handleRadiusChange = (e) => setRadius(e.target.value);
+  const handleTypeChange = (e) => {
+    const selectedType = e.target.value;
+    setType(selectedType);
+    
+    if (places.length > 0) {
+        const filtered = places.filter(place => 
+            place.type.toLowerCase() === selectedType.toLowerCase()
+        );
+        setFilteredPlaces(filtered);
+    }
+  };
+
+  const handleRadiusChange = (e) => {
+    const newRadius = parseInt(e.target.value);
+    setRadius(newRadius);
+  
+    if (coordinates && leafletMap) {
+      setLeafletRadius(leafletMap, coordinates, newRadius);
+    }
+  };
 
   return (
     // {/* Header Bar Container */}
@@ -63,6 +81,7 @@ const Header = ({ setCoordinates, setType, setRadius, activityTypes }) => {
               className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-energeticGreen"
               onChange={handleRadiusChange}
             >
+              <option value="">Select a radius</option>
               <option value="1600">Within 1 mile</option>
               <option value="3200">Within 2 miles</option>
               <option value="4800">Within 3 miles</option>
