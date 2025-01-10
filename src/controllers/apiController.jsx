@@ -3,7 +3,6 @@ import { generateMockPlaces } from "../utils/mockPlaces";
 import activitiesMap from "../utils/activitiesMap";
 
 /**
- * Fetches data from the API based on type, coordinates, and radius.
  * @param {string} type 
  * @param {{lat: number, lng: number}} coordinates 
  * @param {string} radius
@@ -16,9 +15,9 @@ const textSearchBaseUrl = "https://maps.googleapis.com/maps/api/place/textsearch
 export const getPlacesData = async (type, coordinates, radius, useMockData = false) => {
   if (useMockData) {
     console.log("Using mock data for places.");
-    const mockPlaces = generateMockPlaces(type, coordinates, 20); // Generate mock data
+    const mockPlaces = generateMockPlaces(type, coordinates, radius); 
     // console.log("Mock Places from api controller:", mockPlaces);
-    return mockPlaces.map((place) => activitiesMap(place, type)); // Use activitiesMap to format the mock data
+    return mockPlaces.map((place) => activitiesMap(place, type)); 
   }
 
   try {
@@ -35,6 +34,7 @@ export const getPlacesData = async (type, coordinates, radius, useMockData = fal
   
     if (!data || data.status !== 'OK') {
       console.warn(`API returned status: ${data?.status || "No status"}`);
+      console.error("Places API Error:", data.status, data.error_message);
       setIsLoading(false);
       return [];
     }

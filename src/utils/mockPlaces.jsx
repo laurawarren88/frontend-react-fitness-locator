@@ -20,7 +20,10 @@ import ten from "../assets/images/fakeImages/ten.jpg";
  * @returns {Place[]}
  */
 
-export const generateMockPlaces = (type, currentLocation, count = 20) => {
+export const generateMockPlaces = (type, currentLocation, radius) => {
+  // Start the count at 20 and increase by 10 for every mile and cap the search at 60
+  const count = Math.min(20 + Math.floor(radius / 1600) * 10, 60);
+
   const fakeNames = [
     "Prime Gym",
     "Fitness Hub",
@@ -87,8 +90,29 @@ export const generateMockPlaces = (type, currentLocation, count = 20) => {
     ten,
   ];
 
-  const getRandomCoordinate = (center, radius = 0.01) => {
-    return center + (Math.random() - 0.5) * radius * 2;
+  /**
+   * Generate random coordinates around a center point.
+   * @param {number} center - Center latitude or longitude.
+   * @param {number} radius - Radius in meters.
+   * @returns {number} - Random latitude or longitude within the radius.
+   */
+
+  // const getRandomCoordinate = (center, radius = 0.01) => {
+  //   return center + (Math.random() - 0.5) * radius * 2;
+  // };
+
+  const getRandomCoordinate = (center, radius) => {
+    const earthRadiusInMeters = 6371000; // Earth's radius in meters
+    const angle = Math.random() * Math.PI * 2; // Random angle
+    const distance = (Math.random() - 0.5) * radius * 2; // Random distance
+  
+    const deltaLat = (distance * Math.cos(angle)) / earthRadiusInMeters * (180 / Math.PI); // Latitude offset
+    const deltaLng = (distance * Math.sin(angle)) / (earthRadiusInMeters * Math.cos(center.lat * (Math.PI / 180))) * (180 / Math.PI); // Longitude offset
+  
+    return {
+      lat: center.lat + deltaLat,
+      lng: center.lng + deltaLng,
+    };
   };
 
   const mockPlaces = [];
@@ -97,13 +121,14 @@ export const generateMockPlaces = (type, currentLocation, count = 20) => {
     const randomAddress = faker.helpers.arrayElement(fakeAddresses);
     const [number, street, city, postcode] = randomAddress.split(", ");
 
-    const latitude = getRandomCoordinate(currentLocation.lat);
-    const longitude = getRandomCoordinate(currentLocation.lng);
+    const { lat, lng } = getRandomCoordinate(currentLocation, radius);
 
-    const randomOpeningHours = fakeOpeningHours[Math.floor(Math.random() * fakeOpeningHours.length)];
+    if (isNaN(lat) || isNaN(lng)) {
+      continue; // Skip this iteration if the coordinates are invalid
+    }
 
     mockPlaces.push({
-      id: parseInt(uuidv4().replace(/-/g, ''), 16),
+      id: uuidv4(),
       name: randomName,
       address: `${number} ${street}`.trim() || "Unknown Address",
       city: city || "Unknown City",
@@ -118,8 +143,8 @@ export const generateMockPlaces = (type, currentLocation, count = 20) => {
       photo: faker.helpers.arrayElement(fakeImages),
       facilities_image: faker.image.urlLoremFlickr({ category: 'sports' }),
       rating: faker.number.int({ min: 1, max: 5 }),
-      latitude: latitude,
-      longitude: longitude,
+      latitude: lat,
+      longitude: lng,
       createdAt: faker.date.recent(),
       updatedAt: faker.date.recent(),
       deletedAt: null,
