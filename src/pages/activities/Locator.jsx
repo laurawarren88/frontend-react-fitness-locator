@@ -6,10 +6,12 @@ import List from '../../components/Locator/List';
 import MapComponent from '../../components/Locator/Map';
 import LeafletMap from '../../components/Locator/LeafletMap';
 
-const Tester = () => {
+const Locator = () => {
   const [places, setPlaces] = useState([]);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [childClicked, setChildClicked] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
+  const [leafletMap, setLeafletMap] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
   const [radius, setRadius] = useState('8000');
@@ -18,23 +20,19 @@ const Tester = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => setCoordinates({ lat: latitude, lng: longitude }),
+      ({ coords: { latitude, longitude, accuracy } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+        setRadius(accuracy); 
+      },
       () => setCoordinates({ lat: 51.5074, lng: -0.1278 }) // Default to London
     );
   }, []);
 
-  // useEffect(() => {
-  //   const fetchPlaces = async () => {
-  //     const results = await getPlacesData(type, coordinates, radius);
-  //     setPlaces(results?.filter((place) => place.name));
-  //     setIsLoading(false);
-  //   };
-
-  //   if (coordinates && type) {
-  //     setIsLoading(true);
-  //     fetchPlaces();
-  //   }
-  // }, [type, coordinates, radius]);
+  useEffect(() => {
+    if (places.length > 0) {
+        setFilteredPlaces(places);
+    }
+  }, [places]);
 
   useEffect(() => {
     if (!coordinates || !type) return;
@@ -58,9 +56,16 @@ const Tester = () => {
         fetchPlaces();
   }, [coordinates, type, radius, useMockData]);
 
-  const handleTypeChange = (e) => setType(e.target.value);
-  const handleRadiusChange = (e) => setRadius(e.target.value);
-  const handleMockToggle = () => setUseMockData((prev) => !prev); 
+  const setLeafletRadius = (map, center, radius) => {
+    if (map && center && radius) {
+      map.eachLayer((layer) => {
+        if (layer instanceof L.Circle) {
+          map.removeLayer(layer);
+        }
+      });
+      L.circle([center.lat, center.lng], { radius }).addTo(map);
+    }
+  };
 
   return (
       <section className="max-w-7xl mx-auto py-20">
@@ -77,29 +82,31 @@ const Tester = () => {
 
         {/* Search Component */}
         <Header
-          setCoordinates={setCoordinates}
           setType={setType}
-          setRadius={setRadius}
           activityTypes={activityTypes}
+          setCoordinates={setCoordinates}
+          setRadius={setRadius}
+          setLeafletRadius={setLeafletRadius}
+          places={places}
+          setFilteredPlaces={setFilteredPlaces}
+          leafletMap={leafletMap}
         />
 
         {/* Content Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full gap-6">
           <List
             places={places}
-            // type={type}
-            // setType={setType}
-            // radius={radius}
-            // setRadius={setRadius}
             childClicked={childClicked}
             setChildClicked={setChildClicked}
-            // isLoading={isLoading}
+            isLoading={isLoading}
           />
           {useMockData ? (
             <LeafletMap 
               coordinates={coordinates}
-              places={places}
+              radius={radius}
+              places={filteredPlaces}
               setChildClicked={setChildClicked}
+              setLeafletMap={setLeafletMap}
             />
           ) : ( 
             <MapComponent
@@ -114,4 +121,4 @@ const Tester = () => {
   );
 };
 
-export default Tester;
+export default Locator;
