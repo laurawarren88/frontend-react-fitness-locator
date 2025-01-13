@@ -1,6 +1,6 @@
 /**
- * Transforms raw place data from the Google Places API into the desired format.
- * @param {object} place - A place object returned by the Google Places API.
+ * Transforms raw place data into a standardised format.
+ * @param {object} place
  * @param {string} type - The type of place (e.g., "gym", "yoga").
  * @returns {object|null} A formatted place object.
  */
