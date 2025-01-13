@@ -1,10 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
+import getPlacesData from '../../controllers/apiController';
 import SearchBox from './searchBox';
 
-const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setPlaces, setFilteredPlaces, leafletMap }) => {
-  
-
-  
+const Header = ({ setType, activityTypes, coordinates, setCoordinates, radius, setRadius, setLeafletRadius, places, setPlaces, setFilteredPlaces, leafletMap }) => {
+  // useEffect(() => {
+  //   if (coordinates && radius) {
+  //     const activityType = activityTypes[0].toLowerCase().replace(/\s+/g, "+"); 
+  //     getPlacesData(coordinates, radius, activityType).then((data) => {
+  //       setPlaces(data);
+  //     });
+  //   }
+  // }, [coordinates, radius, activityTypes]);
 
   const handleTypeChange = (e) => {
     const selectedType = e.target.value;
