@@ -3,7 +3,7 @@ import { getPlacesData } from '../../controllers/apiController';
 import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/Header';
 import List from '../../components/Locator/List';
-import MapComponent from '../../components/Locator/Map';
+import MapComponent from '../../components/Locator/MapComponent';
 import LeafletMap from '../../components/Locator/LeafletMap';
 
 const Locator = () => {
