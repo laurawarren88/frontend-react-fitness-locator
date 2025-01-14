@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { GOOGLE_API_KEY } from '../../utils/config';
 import defaultImage from '../../assets/images/default_gym.jpg'
 
 const PlaceDescription = ({ place, selected, refProp }) => {
@@ -24,7 +23,7 @@ const PlaceDescription = ({ place, selected, refProp }) => {
       const fetchPlaceDetails = async () => {
         try {
           const response = await fetch(
-            `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&fields=name,rating,formatted_phone_number,website,opening_hours,formatted_address&key=${GOOGLE_API_KEY}`
+            // `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&fields=name,rating,formatted_phone_number,website,opening_hours,formatted_address&key=${GOOGLE_API_KEY}`
           );
           const data = await response.json();
 
