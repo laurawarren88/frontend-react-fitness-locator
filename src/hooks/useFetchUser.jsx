@@ -1,4 +1,3 @@
-// hooks/useFetchUser.js
 import { useState, useEffect } from "react";
 import { FetchToken } from "../utils/fetchToken";
 import { BASE_URL } from "../utils/config";
