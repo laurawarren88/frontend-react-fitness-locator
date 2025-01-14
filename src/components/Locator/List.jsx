@@ -41,7 +41,6 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
                 <div
                   // key={index}
                   key={place.id} 
-                  // className={`grid ${childClicked === index ? 'bg-blue-100' : ''}`} 
                   className={`list-item ${childClicked === index ? 'highlight' : ''}`}
                   onClick={() => {setChildClicked(index);}}
                   ref={elRefs[index]}
