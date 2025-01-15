@@ -44,7 +44,7 @@ const showActivity = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         <div className="col-span-1">
-          <img src={activitiesData.image} alt={activitiesData.name} className="w-full h-full object-cover" />
+          <img src={activitiesData.logo} alt={activitiesData.name} className="w-full h-full object-cover" />
         </div>
         <div className="col-span-1 bg-white p-8">
           <h2 className="text-2xl font-semibold mb-4">{activitiesData.name}</h2>
@@ -60,6 +60,7 @@ const showActivity = () => {
           <p className="text-gray-600 mb-4">{activitiesData.vicinity}</p>
           <p className="text-gray-600 mb-4">{activitiesData.longitude}</p>
           <p className="text-gray-600 mb-4">{activitiesData.latitude}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.facilities_image}</p>
         </div>
       </div>
 

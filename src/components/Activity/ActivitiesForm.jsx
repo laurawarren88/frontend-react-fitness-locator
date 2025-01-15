@@ -15,10 +15,10 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     opening_hours: initialData?.opening_hours || '',
     type: initialData?.type || '',
     description: initialData?.description || '',
-    logo: initialData?.logo || null,
-    facilities_image: initialData?.facilities_image || null,
     latitude: initialData?.latitude || '',
     longitude: initialData?.longitude || '',
+    logo: initialData?.logo || null,
+    facilities_image: initialData?.facilities_image || null,
   };
 
   const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useActivityForm(

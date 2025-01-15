@@ -23,6 +23,8 @@ const CreateActivity = () => {
         description: "",
         latitude: "",
         longitude: "",
+        logo: "",
+        facilities_image: "",
     };
 
 

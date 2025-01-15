@@ -64,6 +64,8 @@ const UpdateActivities = () => {
                     description: data.activity.description || "",
                     latitude: data.activity.latitude !== undefined ? data.activity.latitude : "",
                     longitude: data.activity.longitude !== undefined ? data.activity.longitude : "",
+                    logo: data.activity.logo || "",
+                    facilities_image: data.activity.facilities_image || "",
                 });
                 setIsLoading(false);
               } catch (error) {
