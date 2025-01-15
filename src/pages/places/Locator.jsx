@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getPlacesData } from '../../controllers/apiController';
+import { getPlacesData } from '../../controllers/mockdataController';
 import activityTypes  from '../../utils/activityTypes';
-import Header from '../../components/Locator/Header';
-import List from '../../components/Locator/List';
-import MapComponent from '../../components/Locator/MapComponent';
-import LeafletMap from '../../components/Locator/LeafletMap';
+import Header from '../../components/Locator/Header/Header';
+import List from '../../components/Locator/ListItem/List';
+import LeafletMap from '../../components/Locator/mockMap/LeafletMap';
 
 const Locator = () => {
   const [places, setPlaces] = useState([]);

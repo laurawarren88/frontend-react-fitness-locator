@@ -3,9 +3,9 @@ import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-import youAreHereLocationIcon from '../../assets/images/youarehere.png';
-import fitnessIcon from '../../assets/images/fitnesstracker.png';
-import highlightedFitnessIcon from '../../assets/images/fitnesstracker-highlighted.png';
+import youAreHereLocationIcon from '../../../assets/images/youarehere.png';
+import fitnessIcon from '../../../assets/images/fitnesstracker.png';
+import highlightedFitnessIcon from '../../../assets/images/fitnesstracker-highlighted.png';
 
 const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap}) => {
   var youAreHereIcon = L.icon({

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import defaultImage from '../../assets/images/default_gym.jpg'
+import defaultImage from '../../../assets/images/default_gym.jpg'
 
 const PlaceDescription = ({ place, selected, refProp }) => {
   const [placeImage, setPlaceImage] = useState(null);

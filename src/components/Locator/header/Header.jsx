@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
-import getPlacesData from '../../controllers/apiController';
+import React from 'react'
 import SearchBox from './searchBox';
+import activityTypes from '../../../utils/activityTypes';
 
-const Header = ({ setType, activityTypes, coordinates, setCoordinates, radius, setRadius, setLeafletRadius, places, setPlaces, setFilteredPlaces, leafletMap }) => {
+const Header = ({ setType, activityTypes, coordinates, setCoordinates, radius, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {
   const handleTypeChange = (e) => {
     const selectedType = e.target.value;
     setType(selectedType);
@@ -46,8 +46,8 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, radius, s
             >
               <option value="">Select a type</option>
               {activityTypes.map((type, index) => (
-                <option key={index} value={type.toLowerCase().replace(/\s+/g, '+')}>
-                  {type}
+                <option key={index} value={type.key}>
+                  {type.label}
                 </option>
               ))}
             </select>

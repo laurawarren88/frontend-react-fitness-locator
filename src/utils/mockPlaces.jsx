@@ -145,7 +145,6 @@ export const generateMockPlaces = (type, currentLocation, radius) => {
       lon: lng,
       photo: faker.helpers.arrayElement(fakeImages),
       facilities_image: faker.image.urlLoremFlickr({ category: 'sports' }),
-      rating: faker.number.int({ min: 1, max: 5 }),
       createdAt: faker.date.recent(),
       updatedAt: faker.date.recent(),
       deletedAt: null,

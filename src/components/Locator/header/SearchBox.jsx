@@ -7,7 +7,7 @@ const transformNominatimData = (places) => {
     return places.map((place) => ({
         id: place.place_id,
         name: place.display_name || "Unknown Name",
-        address: place.display_name || "No address available",
+        vicinity: place.display_name || "No address available",
         city: place.address.city || place.address.borough || place.address.village || "Unknown City",
         postcode: place.address.postcode || "Unknown Postcode",
         latitude: parseFloat(place.lat),
@@ -92,17 +92,6 @@ const SearchBox = ({ setCoordinates }) => {
                 )}
             </div>
         </div>
-
-        {/* Search Button
-        <div className="col-span-2">
-            <button
-                type="button"
-                className="btn-primary w-full"
-                onClick={handleSearch}
-            >
-            Search
-            </button>
-        </div> */}
     </>
   );
 };
