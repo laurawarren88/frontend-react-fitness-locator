@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useCreateActivityForm = (initialState, onSubmit) => {
+const useActivityForm = (initialState, onSubmit) => {
     const [formData, setFormData] = useState(initialState || {});
 
     const handleChange = (e) => {
@@ -34,4 +34,4 @@ const useCreateActivityForm = (initialState, onSubmit) => {
     return { formData, handleChange, handleAddressFieldChange, handleSubmit, setFormData };
 };
 
-export default useCreateActivityForm;
+export default useActivityForm;

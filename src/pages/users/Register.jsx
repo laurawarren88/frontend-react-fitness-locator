@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { submitForm } from '../../controllers/forms/submitFormController';
+import { postForm } from '../../controllers/forms/postFormController';
 import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 
@@ -21,7 +21,7 @@ const Register = () => {
         };
 
         console.log(`${BASE_URL}/users/register`);
-        const result = await submitForm({
+        const result = await postForm({
             url: `${BASE_URL}/users/register`,
             payload,
             alertContainerId: 'alertContainer',

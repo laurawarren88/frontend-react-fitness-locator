@@ -1,9 +1,9 @@
 import React from 'react';
 import activityTypes from '../../utils/activityTypes';
-import useCreateActivityForm from '../../hooks/useCreateActivityForm';
+import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
 
-const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer, onChange }) => {
+const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer, onChange }) => {
   const initialFormData = {
     name: initialData?.name || '',
     vicinity: initialData?.vicinity || '',
@@ -21,7 +21,7 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
     longitude: initialData?.longitude || '',
   };
 
-  const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useCreateActivityForm(
+  const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useActivityForm(
     initialFormData,
     onSubmit
   );
@@ -288,4 +288,4 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
   );
 };
 
-export default CreateActivitiesForm;
+export default ActivitiesForm;

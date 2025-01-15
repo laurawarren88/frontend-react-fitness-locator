@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { deleteSubmitForm } from '../../controllers/forms/deleteFormController';
+import { deleteForm } from '../../controllers/forms/deleteFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
+import ActivitiesForm from '../../components/Activity/ActivitiesForm';
 
 const DleteActivity = () => {
     const handleClick = () => {
@@ -23,7 +23,7 @@ const DleteActivity = () => {
         }
       });
 
-      const result = await deleteSubmitForm({
+      const result = await deleteForm({
           url: `${BASE_URL}/activities/${id}/delete`,
           payload: formData,
           alertContainerId: "alertContainer",
@@ -79,7 +79,7 @@ const DleteActivity = () => {
 
     return (
         <>
-            <CreateactivitiesForm
+            <ActivitiesForm
                 title="Delete Activity"
                 formData={formData}
                 onSubmit={onSubmit}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { updateSubmitForm } from '../../controllers/forms/updateFormController';
+import { updateForm } from '../../controllers/forms/updateFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
+import ActivitiesForm from '../../components/Activity/ActivitiesForm';
 
 const UpdateActivities = () => {
     const handleClick = () => {
@@ -23,7 +23,7 @@ const UpdateActivities = () => {
           }
         });
     
-        const result = await updateSubmitForm({
+        const result = await updateForm({
           url: `${BASE_URL}/activities/${id}/edit`,
           payload: data,
           alertContainerId: "alertContainer",
@@ -83,7 +83,7 @@ const UpdateActivities = () => {
        
 
 
-          <CreateactivitiesForm
+          <ActivitiesForm
               title="Update Activity"
               formData={formData}
               onSubmit={onSubmit}

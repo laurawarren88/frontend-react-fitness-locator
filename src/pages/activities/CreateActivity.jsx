@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { submitForm } from '../../controllers/forms/submitFormController';
+import { postForm } from '../../controllers/forms/postFormController';
 import { BASE_URL } from '../../utils/config';
-import CreateActivitiesForm from '../../components/Activity/CreateActivitiesForm'; 
-import useCreateActivityForm from "../../hooks/useCreateActivityForm";
+import ActivitiesForm from '../../components/Activity/ActivitiesForm'; 
+import useActivityForm from "../../hooks/useActivityForm";
 
 const CreateActivity = () => {
     const handleClick = () => {
@@ -41,7 +41,7 @@ const CreateActivity = () => {
         });
         console.log("FormData content:", Array.from(formData.entries()));
     try{
-        const result = await submitForm({
+        const result = await postForm({
             url: `${BASE_URL}/activities/new`,
             payload: formData,
             alertContainerId: "alertContainer",
@@ -56,11 +56,11 @@ const CreateActivity = () => {
     }
     };
 
-    const { formData, handleChange, handleSubmit } = useCreateActivityForm(initialState, onSubmit);
+    const { formData, handleChange, handleSubmit } = useActivityForm(initialState, onSubmit);
 
     return (
         <>
-            <CreateActivitiesForm
+            <ActivitiesForm
                 title="Create Activity"
                 formData={formData}
                 onSubmit={onSubmit}
