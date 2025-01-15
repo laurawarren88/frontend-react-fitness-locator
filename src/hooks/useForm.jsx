@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { handleAddressChange } from "../controllers/handleAddressChange";
 
 const useForm = (initialState, onSubmit) => {
     const [formData, setFormData] = useState(initialState);
@@ -28,7 +27,7 @@ const useForm = (initialState, onSubmit) => {
         if (e.preventDefault) {
             e.preventDefault();
         }
-        console.log("Final formData:", formData); // Add a log here to check the state
+        console.log("Final formData:", formData);
         onSubmit({ ...formData });
     };
 

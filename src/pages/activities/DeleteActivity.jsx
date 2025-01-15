@@ -6,6 +6,10 @@ import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm
 import useForm from "../../hooks/useForm";
 
 const DleteActivity = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+    }; 
+    
   const { id } = useParams();
   const [activitiesData, setActivitiesData] = useState(null);
   const [formData, setFormData] = useState({});
@@ -75,7 +79,7 @@ const { formData: formValues, handleChange, handleSubmit } = useForm(formData, o
               buttonText="Delete"
               footer={
                   <>
-                      <Link to="/" className="link">Cancel</Link>
+                      <Link to="/" onClick={handleClick} className="link">Cancel</Link>
                   </>
               }
           />

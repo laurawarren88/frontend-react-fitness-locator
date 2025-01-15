@@ -3,6 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../utils/config';
 
 const showActivity = () => {
+
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+}; 
+
   const { id } = useParams();
   const [activitiesData, setActivitiesData] = useState(null);
 
@@ -22,7 +27,7 @@ const showActivity = () => {
 }, [id]);
 
   if (!activitiesData) {
-    return <div>Loading...</div>;  // Show loading state while fetching data
+    return <div>Loading...</div>; 
   }
 
   return (
@@ -46,8 +51,8 @@ const showActivity = () => {
       </div>
 
       <div className="mt-8">
-        <Link to={`/activities/${id}/edit`} className="link">Edit</Link>
-        <Link to={`/activities/${id}/delete`} className="link">Delete</Link>
+        <Link to={`/activities/${id}/edit`} onClick={handleClick} className="link">Edit</Link>
+        <Link to={`/activities/${id}/delete`} onClick={handleClick} className="link">Delete</Link>
       </div>
     </section>
   )

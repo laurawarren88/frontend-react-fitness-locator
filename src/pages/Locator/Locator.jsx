@@ -68,16 +68,6 @@ const Locator = () => {
 
   return (
       <section className="max-w-7xl mx-auto py-20">
-        <div className="toggle">
-          <label>
-            <input
-              type="checkbox"
-              checked={useMockData}
-              onChange={() => setUseMockData(!useMockData)}
-            />
-            Use Mock Data
-          </label>
-        </div>
 
         {/* Search Component */}
         <Header
@@ -100,7 +90,6 @@ const Locator = () => {
             setChildClicked={setChildClicked}
             isLoading={isLoading}
           />
-          {useMockData ? (
             <LeafletMap 
               coordinates={coordinates}
               radius={radius}
@@ -108,14 +97,6 @@ const Locator = () => {
               setChildClicked={setChildClicked}
               setLeafletMap={setLeafletMap}
             />
-          ) : ( 
-            <MapComponent
-              setCoordinates={setCoordinates}
-              coordinates={coordinates}
-              places={places}
-              setChildClicked={setChildClicked}
-            />
-          )}
         </div>
     </section>
   );

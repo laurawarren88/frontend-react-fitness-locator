@@ -1,6 +1,5 @@
 import React from 'react'
 import SearchBox from './searchBox';
-import activityTypes from '../../../utils/activityTypes';
 
 const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {
 

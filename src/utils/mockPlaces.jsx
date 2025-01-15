@@ -13,7 +13,7 @@ import nine from "../assets/images/fakeImages/nine.jpg";
 import ten from "../assets/images/fakeImages/ten.jpg";
 
 /**
- * Generates mock places dynamically based on a type and current location.
+ * 
  * @param {string} type 
  * @param {{lat: number, lng: number}} currentLocation 
  * @param {number} count 
@@ -97,17 +97,14 @@ export const generateMockPlaces = (type, currentLocation, radius) => {
    * @returns {number} - Random latitude or longitude within the radius.
    */
 
-  // const getRandomCoordinate = (center, radius = 0.01) => {
-  //   return center + (Math.random() - 0.5) * radius * 2;
-  // };
 
   const getRandomCoordinate = (center, radius) => {
-    const earthRadiusInMeters = 6371000; // Earth's radius in meters
-    const angle = Math.random() * Math.PI * 2; // Random angle
-    const distance = (Math.random() - 0.5) * radius * 2; // Random distance
+    const earthRadiusInMeters = 6371000; 
+    const angle = Math.random() * Math.PI * 2; 
+    const distance = (Math.random() - 0.5) * radius * 2; 
   
-    const deltaLat = (distance * Math.cos(angle)) / earthRadiusInMeters * (180 / Math.PI); // Latitude offset
-    const deltaLng = (distance * Math.sin(angle)) / (earthRadiusInMeters * Math.cos(center.lat * (Math.PI / 180))) * (180 / Math.PI); // Longitude offset
+    const deltaLat = (distance * Math.cos(angle)) / earthRadiusInMeters * (180 / Math.PI); 
+    const deltaLng = (distance * Math.sin(angle)) / (earthRadiusInMeters * Math.cos(center.lat * (Math.PI / 180))) * (180 / Math.PI); 
   
     return {
       lat: center.lat + deltaLat,
@@ -124,7 +121,7 @@ export const generateMockPlaces = (type, currentLocation, radius) => {
     const { lat, lng } = getRandomCoordinate(currentLocation, radius);
 
     if (isNaN(lat) || isNaN(lng)) {
-      continue; // Skip this iteration if the coordinates are invalid
+      continue; 
     }
 
     mockPlaces.push({
@@ -145,7 +142,6 @@ export const generateMockPlaces = (type, currentLocation, radius) => {
       lon: lng,
       photo: faker.helpers.arrayElement(fakeImages),
       facilities_image: faker.image.urlLoremFlickr({ category: 'sports' }),
-      rating: faker.number.int({ min: 1, max: 5 }),
       createdAt: faker.date.recent(),
       updatedAt: faker.date.recent(),
       deletedAt: null,

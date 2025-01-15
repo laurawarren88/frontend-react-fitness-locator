@@ -80,9 +80,7 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
           const marker = L.marker([lat, lng], { icon: defaultIcon }).bindPopup(
             `<b>${place.name}</b><br>
             ${place.address}<br>
-            ${place.postcode}<br>
-            ${'★'.repeat(Math.floor(place.rating || 0)) +
-              '☆'.repeat(5 - Math.floor(place.rating || 0))}`
+            ${place.postcode}`
           );
 
           marker.on('mouseover', () => {

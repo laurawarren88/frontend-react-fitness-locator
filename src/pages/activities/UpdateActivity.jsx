@@ -36,8 +36,8 @@ const UpdateActivities = () => {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log("Fetched activity data:", data); // Log the fetched data
-                setInitialFormData(data.activity || {}); // Ensure `activity` exists
+                console.log("Fetched activity data:", data); 
+                setInitialFormData(data.activity || {}); 
             } catch (error) {
                 console.error("Error fetching activity data:", error);
             }

@@ -1,5 +1,5 @@
 /**
- * Transforms raw place data into a standardised format.
+ * 
  * @param {object} element
  * @param {string} type - The type of place (e.g., "gym", "yoga").
  * @returns {object|null} A formatted place object.
@@ -31,7 +31,6 @@ const activitiesMap = (element, type) => {
     email: element.tags?.["contact:email"] || "",
     website: element.tags?.["contact:website"] || "",
     openingHours: element.tags?.["opening_hours"]?.split(";") || [],
-    typeId: type,
     type,
     description:
       element.tags?.["amenity"] ||
@@ -39,7 +38,6 @@ const activitiesMap = (element, type) => {
       "No description available",
     photo: defaultImage, 
     facilities_image: "",
-    rating: 0, 
     latitude,
     longitude,
     createdAt: new Date().toISOString(),
