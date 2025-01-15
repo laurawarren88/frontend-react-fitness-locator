@@ -62,9 +62,9 @@ const PlaceDescription = ({ place, selected, refProp }) => {
           <p className="font-medium tracking-wider mr-2 text-lg">Website:</p>
           <p className="font-extralight hover:text-energeticGreen">
             {placeDetails.website !== 'No website available' ? (
-              <a href={placeDetails.website} target="_blank" rel="noopener noreferrer">
+              <Link to={placeDetails.website} target="_blank" rel="noopener noreferrer">
                 {placeDetails.website}
-              </a>
+              </Link>
             ) : (
               'No website available'
             )}

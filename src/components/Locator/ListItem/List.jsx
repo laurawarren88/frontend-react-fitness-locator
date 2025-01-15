@@ -39,7 +39,6 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
               {places?.map((place, index) => (
                 console.log("List Place:", place),
                 <div
-                  // key={index}
                   key={place.id} 
                   className={`list-item ${childClicked === index ? 'highlight' : ''}`}
                   onClick={() => {setChildClicked(index);}}

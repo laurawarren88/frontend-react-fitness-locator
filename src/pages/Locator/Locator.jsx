@@ -90,13 +90,13 @@ const Locator = () => {
             setChildClicked={setChildClicked}
             isLoading={isLoading}
           />
-            <LeafletMap 
-              coordinates={coordinates}
-              radius={radius}
-              places={filteredPlaces}
-              setChildClicked={setChildClicked}
-              setLeafletMap={setLeafletMap}
-            />
+          <LeafletMap 
+            coordinates={coordinates}
+            radius={radius}
+            places={filteredPlaces}
+            setChildClicked={setChildClicked}
+            setLeafletMap={setLeafletMap}
+          />
         </div>
     </section>
   );
