@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { deleteSubmitForm } from '../../controllers/forms/deleteFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
-// import useForm from "../../hooks/useForm";
 
 const DleteActivity = () => {
     const handleClick = () => {
@@ -12,17 +11,20 @@ const DleteActivity = () => {
     
   const { id } = useParams();
   const [activitiesData, setActivitiesData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({});
 
   const onSubmit = async (data) => {
       const formData = new FormData();
 
-      Object.keys(formData).forEach((key) => {
+      Object.keys(data).forEach((key) => {
+        if (data[key] !== null) {
           formData.append(key, data[key]);
+        }
       });
 
       const result = await deleteSubmitForm({
-          url: `${BASE_URL}/activities/${id}/edit`,
+          url: `${BASE_URL}/activities/${id}/delete`,
           payload: formData,
           alertContainerId: "alertContainer",
       });
@@ -39,53 +41,58 @@ const DleteActivity = () => {
         return;
     }
     const fetchActivitiesData = async () => {
-        const response = await fetch(`${BASE_URL}/activities/${id}/delete`);
-        const data = await response.json();
-        console.log("Fetched Data:", data);
-        console.log("Activity name:", data.activity.name);
-        setActivitiesData(data); 
+        try {
+            const response = await fetch(`${BASE_URL}/activities/${id}/delete`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log("Fetched Data:", data);
+            console.log("Activity name:", data.activity.name);
+            setActivitiesData(data); 
+            setFormData({
+                name: data.activity.name || "",
+                vicinity: data.activity.vicinity || "",
+                city: data.activity.city || "",
+                postcode: data.activity.postcode || "",
+                phone: data.activity.phone || "",
+                email: data.activity.email || "",
+                website: data.activity.website || "",
+                opening_hours: data.activity.opening_hours || "",
+                type: data.activity.type || "",
+                description: data.activity.description || "",
+                latitude: data.activity.latitude || "",
+                longitude: data.activity.longitude || "",
+            });
+            setIsLoading(false);
+        } catch (error) {
+            console.error("Error fetching activity data:", error);
+            setIsLoading(false);
+        }
     };
     fetchActivitiesData();
-}, [id]);
+    }, [id, setFormData]);
 
-useEffect(() => {
-  if (activitiesData) {
-      setFormData({
-          name: activitiesData.activity.name || "",
-          vicinity: activitiesData.activity.vicinity || "",
-          city: activitiesData.activity.city || "",
-          postcode: activitiesData.activity.postcode || "",
-          phone: activitiesData.activity.phone || "",
-          email: activitiesData.activity.email || "",
-          website: activitiesData.activity.website || "",
-          opening_hours: activitiesData.activity.opening_hours || "",
-          type: activitiesData.activity.type || "",
-          description: activitiesData.activity.description || "",
-      });
-  }
-}, [activitiesData]);
-
-// const { formData: formValues, handleChange, handleSubmit } = useForm(formData, onSubmit);
-
-    if (!activitiesData || !activitiesData.activity) return <div>Loading...</div>;  
+    if (isLoading) {
+        return <p>Loading activity data...</p>;
+    };
 
     return (
-      <>
-          <CreateactivitiesForm
-              title="Update Activity"
-              formData={formData}
-              onSubmit={handleSubmit}
-              onChange={handleChange}
-              buttonText="Delete"
-              footer={
-                  <>
-                      <Link to="/" onClick={handleClick} className="link">Cancel</Link>
-                  </>
-              }
-          />
-          <div id="alertContainer"></div>
-      </>
-  )
+        <>
+            <CreateactivitiesForm
+                title="Delete Activity"
+                formData={formData}
+                onSubmit={onSubmit}
+                buttonText="Delete"
+                footer={
+                    <>
+                        <Link to="/" onClick={handleClick} className="link">Cancel</Link>
+                    </>
+                }
+            />
+            <div id="alertContainer"></div>
+        </>
+    )
 }
 
 export default DleteActivity

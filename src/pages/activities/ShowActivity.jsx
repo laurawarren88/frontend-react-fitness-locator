@@ -58,7 +58,7 @@ const showActivity = () => {
           <p className="text-gray-600 mb-4">{activitiesData.postcode}</p>
           <p className="text-gray-600 mb-4">{activitiesData.city}</p>
           <p className="text-gray-600 mb-4">{activitiesData.vicinity}</p>
-          <p className="text-gray-600 mb-4">{activitiesData.longtitude}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.longitude}</p>
           <p className="text-gray-600 mb-4">{activitiesData.latitude}</p>
         </div>
       </div>

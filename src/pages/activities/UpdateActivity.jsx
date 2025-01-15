@@ -25,7 +25,7 @@ const UpdateActivities = () => {
     
         const result = await updateSubmitForm({
           url: `${BASE_URL}/activities/${id}/edit`,
-          payload: formData,
+          payload: data,
           alertContainerId: "alertContainer",
         });
     
@@ -48,7 +48,7 @@ const UpdateActivities = () => {
                   }
                   const data = await response.json();
                   console.log("Fetched activity data:", data); 
-                  console.log("Activity name:", data.activity.name);
+                  console.log("Activity name:", data.activity.type);
                   setActivitiesData(data.activity); 
 
                   setFormData({
@@ -62,6 +62,8 @@ const UpdateActivities = () => {
                     opening_hours: data.activity.opening_hours || "",
                     type: data.activity.type || "",
                     description: data.activity.description || "",
+                    latitude: data.activity.latitude !== undefined ? data.activity.latitude : "",
+                    longitude: data.activity.longitude !== undefined ? data.activity.longitude : "",
                 });
                 setIsLoading(false);
               } catch (error) {
@@ -77,21 +79,24 @@ const UpdateActivities = () => {
     }
 
     return (
-        <>
-            <CreateactivitiesForm
-                title="Update Activity"
-                formData={formData}
-                onSubmit={onSubmit}
-                buttonText="Update"
-                footer={
-                    <>
-                        <Link to="/" onClick={handleClick} className="link">Cancel</Link>
-                    </>
-                }
-            />
-            <div id="alertContainer"></div>
-        </>
-    )
+      <> 
+       
+
+
+          <CreateactivitiesForm
+              title="Update Activity"
+              formData={formData}
+              onSubmit={onSubmit}
+              buttonText="Update"
+              footer={
+                  <>
+                      <Link to="/" onClick={handleClick} className="link">Cancel</Link>
+                  </>
+              }
+          />
+           <div id="alertContainer"></div>
+      </>
+  )
 }
 
 export default UpdateActivities;

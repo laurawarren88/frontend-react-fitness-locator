@@ -13,7 +13,6 @@ const PlaceDescription = ({ place, selected, refProp }) => {
     vicinity: place?.address || place?.vicinity || 'No address available',
     openingHours: place?.openingHours || place?.opening_hours?.weekday_text || [],
     phone: place?.phone || place?.formatted_phone_number || 'No phone number available',
-    rating: place?.rating || 'No rating available',
     website: place?.website || 'No website available',
   });
 

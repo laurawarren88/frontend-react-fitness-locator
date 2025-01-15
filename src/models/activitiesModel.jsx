@@ -13,8 +13,8 @@
 * @property {string} description
 // * @property {string} photo
 // * @property {string} facilities_image
-// * @property {number} latitude 
-// * @property {number} longitude 
+* @property {number} latitude 
+* @property {number} longitude 
 * @property {string} createdAt
 * @property {string} updatedAt
 * @property {string} deletedAt

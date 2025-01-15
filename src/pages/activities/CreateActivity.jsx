@@ -21,6 +21,8 @@ const CreateActivity = () => {
         opening_hours: "",
         type: "",  
         description: "",
+        latitude: "",
+        longitude: "",
     };
 
 
@@ -38,7 +40,7 @@ const CreateActivity = () => {
             }
         });
         console.log("FormData content:", Array.from(formData.entries()));
-
+    try{
         const result = await submitForm({
             url: `${BASE_URL}/activities/new`,
             payload: formData,
@@ -49,6 +51,9 @@ const CreateActivity = () => {
             // alert("Activity created successfully! Redirecting...");
             window.location.href = `/activities/${result.data.activities.id}`;
         }
+    } catch (error) {
+        console.error("Error submitting form:", error);
+    }
     };
 
     const { formData, handleChange, handleSubmit } = useCreateActivityForm(initialState, onSubmit);

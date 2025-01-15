@@ -3,7 +3,7 @@ import { showMessage } from '../../utils/messageAlert.jsx';
 export const updateSubmitForm = async ({url, payload, alertContainerId}) => {
   try {
     const response = await fetch(url, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },

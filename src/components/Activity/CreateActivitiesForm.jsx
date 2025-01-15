@@ -1,7 +1,7 @@
 import React from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useCreateActivityForm from '../../hooks/useCreateActivityForm';
-import SearchBox from '../Locator/Header/SearchBox';
+import SearchBox from '../Shared/SearchBox';
 
 const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer, onChange }) => {
   const initialFormData = {
@@ -92,7 +92,7 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
 
                   {/* Address Search Box */}
                   <div className="col-span-2">
-                    <label className="form-label" htmlFor="vicinity">Address</label>
+                    <label className="form-label" htmlFor="vicinity">Find your Address</label>
                     <SearchBox setCoordinates={setCoordinates} />
                   </div>
 
@@ -200,11 +200,12 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
                       name="type"
                       className="form-input"
                       onChange={handleChange}
+                      value={formData.type || ""}
                       required
                     >
                       <option value="">Select a type</option>
                       {activityTypes.map((type, index) => (
-                        <option key={index} value={type.key}>
+                        <option key={index} value={type.label}>
                           {type.label}
                         </option>
                       ))}
@@ -256,7 +257,8 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
                     id="latitude"
                     className="form-input"
                     value={formData.latitude || ""}
-                    readOnly
+                    onChange={handleChange}
+                    required
                   />
                 </div>
 
@@ -268,7 +270,8 @@ const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonTe
                     id="longitude"
                     className="form-input"
                     value={formData.longitude || ""}
-                    readOnly
+                    onChange={handleChange}
+                    required
                   />
                 </div>
 

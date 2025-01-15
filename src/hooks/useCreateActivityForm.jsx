@@ -5,7 +5,7 @@ const useCreateActivityForm = (initialState, onSubmit) => {
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-        console.log("Updating field:", name, "Value:", files ? files[0] : value);
+        console.log(`Updating field: ${name}, Value: ${files ? files[0] : value}`);
 
         setFormData((prevState) => ({
             ...prevState,
