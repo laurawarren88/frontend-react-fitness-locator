@@ -232,6 +232,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       type="file"
                       name="logo"
                       id="logo"
+                      accept="image/*"
                       className="form-input"
                       onChange={handleChange}
                     />
@@ -243,6 +244,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       type="file"
                       name="facilities_image"
                       id="facilities_image"
+                      accept="image/*"
                       className="form-input"
                       onChange={handleChange}
                     />
