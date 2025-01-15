@@ -63,7 +63,7 @@ const activityTypes = [
         `
     },
     {
-        key: "hikingg_trail",
+        key: "hiking_trail",
         label: "Hiking Trail",
         query: `
         node["sport"="hiking"][BOX];

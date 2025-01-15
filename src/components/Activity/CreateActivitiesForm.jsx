@@ -1,29 +1,29 @@
 import React from 'react';
 import activityTypes from '../../utils/activityTypes';
-import useForm from '../../hooks/useForm';
+import useCreateActivityForm from '../../hooks/useCreateActivityForm';
 import SearchBox from '../Locator/Header/SearchBox';
 
-const CreateActivitiesForm = ({ onSubmit, title, buttonText, footer, onChange }) => {
+const CreateActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer, onChange }) => {
   const initialFormData = {
-    name: '',
-    vicinity: '',
-    phone: '',
-    city: '',
-    email: '',
-    postcode: '',
-    website: '',
-    opening_hours: '',
-    type: '',
-    description: '',
-    logo: null,
-    facilities_image: null,
-    latitude: '',
-    longitude: '',
+    name: initialData?.name || '',
+    vicinity: initialData?.vicinity || '',
+    phone: initialData?.phone || '',
+    city: initialData?.city || '',
+    email: initialData?.email || '',
+    postcode: initialData?.postcode || '',
+    website: initialData?.website || '',
+    opening_hours: initialData?.opening_hours || '',
+    type: initialData?.type || '',
+    description: initialData?.description || '',
+    logo: initialData?.logo || null,
+    facilities_image: initialData?.facilities_image || null,
+    latitude: initialData?.latitude || '',
+    longitude: initialData?.longitude || '',
   };
 
-  const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useForm(
-      initialFormData, 
-      onSubmit
+  const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useCreateActivityForm(
+    initialFormData,
+    onSubmit
   );
 
     // Function to update coordinates

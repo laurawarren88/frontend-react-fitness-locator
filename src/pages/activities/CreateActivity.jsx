@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/forms/submitFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateActivitiesForm from '../../components/Activity/CreateActivitiesForm'; 
-import useForm from "../../hooks/useForm";
+import useCreateActivityForm from "../../hooks/useCreateActivityForm";
 
 const CreateActivity = () => {
     const handleClick = () => {
@@ -51,7 +51,7 @@ const CreateActivity = () => {
         }
     };
 
-    const { formData, handleChange, handleSubmit } = useForm(initialState, onSubmit);
+    const { formData, handleChange, handleSubmit } = useCreateActivityForm(initialState, onSubmit);
 
     return (
         <>

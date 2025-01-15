@@ -17,11 +17,18 @@ const showActivity = () => {
         return;
     }
     const fetchActivitiesData = async () => {
+      try {
         const response = await fetch(`${BASE_URL}/activities/${id}`);
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
         const data = await response.json();
         console.log("Fetched Data:", data);
         console.log("Activity name:", data.name);
         setActivitiesData(data); 
+        } catch (error) {
+          console.error("Error fetching activity data:", error);
+      }
     };
     fetchActivitiesData();
 }, [id]);
@@ -47,6 +54,12 @@ const showActivity = () => {
           <p className="text-gray-600 mb-4">{activitiesData.website}</p>
           <p className="text-gray-600 mb-4">{activitiesData.opening_hours}</p>
           <p className="text-gray-600 mb-4">{activitiesData.type}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.email}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.postcode}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.city}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.vicinity}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.longtitude}</p>
+          <p className="text-gray-600 mb-4">{activitiesData.latitude}</p>
         </div>
       </div>
 

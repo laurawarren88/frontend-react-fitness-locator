@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { updateSubmitForm } from '../../controllers/forms/updateFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
-import useForm from "../../hooks/useForm";
 
 const UpdateActivities = () => {
     const handleClick = () => {
@@ -11,39 +10,9 @@ const UpdateActivities = () => {
     }; 
 
     const { id } = useParams();
-    const [initialFormData, setInitialFormData] = useState({
-        name: '',
-        vicinity: '',
-        phone: '',
-        city: '',
-        email: '',
-        postcode: '',
-        website: '',
-        opening_hours: '',
-        type: '',
-        description: '',
-        logo: null,
-        facilities_image: null,
-        latitude: '',
-        longitude: '',
-      });
-
-    useEffect(() => {
-        const fetchActivitiesData = async () => {
-            try {
-                const response = await fetch(`${BASE_URL}/activities/${id}/edit`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log("Fetched activity data:", data); 
-                setInitialFormData(data.activity || {}); 
-            } catch (error) {
-                console.error("Error fetching activity data:", error);
-            }
-        };
-        fetchActivitiesData();
-    }, [id]);
+    const [activitiesData, setActivitiesData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [formData, setFormData] = useState({}); 
     
       const onSubmit = async (data) => {
         const formData = new FormData();
@@ -61,19 +30,58 @@ const UpdateActivities = () => {
         });
     
         if (result.success) {
+          alert("Activity updated successfully! Redirecting...");
           window.location.href = `/activities/${id}`;
         }
       };
-    
-      const { formData, handleChange, handleSubmit } = useForm(initialFormData, onSubmit);
+
+      useEffect(() => {
+        if (!id) {
+          console.error("Activities ID is missing");
+          return;
+      }
+          const fetchActivitiesData = async () => {
+              try {
+                  const response = await fetch(`${BASE_URL}/activities/${id}/edit`);
+                  if (!response.ok) {
+                      throw new Error(`HTTP error! Status: ${response.status}`);
+                  }
+                  const data = await response.json();
+                  console.log("Fetched activity data:", data); 
+                  console.log("Activity name:", data.activity.name);
+                  setActivitiesData(data.activity); 
+
+                  setFormData({
+                    name: data.activity.name || "",
+                    vicinity: data.activity.vicinity || "",
+                    city: data.activity.city || "",
+                    postcode: data.activity.postcode || "",
+                    phone: data.activity.phone || "",
+                    email: data.activity.email || "",
+                    website: data.activity.website || "",
+                    opening_hours: data.activity.opening_hours || "",
+                    type: data.activity.type || "",
+                    description: data.activity.description || "",
+                });
+                setIsLoading(false);
+              } catch (error) {
+                  console.error("Error fetching activity data:", error);
+                  setIsLoading(false);
+              }
+          };
+          fetchActivitiesData();
+      }, [id, setFormData]);
+
+      if (isLoading) {
+        return <p>Loading activity data...</p>;
+    }
 
     return (
         <>
             <CreateactivitiesForm
                 title="Update Activity"
-                formData={initialFormData}
+                formData={formData}
                 onSubmit={onSubmit}
-                onChange={handleChange}
                 buttonText="Update"
                 footer={
                     <>
