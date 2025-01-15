@@ -48,13 +48,19 @@ const SearchBox = ({ setCoordinates }) => {
       .catch((err) => console.log("Error: ", err));
   };
 
-    const handlePlaceSelect = (latitude, longitude) => {
+    const handlePlaceSelect = (latitude, longitude, place) => {
         if (!latitude || !longitude) {
         console.error("Invalid coordinates:", { latitude, longitude });
         return;
         }
+
+        const addressFields = {
+        vicinity: place.vicinity || place.name,
+        city: place.city || place.address.city || place.address.borough || place.address.village,
+        postcode: place.postcode || place.address.postcode,
+        };
     
-        setCoordinates({ lat: parseFloat(latitude), lng: parseFloat(longitude) });
+        setCoordinates({ lat: parseFloat(latitude), lng: parseFloat(longitude) }, addressFields);
         setSearchText(""); 
         setListPlace([]); 
     };
@@ -82,10 +88,10 @@ const SearchBox = ({ setCoordinates }) => {
                         {listPlace.map((place) => (
                             <li
                                 key={place.id}
-                                onClick={() => handlePlaceSelect(place.latitude, place.longitude)}
+                                onClick={() => handlePlaceSelect(place.latitude, place.longitude, place)}
                                 className="cursor-pointer p-2 z-50 hover:bg-lightGray"
                             >
-                                {place.name} - {place.address}
+                                {place.name}
                             </li>
                         ))}
                     </ul>

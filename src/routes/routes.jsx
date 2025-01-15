@@ -2,11 +2,12 @@ import { Route, createRoutesFromElements } from 'react-router-dom';
 import Boilerplate from '../layouts/Boilerplate';
 import Home from '../pages/Home';
 
-import Locator from '../pages/places/Locator';
+import Locator from '../pages/Locator/Locator';
 
 import CreateActivity from '../pages/activities/CreateActivity';
 import ShowActivity from '../pages/activities/ShowActivity';
 import UpdateActivity from '../pages/activities/UpdateActivity';
+import DeleteActivity from '../pages/activities/DeleteActivity';
 
 import Profile from '../pages/users/Profile'
 import Register from '../pages/users/Register';
@@ -22,11 +23,12 @@ const routes = createRoutesFromElements(
     <Route index element={<Home />} />
 
     {/* places routes */}
-    <Route path="/places/locator" element={<Locator />} />
+    <Route path="/activities/locator" element={<Locator />} />
 
     {/* Activities routes */}
     <Route path="/activities/new" element={<CreateActivity />} />
     <Route path="/activities/:id/edit" element={<UpdateActivity />} />
+    <Route path="/activities/:id/delete" element={<DeleteActivity />} />
     <Route path="/activities/:id" element={<ShowActivity />} />
 
     {/* user routes */}

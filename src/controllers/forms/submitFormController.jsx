@@ -1,4 +1,4 @@
-import { showMessage } from '../utils/messageAlert.jsx';
+import { showMessage } from '../../utils/messageAlert.jsx';
 
 export const submitForm = async ({url, payload, alertContainerId}) => {
   try {

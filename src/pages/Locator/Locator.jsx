@@ -3,7 +3,7 @@ import { getPlacesData } from '../../controllers/mockdataController';
 import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/Header/Header';
 import List from '../../components/Locator/ListItem/List';
-import LeafletMap from '../../components/Locator/mockMap/LeafletMap';
+import LeafletMap from '../../components/Locator/MockMap/LeafletMap';
 
 const Locator = () => {
   const [places, setPlaces] = useState([]);

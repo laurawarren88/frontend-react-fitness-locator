@@ -37,7 +37,7 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
           ) : (
             <div>
               {places?.map((place, index) => (
-                // console.log("List Place:", place),
+                console.log("List Place:", place),
                 <div
                   // key={index}
                   key={place.id} 

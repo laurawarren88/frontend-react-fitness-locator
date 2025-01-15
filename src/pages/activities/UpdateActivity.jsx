@@ -1,74 +1,83 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
-import { submitForm } from '../../controllers/submitFormController';
+import { Link, useParams } from 'react-router-dom';
+import { updateSubmitForm } from '../../controllers/forms/updateFormController';
 import { BASE_URL } from '../../utils/config';
 import CreateactivitiesForm from '../../components/Activity/CreateActivitiesForm';
 import useForm from "../../hooks/useForm";
 
-const UpdateActivities = ({ activitiesId }) => {
-    const [activitiesData, setActivitiesData] = useState(null);
+const UpdateActivities = () => {
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+    }; 
+
+    const { id } = useParams();
+    const [initialFormData, setInitialFormData] = useState({
+        name: '',
+        vicinity: '',
+        phone: '',
+        city: '',
+        email: '',
+        postcode: '',
+        website: '',
+        opening_hours: '',
+        type: '',
+        description: '',
+        logo: null,
+        facilities_image: null,
+        latitude: '',
+        longitude: '',
+      });
 
     useEffect(() => {
         const fetchActivitiesData = async () => {
-            const response = await fetch(`${BASE_URL}/activities/${activitiesId}`);
-            const data = await response.json();
-            setActivitiesData(data); 
+            try {
+                const response = await fetch(`${BASE_URL}/activities/${id}/edit`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log("Fetched activity data:", data); // Log the fetched data
+                setInitialFormData(data.activity || {}); // Ensure `activity` exists
+            } catch (error) {
+                console.error("Error fetching activity data:", error);
+            }
         };
         fetchActivitiesData();
-    }, [activitiesId]);
-
-    const initialState = Data ? {
-        business_name: activitiesData.business_name || "",
-        address: activitiesData.address || "",
-        city: activitiesData.city || "",
-        postcode: activitiesData.postcode || "",
-        phone: activitiesData.phone || "",
-        email: activitiesData.email || "",
-        website: activitiesData.website || "",
-        opening_hours: activitiesData.opening_hours || "",
-        activities: activitiesData.activities || "",
-        facilities: activitiesData.facilities || "",
-        // logo: activitiesData.logo || null,
-        // facilities_image: activitiesData.facilities_image || null,
-    } : {};
-
-    const onSubmit = async (data) => {
+    }, [id]);
+    
+      const onSubmit = async (data) => {
         const formData = new FormData();
-        // Object.keys(data).forEach((key) => {
-        //     if (key === 'logo' || key === 'facilities_image') {
-        //         formData.append(key, data[key]);
-        //     } else {
-        //         formData.append(key, data[key]);
-        //     }
-        // });
-
-        const result = await submitForm({
-            url: `${BASE_URL}/activities/${activitiesId}`,
-            payload: formData,
-            alertContainerId: "alertContainer",
+        
+        Object.keys(data).forEach((key) => {
+          if (data[key] !== null) {
+            formData.append(key, data[key]);
+          }
         });
-
+    
+        const result = await updateSubmitForm({
+          url: `${BASE_URL}/activities/${id}/edit`,
+          payload: formData,
+          alertContainerId: "alertContainer",
+        });
+    
         if (result.success) {
-            alert("Activity updated successfully! Redirecting...");
-            window.location.href = "/activities";
+          window.location.href = `/activities/${id}`;
         }
-    };
-
-    const { formData, handleChange, handleSubmit } = useForm(initialState, onSubmit);
-
-    if (!activitiesData) return <div>Loading...</div>;  
+      };
+    
+      const { formData, handleChange, handleSubmit } = useForm(initialFormData, onSubmit);
 
     return (
         <>
             <CreateactivitiesForm
                 title="Update Activity"
-                formData={formData}
-                onSubmit={handleSubmit}
+                formData={initialFormData}
+                onSubmit={onSubmit}
                 onChange={handleChange}
                 buttonText="Update"
                 footer={
                     <>
-                        <Link to="/activities" className="link">Cancel</Link>
+                        <Link to="/" onClick={handleClick} className="link">Cancel</Link>
                     </>
                 }
             />

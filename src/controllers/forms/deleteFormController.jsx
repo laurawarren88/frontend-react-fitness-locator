@@ -1,9 +1,9 @@
-import { showMessage } from '../utils/messageAlert.jsx';
+import { showMessage } from '../../utils/messageAlert.jsx';
 
-export const submitForm = async ({url, payload, alertContainerId}) => {
+export const deleteSubmitForm = async ({url, payload, alertContainerId}) => {
   try {
     const response = await fetch(url, {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },

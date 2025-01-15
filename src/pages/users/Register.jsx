@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { submitForm } from '../../controllers/submitFormController';
+import { submitForm } from '../../controllers/forms/submitFormController';
 import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import defaultImage from '../../../assets/images/default_gym.jpg'
 
 const PlaceDescription = ({ place, selected, refProp }) => {
@@ -122,6 +123,11 @@ const PlaceDescription = ({ place, selected, refProp }) => {
         <div className="flex flex-wrap">
           <p className="font-medium tracking-wider mr-2 text-lg">Description:</p>
           <p className="font-extralight">{place?.description || 'No description available'}</p>
+        </div>
+        <div className="flex flex-row justify-start items-center gap-4">
+          <Link to="/activities/:id" className="btn-primary">View Page</Link>
+          <Link to="/activities/:id/edit" className="link">Edit</Link>
+          <Link to="/activities/:id/delete" className="link">Delete</Link>
         </div>
       </div>
     </div>
