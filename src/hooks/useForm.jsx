@@ -6,9 +6,8 @@ const useForm = (initialState, onSubmit) => {
     const handleChange = (e) => {
         const { name, value, files } = e.target;
 
-        // Handle file inputs separately
         if (files) {
-            setFormData((prev) => ({ ...prev, [name]: files[0] })); // Store the first file
+            setFormData((prev) => ({ ...prev, [name]: files[0] })); 
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }));
         }

@@ -107,12 +107,6 @@ const Profile = () => {
             }}>
               Search Activity
             </button>
-            <button className="btn-secondary text-center" onClick={() => {
-              handleClick();
-              navigate("/activities")
-            }}>
-              View Activities
-            </button>
         </div>
       </div>
     );
