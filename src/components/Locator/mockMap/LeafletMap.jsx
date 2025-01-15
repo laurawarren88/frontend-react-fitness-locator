@@ -3,9 +3,9 @@ import L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-import youAreHereLocationIcon from '../../../assets/images/youarehere.png';
-import fitnessIcon from '../../../assets/images/fitnesstracker.png';
-import highlightedFitnessIcon from '../../../assets/images/fitnesstracker-highlighted.png';
+import youAreHereLocationIcon from '../../assets/images/youarehere.png';
+import fitnessIcon from '../../assets/images/fitnesstracker.png';
+import highlightedFitnessIcon from '../../assets/images/fitnesstracker-highlighted.png';
 
 const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap}) => {
   var youAreHereIcon = L.icon({
@@ -48,10 +48,10 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
 
       setLeafletMap(map);
 
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
         minZoom: 5,
         maxZoom: 19,
-        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
       // You are here marker
