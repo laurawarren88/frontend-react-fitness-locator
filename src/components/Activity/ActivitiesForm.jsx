@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
+import { BASE_URL } from '../../utils/config';
 
 const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer }) => {
 
@@ -29,8 +30,8 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
 
    
   const setCoordinates = (coordinates, addressFields) => {
-    console.log("Coordinates received:", coordinates);
-    console.log("Address fields:", addressFields);
+    // console.log("Coordinates received:", coordinates);
+    // console.log("Address fields:", addressFields);
     
     handleChange({
       target: {
@@ -65,13 +66,13 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
   };
 
   useEffect(() => {
-      if (initialData?.logo) {
-          setLogoPreview(initialData.logo); 
-      }
-      if (initialData?.facilities_image) {
-          setFacilitiesImagePreview(initialData.facilities_image);
-      }
-    }, [initialData]);
+    if (initialData?.logo) {
+        setLogoPreview(`${BASE_URL}${initialData.logo.startsWith('/') ? initialData.logo : `/${initialData.logo}`}`);
+    }
+    if (initialData?.facilities_image) {
+        setFacilitiesImagePreview(`${BASE_URL}${initialData.facilities_image.startsWith('/') ? initialData.facilities_image : `/${initialData.facilities_image}`}`);
+    }
+ }, [initialData]);
 
     return (
     <>

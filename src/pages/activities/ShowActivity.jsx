@@ -23,8 +23,8 @@ const showActivity = () => {
               throw new Error(`HTTP error! Status: ${response.status}`);
           }
         const data = await response.json();
-        console.log("Fetched Data:", data);
-        console.log("Activity name:", data.name);
+        // console.log("Fetched Data:", data);
+        // console.log("Activity name:", data.name);
         setActivitiesData(data); 
         } catch (error) {
           console.error("Error fetching activity data:", error);

@@ -18,21 +18,29 @@ const UpdateActivities = () => {
         const formData = new FormData();
         
         Object.keys(data).forEach((key) => {
-          if (data[key] !== null) {
-            formData.append(key, data[key]);
+          if (key === "logo" || key === "facilities_image") {
+              if (data[key] instanceof File) {
+                  formData.append(key, data[key]);
+              }
+          } else {
+              formData.append(key, data[key]);
           }
-        });
+      });
     
+      try {
         const result = await updateForm({
-          url: `${BASE_URL}/activities/${id}/edit`,
-          payload: data,
-          alertContainerId: "alertContainer",
-        });
-    
-        if (result.success) {
-          alert("Activity updated successfully! Redirecting...");
-          window.location.href = `/activities/${id}`;
-        }
+            url: `${BASE_URL}/activities/${id}/edit`,
+            payload: data,
+            alertContainerId: "alertContainer",
+          });
+      
+          if (result.success) {
+            alert("Activity updated successfully! Redirecting...");
+            window.location.href = `/activities/${id}`;
+          }
+        } catch (error) {
+          console.error("Error submitting form:", error);
+      }
       };
 
       useEffect(() => {
@@ -47,8 +55,8 @@ const UpdateActivities = () => {
                       throw new Error(`HTTP error! Status: ${response.status}`);
                   }
                   const data = await response.json();
-                  console.log("Fetched activity data:", data); 
-                  console.log("Activity name:", data.activity.type);
+                  // console.log("Fetched activity data:", data); 
+                  // console.log("Activity name:", data.activity.type);
                   setActivitiesData(data.activity); 
 
                   setFormData({
@@ -64,8 +72,8 @@ const UpdateActivities = () => {
                     description: data.activity.description || "",
                     latitude: data.activity.latitude !== undefined ? data.activity.latitude : "",
                     longitude: data.activity.longitude !== undefined ? data.activity.longitude : "",
-                    logo: data.activity.logo || "",
-                    facilities_image: data.activity.facilities_image || "",
+                    logo: data.activity.logo !== undefined ? data.activity.logo : null,
+                    facilities_image: data.activity.facilities_image !== undefined ?  data.activity.facilities_image : null,
                 });
                 setIsLoading(false);
               } catch (error) {
@@ -82,9 +90,6 @@ const UpdateActivities = () => {
 
     return (
       <> 
-       
-
-
           <ActivitiesForm
               title="Update Activity"
               formData={formData}
@@ -92,7 +97,8 @@ const UpdateActivities = () => {
               buttonText="Update"
               footer={
                   <>
-                      <Link to="/" onClick={handleClick} className="link">Cancel</Link>
+                      <Link to={`/activities/${id}/delete`} onClick={handleClick} className="link mr-6">Delete Activity</Link>
+                      <Link to={`/activities/${id}`} onClick={handleClick} className="link">Cancel</Link>
                   </>
               }
           />

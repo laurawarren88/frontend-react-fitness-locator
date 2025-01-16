@@ -33,6 +33,7 @@ const DleteActivity = () => {
           alert("Activity deleted successfully! Redirecting...");
           window.location.href = '/activities/locator';
       }
+    //   console.log("Delete Response:", result);
   };
 
   useEffect(() => {
@@ -47,8 +48,8 @@ const DleteActivity = () => {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("Fetched Data:", data);
-            console.log("Activity name:", data.activity.name);
+            // console.log("Fetched Data:", data);
+            // console.log("Activity name:", data.activity.name);
             setActivitiesData(data); 
             setFormData({
                 name: data.activity.name || "",

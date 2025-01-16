@@ -15,7 +15,7 @@ const useActivityForm = (initialState, onSubmit) => {
 
     const handleAddressFieldChange = async (e) => {
         const { name, value } = e.target;
-        console.log("Address Field:", name, "Value:", value);
+        // console.log("Address Field:", name, "Value:", value);
         setFormData((prevState) => ({
             ...prevState,
             [name]: value,
@@ -29,13 +29,14 @@ const useActivityForm = (initialState, onSubmit) => {
     
         if (file) {
             if (!validTypes.includes(file.type)) {
-                alert("Invalid file type. Please select an image.");
+                // alert("Invalid file type. Please select an image.");
                 return;
             }
     
             const previewUrl = URL.createObjectURL(file);
             if (name === "logo") {
                 setLogoPreview(previewUrl);
+                // console.log("Logo Preview:", logoPreview);
             } else if (name === "facilities_image") {
                 setFacilitiesImagePreview(previewUrl);
             }
@@ -48,11 +49,11 @@ const useActivityForm = (initialState, onSubmit) => {
     };
 
     const handleSubmit = async (e) => {
-        console.log(e);
+        // console.log(e);
         if (e.preventDefault) {
             e.preventDefault();
         }
-        console.log("Final formData:", formData);
+        // console.log("Final formData:", formData);
         onSubmit({ ...formData });
     };
 
@@ -63,7 +64,7 @@ const useActivityForm = (initialState, onSubmit) => {
         };
     }, [logoPreview, facilitiesImagePreview]);
 
-    return { formData, handleChange, handleAddressFieldChange, handleSubmit, setFormData, handleImageChange, logoPreview, facilitiesImagePreview };
+    return { formData, handleChange, handleAddressFieldChange, handleSubmit, setFormData, handleImageChange, logoPreview, setLogoPreview, facilitiesImagePreview, setFacilitiesImagePreview };
 };
 
 export default useActivityForm;

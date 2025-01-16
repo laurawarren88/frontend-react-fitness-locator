@@ -29,7 +29,7 @@ const CreateActivity = () => {
 
 
     const onSubmit = async (data) => {
-        console.log("Submitting data:", data); 
+        // console.log("Submitting data:", data); 
         const formData = new FormData();
 
         Object.keys(data).forEach((key) => {
@@ -41,7 +41,7 @@ const CreateActivity = () => {
                 formData.append(key, data[key]);
             }
         });
-        console.log("FormData content:", Array.from(formData.entries()));
+        // console.log("FormData content:", Array.from(formData.entries()));
     try{
         const result = await postForm({
             url: `${BASE_URL}/activities/new`,
