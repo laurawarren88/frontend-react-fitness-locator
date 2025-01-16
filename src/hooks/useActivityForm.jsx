@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useActivityForm = (initialState, onSubmit) => {
     const [formData, setFormData] = useState(initialState || {});
+    const [logoPreview, setLogoPreview] = useState(null);
+    const [facilitiesImagePreview, setFacilitiesImagePreview] = useState(null);
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        console.log(`Updating field: ${name}, Value: ${files ? files[0] : value}`);
-
+        const { name, value } = e.target;
         setFormData((prevState) => ({
             ...prevState,
-            [name]: files ? files[0] : value,
+            [name]: value,
         }));
     };
 
@@ -22,6 +22,31 @@ const useActivityForm = (initialState, onSubmit) => {
         }));
     };
 
+    const handleImageChange = (e) => {
+        const { name, files } = e.target;
+        const file = files[0];
+        const validTypes = ["image/jpeg", "image/png", "image/gif"];
+    
+        if (file) {
+            if (!validTypes.includes(file.type)) {
+                alert("Invalid file type. Please select an image.");
+                return;
+            }
+    
+            const previewUrl = URL.createObjectURL(file);
+            if (name === "logo") {
+                setLogoPreview(previewUrl);
+            } else if (name === "facilities_image") {
+                setFacilitiesImagePreview(previewUrl);
+            }
+            
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: file,
+            }));
+        }
+    };
+
     const handleSubmit = async (e) => {
         console.log(e);
         if (e.preventDefault) {
@@ -31,7 +56,14 @@ const useActivityForm = (initialState, onSubmit) => {
         onSubmit({ ...formData });
     };
 
-    return { formData, handleChange, handleAddressFieldChange, handleSubmit, setFormData };
+    useEffect(() => {
+        return () => {
+            if (logoPreview) URL.revokeObjectURL(logoPreview);
+            if (facilitiesImagePreview) URL.revokeObjectURL(facilitiesImagePreview);
+        };
+    }, [logoPreview, facilitiesImagePreview]);
+
+    return { formData, handleChange, handleAddressFieldChange, handleSubmit, setFormData, handleImageChange, logoPreview, facilitiesImagePreview };
 };
 
 export default useActivityForm;

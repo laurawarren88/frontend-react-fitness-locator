@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
 
-const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer, onChange }) => {
+const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer }) => {
+
   const initialFormData = {
     name: initialData?.name || '',
     vicinity: initialData?.vicinity || '',
@@ -21,47 +22,56 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     facilities_image: initialData?.facilities_image || null,
   };
 
-  const { formData, handleChange, handleAddressFieldChange, handleSubmit } = useActivityForm(
+  const { formData, handleChange, handleAddressFieldChange, handleSubmit, handleImageChange, logoPreview, setLogoPreview, facilitiesImagePreview, setFacilitiesImagePreview } = useActivityForm(
     initialFormData,
     onSubmit
   );
 
-    // Function to update coordinates
-    const setCoordinates = (coordinates, addressFields) => {
-      console.log("Coordinates received:", coordinates);
-      console.log("Address fields:", addressFields);
-      
-      handleChange({
-        target: {
-          name: 'latitude',
-          value: coordinates.lat,
-        },
-      });
-      handleChange({
-        target: {
-          name: 'longitude',
-          value: coordinates.lng,
-        },
-      });
-      handleChange({
-        target: {
-          name: 'vicinity',
-          value: addressFields.vicinity || formData.vicinity,
-        },
-      });
-      handleChange({
-        target: {
-          name: 'city',
-          value: addressFields.city || formData.city,
-        },
-      });
-      handleChange({
-        target: {
-          name: 'postcode',
-          value: addressFields.postcode || formData.postcode,
-        },
-      });
-    };
+   
+  const setCoordinates = (coordinates, addressFields) => {
+    console.log("Coordinates received:", coordinates);
+    console.log("Address fields:", addressFields);
+    
+    handleChange({
+      target: {
+        name: 'latitude',
+        value: coordinates.lat,
+      },
+    });
+    handleChange({
+      target: {
+        name: 'longitude',
+        value: coordinates.lng,
+      },
+    });
+    handleChange({
+      target: {
+        name: 'vicinity',
+        value: addressFields.vicinity || formData.vicinity,
+      },
+    });
+    handleChange({
+      target: {
+        name: 'city',
+        value: addressFields.city || formData.city,
+      },
+    });
+    handleChange({
+      target: {
+        name: 'postcode',
+        value: addressFields.postcode || formData.postcode,
+      },
+    });
+  };
+
+  useEffect(() => {
+      if (initialData?.logo) {
+          setLogoPreview(initialData.logo); 
+      }
+      if (initialData?.facilities_image) {
+          setFacilitiesImagePreview(initialData.facilities_image);
+      }
+    }, [initialData]);
 
     return (
     <>
@@ -234,8 +244,18 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="logo"
                       accept="image/*"
                       className="form-input"
-                      onChange={handleChange}
+                      onChange={handleImageChange}
                     />
+                    {logoPreview && (
+                      <img
+                        src={logoPreview}
+                        width={400}
+                        height={400}
+                        alt="Selected Logo Preview" 
+                        className="max-h-[400px] object-contain"
+                      />
+                      )
+                    }
                   </div>
 
                   <div className="col-span-1">
@@ -246,8 +266,18 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="facilities_image"
                       accept="image/*"
                       className="form-input"
-                      onChange={handleChange}
+                      onChange={handleImageChange}
                     />
+                    {facilitiesImagePreview && (
+                      <img
+                        src={facilitiesImagePreview}
+                        width={400}
+                        height={400}
+                        alt="Selected Facilities Preview"
+                        className="max-h-[400px] object-contain"
+                      />
+                      )
+                    }
                   </div>
                 </div>
 

@@ -44,7 +44,11 @@ const showActivity = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         <div className="col-span-1">
-          <img src={`${BASE_URL}${activitiesData.logo}`} alt={`${activitiesData.name} facilities`} className="w-full h-full object-cover" />
+        <img
+          src={`${BASE_URL}${activitiesData.logo.startsWith('/') ? activitiesData.logo : `/${activitiesData.logo}`}`}
+          alt={`${activitiesData.name} logo`}
+          className="w-full h-full object-cover"
+        />
         </div>
         <div className="col-span-1 bg-white p-8">
           <h2 className="text-2xl font-semibold mb-4">{activitiesData.name}</h2>
@@ -60,7 +64,11 @@ const showActivity = () => {
           <p className="text-gray-600 mb-4">{activitiesData.vicinity}</p>
           <p className="text-gray-600 mb-4">{activitiesData.longitude}</p>
           <p className="text-gray-600 mb-4">{activitiesData.latitude}</p>
-          <img src={`${BASE_URL}${activitiesData.facilities_image}`} alt={`${activitiesData.name} facilities`} className="w-full h-full object-cover" />
+            <img 
+              src={`${BASE_URL}${activitiesData.facilities_image.startsWith('/') ? activitiesData.facilities_image : `/${activitiesData.facilities_image}`}`}
+              alt={`${activitiesData.name} facilities`} 
+              className="w-20 h-20" 
+            />
         </div>
       </div>
 
