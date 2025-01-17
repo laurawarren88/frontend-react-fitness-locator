@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { postForm } from '../../controllers/forms/postFormController';
-import { BASE_URL } from '../../utils/config';
 import ActivitiesForm from '../../components/Activity/ActivitiesForm'; 
 import useActivityForm from "../../hooks/useActivityForm";
 
@@ -29,32 +28,32 @@ const CreateActivity = () => {
 
 
     const onSubmit = async (data) => {
-        // console.log("Submitting data:", data); 
+        console.log("Submitting data:", data); 
         
         const formData = new FormData();
-        // console.log("Submitting form with:", formData)
+        console.log("Submitting form with:", formData)
 
         Object.keys(data).forEach((key) => {
             if (key === 'logo' || key === 'facilities_image') {
                 if (data[key]) {
-                    // console.log(`Appending file field ${key}:`, data[key]);
+                    console.log(`Appending file field ${key}:`, data[key]);
                     formData.append(key, data[key]);
                 }
             } else {
-                // console.log(`Appending text field ${key}:`, data[key]);
+                console.log(`Appending text field ${key}:`, data[key]);
                 formData.append(key, data[key]);
             }
         });
-        // console.log("FormData content:", Array.from(formData.entries()));
+        console.log("FormData content:", Array.from(formData.entries()));
     try{
         const result = await postForm({
-            url: `${BASE_URL}/activities/new`,
+            url: '/api/activities/new',
             payload: formData,
             alertContainerId: "alertContainer",
         });
 
-        // console.log("POST URL:", `${BASE_URL}/activities/new`);
-        // console.log("Submission Result:", result)
+        console.log("POST URL:", '/api/activities/new');
+        console.log("Submission Result:", result)
 
         if (result.success) {
             alert("Activity created successfully! Redirecting...");

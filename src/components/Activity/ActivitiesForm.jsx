@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
-import { BASE_URL } from '../../utils/config';
 
 const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer }) => {
 
@@ -65,12 +64,13 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     });
   };
 
+  // ** come back here for edit
   useEffect(() => {
     if (initialData?.logo) {
-        setLogoPreview(`${BASE_URL}${initialData.logo.startsWith('/') ? initialData.logo : `/${initialData.logo}`}`);
+        setLogoPreview(`/images/logos/${initialData.logo.split('/').pop()}`);
     }
     if (initialData?.facilities_image) {
-        setFacilitiesImagePreview(`${BASE_URL}${initialData.facilities_image.startsWith('/') ? initialData.facilities_image : `/${initialData.facilities_image}`}`);
+        setFacilitiesImagePreview(`/images/facilities/${initialData.facilities_image.split('/').pop()}`);
     }
  }, [initialData]);
 

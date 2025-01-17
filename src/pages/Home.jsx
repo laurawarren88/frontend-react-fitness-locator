@@ -17,7 +17,7 @@ const HomePage = () => {
             <p className="font-openSans tracking-wider mt-4 text-lg">Discover local Gyms, Classes, Clubs and Activities!</p>
           </div>
           <div className="col-span-1 relative">
-          <div className="absolute inset-0 bg-cover bg-center bg-opacity-40" style={{ backgroundImage: 'url("/images/streetMap.jpg")' }}></div>
+          <div className="absolute inset-0 bg-cover bg-center bg-opacity-40" style={{ backgroundImage: 'url("/public/images/streetMap.jpg")' }}></div>
             <img src={logo} alt="Fitness Locator Logo" className="relative z-10 mx-auto" />
           </div>
         </div>

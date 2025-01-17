@@ -32,7 +32,7 @@ const UpdateActivities = () => {
     
       try {
         const result = await updateForm({
-            url: `${BASE_URL}/activities/${id}/edit`,
+            url: `/api/activities/${id}/edit`,
             payload: formData,
             alertContainerId: "alertContainer",
           });
@@ -53,7 +53,7 @@ const UpdateActivities = () => {
       }
           const fetchActivitiesData = async () => {
               try {
-                  const response = await fetch(`${BASE_URL}/activities/${id}/edit`);
+                  const response = await fetch(`/api/activities/${id}/edit`);
                   if (!response.ok) {
                       throw new Error(`HTTP error! Status: ${response.status}`);
                   }

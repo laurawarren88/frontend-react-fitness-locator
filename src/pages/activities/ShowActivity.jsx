@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { BASE_URL } from '../../utils/config';
 
 const showActivity = () => {
 
@@ -18,7 +17,7 @@ const showActivity = () => {
     }
     const fetchActivitiesData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/activities/${id}`);
+        const response = await fetch(`/api/activities/${id}`);
           if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
           }
@@ -45,7 +44,7 @@ const showActivity = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         <div className="col-span-1">
         <img
-          src={`${BASE_URL}${activitiesData.logo.startsWith('/') ? activitiesData.logo : `/${activitiesData.logo}`}`}
+        src={`/images/logos/${activitiesData.logo.split('/').pop()}`}
           alt={`${activitiesData.name} logo`}
           className="w-full h-full object-cover"
         />
@@ -65,7 +64,7 @@ const showActivity = () => {
           <p className="text-gray-600 mb-4">{activitiesData.longitude}</p>
           <p className="text-gray-600 mb-4">{activitiesData.latitude}</p>
             <img 
-              src={`${BASE_URL}${activitiesData.facilities_image.startsWith('/') ? activitiesData.facilities_image : `/${activitiesData.facilities_image}`}`}
+              src={`/images/facilities/${activitiesData.facilities_image.split('/').pop()}`}
               alt={`${activitiesData.name} facilities`} 
               className="w-20 h-20" 
             />

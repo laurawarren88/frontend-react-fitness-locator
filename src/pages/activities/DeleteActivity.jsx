@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { deleteForm } from '../../controllers/forms/deleteFormController';
-import { BASE_URL } from '../../utils/config';
 import ActivitiesForm from '../../components/Activity/ActivitiesForm';
 
 const DleteActivity = () => {
@@ -24,7 +23,7 @@ const DleteActivity = () => {
       });
 
       const result = await deleteForm({
-          url: `${BASE_URL}/activities/${id}/delete`,
+          url: `/api/activities/${id}/delete`,
           payload: formData,
           alertContainerId: "alertContainer",
       });
@@ -43,7 +42,7 @@ const DleteActivity = () => {
     }
     const fetchActivitiesData = async () => {
         try {
-            const response = await fetch(`${BASE_URL}/activities/${id}/delete`);
+            const response = await fetch(`/api/activities/${id}/delete`);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
