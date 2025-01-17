@@ -7,7 +7,7 @@ const useFetchUser = (id, token) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching user data...");
+    // console.log("Fetching user data...");
     const fetchUser = async () => {
       try {
         const response = await FetchToken(`${BASE_URL}/users/profile/${id}`, {
@@ -27,7 +27,7 @@ const useFetchUser = (id, token) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Data received:", data)
+        // console.log("Data received:", data)
         setUser(data);
       } else {
         const errorData = await response.json();

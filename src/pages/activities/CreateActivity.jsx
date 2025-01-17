@@ -30,14 +30,18 @@ const CreateActivity = () => {
 
     const onSubmit = async (data) => {
         // console.log("Submitting data:", data); 
+        
         const formData = new FormData();
+        // console.log("Submitting form with:", formData)
 
         Object.keys(data).forEach((key) => {
             if (key === 'logo' || key === 'facilities_image') {
                 if (data[key]) {
+                    // console.log(`Appending file field ${key}:`, data[key]);
                     formData.append(key, data[key]);
                 }
             } else {
+                // console.log(`Appending text field ${key}:`, data[key]);
                 formData.append(key, data[key]);
             }
         });
@@ -49,8 +53,11 @@ const CreateActivity = () => {
             alertContainerId: "alertContainer",
         });
 
+        // console.log("POST URL:", `${BASE_URL}/activities/new`);
+        // console.log("Submission Result:", result)
+
         if (result.success) {
-            // alert("Activity created successfully! Redirecting...");
+            alert("Activity created successfully! Redirecting...");
             window.location.href = `/activities/${result.data.activities.id}`;
         }
     } catch (error) {

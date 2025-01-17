@@ -23,7 +23,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     facilities_image: initialData?.facilities_image || null,
   };
 
-  const { formData, handleChange, handleAddressFieldChange, handleSubmit, handleImageChange, logoPreview, setLogoPreview, facilitiesImagePreview, setFacilitiesImagePreview } = useActivityForm(
+  const { formData, setFormData, handleChange, handleAddressFieldChange, handleSubmit, handleImageChange, logoPreview, setLogoPreview, facilitiesImagePreview, setFacilitiesImagePreview } = useActivityForm(
     initialFormData,
     onSubmit
   );
@@ -88,7 +88,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                   
                 {/* Activity Name */}
                   <div className="col-span-2">
-                    <label className="form-label" htmlFor="business_name">Activity/Organisation Name</label>
+                    <label className="form-label" htmlFor="name">Activity/Organisation Name</label>
                     <input
                       type="text"
                       name="name"
@@ -98,6 +98,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.name || ""}
                       onChange={handleChange}
                       required
+                      autoComplete="organisation"
                     />
                   </div>
 
@@ -120,6 +121,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.vicinity || ""}
                       onChange={handleAddressFieldChange}
                       required
+                      autoComplete="street-address"
                     />
                   </div>
 
@@ -134,6 +136,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.phone || ""}
                       onChange={handleChange}
                       required
+                      autoComplete="tel"
                     />
                   </div>
 
@@ -148,6 +151,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.city || ""}
                       onChange={handleAddressFieldChange}
                       required
+                      autoComplete="off"
                     />
                   </div>
 
@@ -161,6 +165,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       placeholder="Email Address"
                       value={formData.email || ""}
                       onChange={handleChange}
+                      autoComplete="off"
                     />
                   </div>
 
@@ -175,6 +180,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.postcode || ""}
                       onChange={handleAddressFieldChange}
                       required
+                      autoComplete="postal-code"
                     />
                   </div>
 
@@ -188,6 +194,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       placeholder="Website"
                       value={formData.website || ""}
                       onChange={handleChange}
+                      autoComplete="off"
                     />
                   </div>
 
@@ -201,13 +208,14 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       placeholder="Opening Hours"
                       value={formData.opening_hours || ""}
                       onChange={handleChange}
+                      autoComplete="opening_hours"
                     />
                   </div>
 
                   <div className="col-span-1">
-                    <label className="form-label" htmlFor="activities">Activity Type</label>
+                    <label className="form-label" htmlFor="type">Activity Type</label>
                      <select
-                      id="activity-type"
+                      id="type"
                       name="type"
                       className="form-input"
                       onChange={handleChange}
@@ -224,7 +232,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                   </div>
 
                   <div className="col-span-2">
-                    <label className="form-label" htmlFor="facilities">Description/Facilities List</label>
+                    <label className="form-label" htmlFor="description">Description/Facilities List</label>
                     <input
                       type="text"
                       name="description"
@@ -234,6 +242,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       value={formData.description || ""}
                       onChange={handleChange}
                       required
+                      autoComplete="description"
                     />
                   </div>
 
@@ -245,9 +254,10 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="logo"
                       accept="image/*"
                       className="form-input"
-                      onChange={handleImageChange}
+                      onChange={(e) => handleImageChange(e, 'logo')}
                     />
                     {logoPreview && (
+                    <div>
                       <img
                         src={logoPreview}
                         width={400}
@@ -255,6 +265,13 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                         alt="Selected Logo Preview" 
                         className="max-h-[400px] object-contain"
                       />
+                      <button onClick={() => {
+                          setLogoPreview(null);
+                          setFormData((prev) => ({ ...prev, logo: null }));
+                      }}>
+                        Remove
+                      </button>
+                    </div>
                       )
                     }
                   </div>
@@ -267,9 +284,10 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="facilities_image"
                       accept="image/*"
                       className="form-input"
-                      onChange={handleImageChange}
+                      onChange={(e) => handleImageChange(e, 'facilities_image')}
                     />
                     {facilitiesImagePreview && (
+                    <div>
                       <img
                         src={facilitiesImagePreview}
                         width={400}
@@ -277,6 +295,13 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                         alt="Selected Facilities Preview"
                         className="max-h-[400px] object-contain"
                       />
+                      <button onClick={() => {
+                          setLogoPreview(null);
+                          setFormData((prev) => ({ ...prev, logo: null }));
+                      }}>
+                        Remove
+                      </button>
+                    </div>
                       )
                     }
                   </div>

@@ -21,16 +21,19 @@ const UpdateActivities = () => {
           if (key === "logo" || key === "facilities_image") {
               if (data[key] instanceof File) {
                   formData.append(key, data[key]);
+              } else if (data[key]) {
+                  console.warn(`Expected a File but got: ${data[key]}`);
               }
           } else {
               formData.append(key, data[key]);
           }
+          formData.forEach((value, key) => console.log(`${key}: ${value}`));
       });
     
       try {
         const result = await updateForm({
             url: `${BASE_URL}/activities/${id}/edit`,
-            payload: data,
+            payload: formData,
             alertContainerId: "alertContainer",
           });
       

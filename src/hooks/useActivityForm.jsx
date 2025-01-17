@@ -24,37 +24,41 @@ const useActivityForm = (initialState, onSubmit) => {
 
     const handleImageChange = (e) => {
         const { name, files } = e.target;
-        const file = files[0];
+        const file = files?.[0];
         const validTypes = ["image/jpeg", "image/png", "image/gif"];
     
         if (file) {
             if (!validTypes.includes(file.type)) {
-                // alert("Invalid file type. Please select an image.");
+                alert("Invalid file type. Please select an image.");
                 return;
             }
     
             const previewUrl = URL.createObjectURL(file);
-            if (name === "logo") {
-                setLogoPreview(previewUrl);
-                // console.log("Logo Preview:", logoPreview);
-            } else if (name === "facilities_image") {
-                setFacilitiesImagePreview(previewUrl);
-            }
-            
+            if (name === "logo") setLogoPreview(previewUrl);
+            if (name === "facilities_image") setFacilitiesImagePreview(previewUrl);
+
             setFormData((prevState) => ({
                 ...prevState,
                 [name]: file,
             }));
+        } else {
+            alert("No file selected!");
         }
     };
 
     const handleSubmit = async (e) => {
-        // console.log(e);
-        if (e.preventDefault) {
-            e.preventDefault();
+        if (e.preventDefault) e.preventDefault();
+
+        const data = new FormData();
+        for (const [key, value] of Object.entries(formData)) {
+            if (value instanceof File) {
+                data.append(key, value);
+            } else {
+                data.append(key, value);
+            }
         }
-        // console.log("Final formData:", formData);
-        onSubmit({ ...formData });
+        // onSubmit(data);
+        onSubmit(formData)
     };
 
     useEffect(() => {

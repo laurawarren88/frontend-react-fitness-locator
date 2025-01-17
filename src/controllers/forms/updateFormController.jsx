@@ -5,7 +5,7 @@ export const updateForm = async ({url, payload, alertContainerId}) => {
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
         },
         body: JSON.stringify(payload),
         credentials: 'include', 
