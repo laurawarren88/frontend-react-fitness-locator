@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
@@ -64,7 +64,6 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     });
   };
 
-  // ** come back here for edit
   useEffect(() => {
     if (initialData?.logo) {
         setLogoPreview(`/images/logos/${initialData.logo.split('/').pop()}`);

@@ -57,8 +57,8 @@ const useActivityForm = (initialState, onSubmit) => {
                 data.append(key, value);
             }
         }
-        console.log("FormData to submit:", formData);
-        // onSubmit(data);
+        // console.log("FormData to submit:", formData);
+
         onSubmit(formData)
     };
 

@@ -29,7 +29,7 @@ const DleteActivity = () => {
       });
 
       if (result.success) {
-          alert("Activity deleted successfully! Redirecting...");
+        //   alert("Activity deleted successfully! Redirecting...");
           window.location.href = '/activities/locator';
       }
     //   console.log("Delete Response:", result);

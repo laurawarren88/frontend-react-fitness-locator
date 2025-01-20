@@ -6,7 +6,7 @@ const Boilerplate = () => {
   return (
     <>
         <Navbar />
-        <Outlet />
+          <Outlet />
         <Footer />
     </>
   );

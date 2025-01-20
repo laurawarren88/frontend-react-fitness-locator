@@ -20,7 +20,7 @@ const Register = () => {
             confirm_password: formData.get('confirm_password'),
         };
 
-        console.log(`${BASE_URL}/users/register`);
+        // console.log(`${BASE_URL}/users/register`);
         const result = await postForm({
             url: `${BASE_URL}/users/register`,
             payload,

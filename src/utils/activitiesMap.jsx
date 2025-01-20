@@ -21,10 +21,7 @@ const activitiesMap = (element, type) => {
   const formattedPlace = {
     id: element.id || `${type}-${latitude}-${longitude}`,
     name: element.tags?.name || "Unknown Name",
-    address:
-      element.tags?.["addr:street"] ||
-      element.tags?.["addr:full"] ||
-      "No address available",
+    address: element.tags?.["addr:street"] || element.tags?.["addr:full"] || "No address available",
     city: element.tags?.["addr:city"] || "Unknown City",
     postcode: element.tags?.["addr:postcode"] || "Unknown Postcode",
     phone: element.tags?.["contact:phone"] || "",
@@ -32,10 +29,7 @@ const activitiesMap = (element, type) => {
     website: element.tags?.["contact:website"] || "",
     openingHours: element.tags?.["opening_hours"]?.split(";") || [],
     type,
-    description:
-      element.tags?.["amenity"] ||
-      element.tags?.["sport"] ||
-      "No description available",
+    description: element.tags?.["amenity"] || element.tags?.["sport"] || "No description available",
     photo: defaultImage, 
     facilities_image: "",
     latitude,

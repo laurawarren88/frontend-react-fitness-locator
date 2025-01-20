@@ -5,11 +5,6 @@ export const updateForm = async ({url, payload, alertContainerId}) => {
     console.log("Payload before stringify:", payload);
     const response = await fetch(url, {
         method: 'PUT',
-        // headers: {
-        //     // 'Content-Type': 'multipart/form-data',
-        //     'Content-Type': 'application/json',
-        // },
-        // body: JSON.stringify(payload),
         body: payload,
         credentials: 'include', 
     });

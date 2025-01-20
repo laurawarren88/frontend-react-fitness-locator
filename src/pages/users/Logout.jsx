@@ -18,7 +18,7 @@ const Logout = () => {
                 }
 
                 const data = await response.json();
-                console.log(data.message);
+                // console.log(data.message);
                 navigate('/users/login'); 
             } catch (error) {
                 console.error('Error during logout:', error);

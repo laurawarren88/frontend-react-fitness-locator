@@ -22,8 +22,8 @@ const useFetchUser = (id, token) => {
         return;
       }
 
-      console.log("Response:", response);
-      console.log("Status:", response.status);
+      // console.log("Response:", response);
+      // console.log("Status:", response.status);
 
       if (response.ok) {
         const data = await response.json();
