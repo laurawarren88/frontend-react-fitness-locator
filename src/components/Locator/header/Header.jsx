@@ -6,12 +6,14 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
   const handleTypeChange = (e) => {
     const selectedType = e.target.value;
     setType(selectedType);
-    
+  
     if (places.length > 0) {
-        const filtered = places.filter(place => 
-            place.type.toLowerCase() === selectedType.toLowerCase()
-        );
-        setFilteredPlaces(filtered);
+      console.log('Places before filtering:', places);
+      const filtered = places.filter((place) => 
+        place && place.type && place.type.toLowerCase() === selectedType.replace('_', ' ').toLowerCase()
+      );
+      console.log('Places before filtering:', places);
+      setFilteredPlaces(filtered);
     }
   };
 

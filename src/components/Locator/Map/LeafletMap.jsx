@@ -31,15 +31,15 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
 
   useEffect(() => {
     if (!coordinates || !places) {
-      // console.log("Missing required props:", { coordinates, places });
+      console.log("Missing required props:", { coordinates, places });
       return;
     }
 
-    // console.log("Updating map with:", {
-    //   coordinates,
-    //   radius,
-    //   placesCount: places.length
-    // });
+    console.log("Updating map with:", {
+      coordinates,
+      radius,
+      placesCount: places.length
+    });
 
       const map = L.map('leaflet-map', {
         center: [coordinates.lat, coordinates.lng],
@@ -70,13 +70,18 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
         const bounds = L.latLngBounds();
 
         places.forEach((place, index) => {
-          const lat = place.geometry?.location?.lat || place.latitude;
-          const lng = place.geometry?.location?.lng || place.longitude;
+          if (!place) {
+            console.warn(`Skipping null or undefined place at index ${index}`);
+            return;
+          }
+
+          const lat = place.latitude || place.Latitude;
+          const lng = place.longitude || place.Longitude;
 
         if (lat && lng) {
-          // console.log("Number of places:", places.length);
-          // console.log("Place:", place);
-          // console.log("Coordinates:", lat, lng);
+          console.log("Number of places:", places.length);
+          console.log("Place:", place);
+          console.log("Coordinates:", lat, lng);
           const marker = L.marker([lat, lng], { icon: defaultIcon }).bindPopup(
             `<b>${place.name}</b><br>
             ${place.address}<br>

@@ -1,6 +1,56 @@
-import activitiesMap from "../utils/activitiesMap";
-
+/**
+ * Fetches and maps activity data.
+ * @param {string} type - Type of activity to search for (e.g., "gym", "yoga").
+ * @param {object} coordinates - Object containing `lat` and `lng` properties.
+ * @param {number} radius - Search radius in meters.
+ * @returns {Array} Array of formatted activity objects.
+ */
 export const getPlacesData = async (type, coordinates, radius) => {
-  const allActivities = generatedPlaces(type, coordinates, radius);
-  return allActivities.map((place) => activitiesMap(place, type));
+  try {
+    const response = await fetch(`/api/activities/locator?type=${type}&lat=${coordinates.lat}&lng=${coordinates.lng}&radius=${radius}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("API response:", data);
+
+    const defaultImage = '../assets/images/default_gym.jpg';
+
+    const generatedPlaces = data.places
+      .map((element) => {
+        if (!element.latitude || !element.longitude) {
+          console.warn("Skipping element due to missing coordinates:", element.ID || "Unnamed Element");
+          return null;
+        }
+
+        return {
+          id: element.ID || `${type}-${element.latitude}-${element.longitude}`,
+          name: element.name || "Unknown Name",
+          address: element.vicinity || "No address available",
+          city: element.city || "Unknown City",
+          postcode: element.postcode || "Unknown Postcode",
+          phone: element.phone || "",
+          email: element.email || "",
+          website: element.website || "",
+          openingHours: element.opening_hours?.split(";") || [],
+          type: element.type || type,
+          description: element.description || "No description available",
+          logo: element.logo || defaultImage,
+          facilities_image: element.facilities_image || "",
+          latitude: element.latitude,
+          longitude: element.longitude,
+          createdAt: element.CreatedAt || new Date().toISOString(),
+          updatedAt: element.UpdatedAt || null,
+          deletedAt: element.DeletedAt || null,
+        };
+      })
+      .filter(Boolean); // Remove null values.
+
+    console.log("Generated Places:", generatedPlaces);
+    return generatedPlaces;
+  } catch (error) {
+    console.error("Error fetching activity data:", error);
+    throw error;
+  }
 };
