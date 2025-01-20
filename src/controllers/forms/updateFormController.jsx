@@ -2,12 +2,15 @@ import { showMessage } from '../../utils/messageAlert.jsx';
 
 export const updateForm = async ({url, payload, alertContainerId}) => {
   try {
+    console.log("Payload before stringify:", payload);
     const response = await fetch(url, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-        body: JSON.stringify(payload),
+        // headers: {
+        //     // 'Content-Type': 'multipart/form-data',
+        //     'Content-Type': 'application/json',
+        // },
+        // body: JSON.stringify(payload),
+        body: payload,
         credentials: 'include', 
     });
 

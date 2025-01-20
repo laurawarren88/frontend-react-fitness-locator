@@ -74,6 +74,11 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
     }
  }, [initialData]);
 
+
+  useEffect(() => {
+    console.log("Initial form data:", initialData);
+  }, [initialData]);
+
     return (
     <>
       <section className="bg-white py-12">
@@ -254,7 +259,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="logo"
                       accept="image/*"
                       className="form-input"
-                      onChange={(e) => handleImageChange(e, 'logo')}
+                      onChange={handleImageChange}
                     />
                     {logoPreview && (
                     <div>
@@ -284,7 +289,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                       id="facilities_image"
                       accept="image/*"
                       className="form-input"
-                      onChange={(e) => handleImageChange(e, 'facilities_image')}
+                      onChange={handleImageChange}
                     />
                     {facilitiesImagePreview && (
                     <div>
@@ -304,7 +309,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
                     </div>
                       )
                     }
-                  </div>
+                  </div> 
                 </div>
 
                 <div className="col-span-1">

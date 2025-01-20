@@ -15,20 +15,31 @@ const UpdateActivities = () => {
     const [formData, setFormData] = useState({}); 
     
       const onSubmit = async (data) => {
+        console.log("Submitting data:", data); 
+        console.log("Data keys 1:", Object.keys(data));
         const formData = new FormData();
+        console.log("Submitting form with:", formData)
+        console.log("Data keys 2:", Object.keys(data));
         
         Object.keys(data).forEach((key) => {
-          if (key === "logo" || key === "facilities_image") {
-              if (data[key] instanceof File) {
-                  formData.append(key, data[key]);
-              } else if (data[key]) {
-                  console.warn(`Expected a File but got: ${data[key]}`);
-              }
-          } else {
-              formData.append(key, data[key]);
-          }
-          formData.forEach((value, key) => console.log(`${key}: ${value}`));
+            if (key === "logo" || key === "facilities_image") {
+                if (data[key] instanceof File) {
+                // if (data[key]) {
+                    console.log(`Appending file field ${key}:`, data[key]);
+                    formData.append(key, data[key]);
+                } else if (typeof data[key] === "string" && data[key]) {
+                    console.log(`Appending existing file path ${key}:`, data[key]);
+                    formData.append(key, data[key]);
+                } else {
+                console.warn(`Unexpected value for ${key}: ${data[key]}`);
+                }
+            } else {
+                console.log(`Appending text field ${key}:`, data[key]);
+                formData.append(key, data[key]);
+            }
       });
+      console.log("Final form data:");
+      formData.forEach((value, key) => console.log(`${key}: ${value}`));
     
       try {
         const result = await updateForm({

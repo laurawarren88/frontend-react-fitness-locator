@@ -43,8 +43,11 @@ const CreateActivity = () => {
                 console.log(`Appending text field ${key}:`, data[key]);
                 formData.append(key, data[key]);
             }
+            console.log("FormData content:", Array.from(formData.entries()));
+            formData.forEach((value, key) => console.log(`${key}: ${value}`));
         });
-        console.log("FormData content:", Array.from(formData.entries()));
+        
+
     try{
         const result = await postForm({
             url: '/api/activities/new',
