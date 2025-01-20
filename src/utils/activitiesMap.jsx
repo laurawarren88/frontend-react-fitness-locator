@@ -30,7 +30,7 @@ const activitiesMap = (element, type) => {
     openingHours: element.tags?.["opening_hours"]?.split(";") || [],
     type,
     description: element.tags?.["amenity"] || element.tags?.["sport"] || "No description available",
-    photo: defaultImage, 
+    logo: element.logo || defaultImage, 
     facilities_image: "",
     latitude,
     longitude,

@@ -27,7 +27,7 @@ const PlaceDescription = ({ place, selected, refProp }) => {
     <div className="grid grid-cols-1 md:grid-cols-2 h-full pr-6 pb-6 rounded-lg gap-4">
       <img
         className="w-full h-full object-cover rounded-lg mb-4"
-        src={placeImage || place?.photo || defaultImage}
+        src={placeImage || place?.logo || defaultImage}
         alt={placeDetails.name}
         onError={(e) => (e.target.src = defaultImage)}
       />

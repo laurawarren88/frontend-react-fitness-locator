@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getPlacesData } from '../../controllers/mockdataController';
+import { getPlacesData } from '../../controllers/dataController';
 import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/Header/Header';
 import List from '../../components/Locator/ListItem/List';
-import LeafletMap from '../../components/Locator/MockMap/LeafletMap';
+import LeafletMap from '../../components/Locator/Map/LeafletMap';
 
 const Locator = () => {
   const [places, setPlaces] = useState([]);
@@ -14,7 +14,6 @@ const Locator = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
   const [radius, setRadius] = useState('1600');
-  const [useMockData, setUseMockData] = useState(true); 
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const Locator = () => {
 
     const fetchPlaces = async () => {
       try {
-        const results = await getPlacesData(type, coordinates, radius, useMockData);
+        const results = await getPlacesData(type, coordinates, radius);
         // console.log("Locator fetched results 1:", results); 
         setPlaces(results);
       } catch (error) {
@@ -53,7 +52,7 @@ const Locator = () => {
         // console.log("Locator Fetched results 2:", places);
         // console.log("Coordinates in LeafletMap:", coordinates);
         fetchPlaces();
-  }, [coordinates, type, radius, useMockData]);
+  }, [coordinates, type, radius]);
 
   const setLeafletRadius = (map, center, radius) => {
     if (map && center && radius) {
