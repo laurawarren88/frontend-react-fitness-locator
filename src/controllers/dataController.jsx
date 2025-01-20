@@ -1,9 +1,9 @@
 /**
- * Fetches and maps activity data.
- * @param {string} type - Type of activity to search for (e.g., "gym", "yoga").
- * @param {object} coordinates - Object containing `lat` and `lng` properties.
- * @param {number} radius - Search radius in meters.
- * @returns {Array} Array of formatted activity objects.
+ * 
+ * @param {string} type 
+ * @param {object} coordinates 
+ * @param {number} radius 
+ * @returns {Array} 
  */
 export const getPlacesData = async (type, coordinates, radius) => {
   try {
@@ -13,7 +13,7 @@ export const getPlacesData = async (type, coordinates, radius) => {
     }
 
     const data = await response.json();
-    console.log("API response:", data);
+    // console.log("API response:", data);
 
     const defaultImage = '../assets/images/default_gym.jpg';
 
@@ -45,9 +45,9 @@ export const getPlacesData = async (type, coordinates, radius) => {
           deletedAt: element.DeletedAt || null,
         };
       })
-      .filter(Boolean); // Remove null values.
+      .filter(Boolean); 
 
-    console.log("Generated Places:", generatedPlaces);
+    // console.log("Generated Places:", generatedPlaces);
     return generatedPlaces;
   } catch (error) {
     console.error("Error fetching activity data:", error);

@@ -9,7 +9,7 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
     .fill()
     .map((_, index) => elRefs[index] || createRef());
     setElRefs(refs);
-    console.log("List Places:", places);
+    // console.log("List Places:", places);
   }, [places]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
               {places
                ?.filter((place) => place !== null && place !== undefined)
                 .map((place, index) => (
-                console.log("List Place:", place),
+                // console.log("List Place:", place),
                 <div
                   key={place.id} 
                   className={`list-item ${childClicked === index ? 'highlight' : ''}`}

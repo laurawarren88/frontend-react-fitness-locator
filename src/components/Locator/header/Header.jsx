@@ -8,11 +8,11 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
     setType(selectedType);
   
     if (places.length > 0) {
-      console.log('Places before filtering:', places);
+      // console.log('Places before filtering:', places);
       const filtered = places.filter((place) => 
         place && place.type && place.type.toLowerCase() === selectedType.replace('_', ' ').toLowerCase()
       );
-      console.log('Places before filtering:', places);
+      // console.log('Places before filtering:', places);
       setFilteredPlaces(filtered);
     }
   };

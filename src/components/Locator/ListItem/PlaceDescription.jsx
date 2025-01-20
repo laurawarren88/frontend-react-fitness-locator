@@ -74,9 +74,9 @@ const PlaceDescription = ({ place, selected, refProp }) => {
           <p className="font-extralight">{place?.description || 'No description available'}</p>
         </div>
         <div className="flex flex-row justify-start items-center gap-4">
-          <Link to="/activities/:id" onClick={handleClick} className="btn-primary">View Page</Link>
-          <Link to="/activities/:id/edit" onClick={handleClick} className="link">Edit</Link>
-          <Link to="/activities/:id/delete" onClick={handleClick} className="link">Delete</Link>
+          <Link to={`/activities/${place.id}`} onClick={handleClick} className="btn-primary">View Page</Link>
+          <Link to={`/activities/${place.id}/edit`} onClick={handleClick} className="link">Edit</Link>
+          <Link to={`/activities/${place.id}/delete`} onClick={handleClick} className="link">Delete</Link>
         </div>
       </div>
     </div>

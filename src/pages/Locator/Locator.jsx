@@ -40,7 +40,7 @@ const Locator = () => {
     const fetchPlaces = async () => {
       try {
         const results = await getPlacesData(type, coordinates, radius);
-        console.log("Locator fetched results 1:", results); 
+        // console.log("Locator fetched results 1:", results); 
         setPlaces(results);
       } catch (error) {
         console.error('Error fetching places:', error);
@@ -49,8 +49,8 @@ const Locator = () => {
           setIsLoading(false);
           }
       }
-        console.log("Locator Fetched results 2:", places);
-        console.log("Coordinates in LeafletMap:", coordinates);
+        // console.log("Locator Fetched results 2:", places);
+        // console.log("Coordinates in LeafletMap:", coordinates);
         fetchPlaces();
   }, [coordinates, type, radius]);
 
