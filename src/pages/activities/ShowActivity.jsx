@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isAdmin } from '../../controllers/isAdmin';
+import isActivityUser from '../../controllers/isActivityUser';
 
 const showActivity = () => {
 
@@ -10,6 +11,7 @@ const showActivity = () => {
 
   const { id } = useParams();
   const [isAdminUser, setIsAdminUser] = useState(false);
+  const [isActivityOwner, setIsActivityOwner] = useState(false);
   const [activitiesData, setActivitiesData] = useState(null);
 
   useEffect(() => {
@@ -17,6 +19,18 @@ const showActivity = () => {
     console.log("Admin status:", adminStatus);
     setIsAdminUser(adminStatus);
   }, []);
+
+  useEffect(() => {
+    const checkOwnership = async () => {
+        if (activitiesData) {
+            const ownerStatus = await isActivityUser(id);
+            setIsActivityOwner(ownerStatus);
+        }
+    };
+    
+    checkOwnership();
+}, [activitiesData, id]);
+
 
   useEffect(() => {
     if (!id) {
@@ -46,6 +60,7 @@ const showActivity = () => {
   }
 
   console.log("isAdminUser:", isAdminUser)
+  console.log("isActivityOwner:", isActivityOwner)
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -82,7 +97,7 @@ const showActivity = () => {
             />
         </div>
       </div>
-      {isAdminUser && (
+      {(isActivityOwner || isAdminUser) && (
         <>
           <div className="my-8">
             <Link to={`/activities/${id}/edit`} onClick={handleClick} className="link pr-8">Edit</Link>
