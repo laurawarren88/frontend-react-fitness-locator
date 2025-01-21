@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import defaultImage from '../../../assets/images/default_gym.jpg'
+import { isAdmin } from '../../../controllers/isAdmin';
 
 const PlaceDescription = ({ place, selected, refProp }) => {
   const handleClick = () => {
     window.scrollTo(0, 0);
   };
 
+  const [isAdminUser, setIsAdminUser] = useState(false);
   const [placeImage, setPlaceImage] = useState(null);
   const [placeDetails, setPlaceDetails] = useState({
     name: place?.name || 'Unknown Place',
@@ -17,11 +19,14 @@ const PlaceDescription = ({ place, selected, refProp }) => {
   });
 
   useEffect(() => {
+    setIsAdminUser(isAdmin());
+  }, []);
+
+  useEffect(() => {
     if (selected && refProp?.current) {
       refProp.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [selected, refProp]);
-  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-full pr-6 pb-6 rounded-lg gap-4">
@@ -75,8 +80,12 @@ const PlaceDescription = ({ place, selected, refProp }) => {
         </div>
         <div className="flex flex-row justify-start items-center gap-4">
           <Link to={`/activities/${place.id}`} onClick={handleClick} className="btn-primary">View Page</Link>
-          <Link to={`/activities/${place.id}/edit`} onClick={handleClick} className="link">Edit</Link>
-          <Link to={`/activities/${place.id}/delete`} onClick={handleClick} className="link">Delete</Link>
+          {isAdminUser && (
+            <>
+              <Link to={`/activities/${place.id}/edit`} onClick={handleClick} className="link">Edit</Link>
+              <Link to={`/activities/${place.id}/delete`} onClick={handleClick} className="link">Delete</Link>
+            </>
+            )}
         </div>
       </div>
     </div>

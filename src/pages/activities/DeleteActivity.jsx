@@ -65,6 +65,7 @@ const DleteActivity = () => {
                 longitude: data.activity.longitude || "",
                 logo: data.activity.logo || "",
                 facilities_image: data.activity.facilities_image || "",
+                user: data.activity.user || "",
             });
             setIsLoading(false);
         } catch (error) {

@@ -28,22 +28,22 @@ const CreateActivity = () => {
 
 
     const onSubmit = async (data) => {
-        // console.log("Submitting data:", data); 
+        console.log("Submitting data:", data); 
         
         const formData = new FormData();
-        // console.log("Submitting form with:", formData);
+        console.log("Submitting form with:", formData);
 
         Object.keys(data).forEach((key) => {
             if (key === 'logo' || key === 'facilities_image') {
                 if (data[key]) {
-                    // console.log(`Appending file field ${key}:`, data[key]);
+                    console.log(`Appending file field ${key}:`, data[key]);
                     formData.append(key, data[key]);
                 }
             } else {
-                // console.log(`Appending text field ${key}:`, data[key]);
+                console.log(`Appending text field ${key}:`, data[key]);
                 formData.append(key, data[key]);
             }
-            // console.log("FormData content:", Array.from(formData.entries()));
+            console.log("FormData content:", Array.from(formData.entries()));
             formData.forEach((value, key) => console.log(`${key}: ${value}`));
         });
         
@@ -55,12 +55,12 @@ const CreateActivity = () => {
             alertContainerId: "alertContainer",
         });
 
-        // console.log("POST URL:", '/api/activities/new');
-        // console.log("Submission Result:", result);
+        console.log("POST URL:", '/api/activities/new');
+        console.log("Submission Result:", result);
 
         if (result.success) {
-            // alert("Activity created successfully! Redirecting...");
-            window.location.href = `/activities/${result.data.activities.id}`;
+            alert("Activity created successfully! Redirecting...");
+            window.location.href = `/activities/${result.data.activity.ID}`;
         }
     } catch (error) {
         console.error("Error submitting form:", error);

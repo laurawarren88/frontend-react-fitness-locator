@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { postForm } from '../../controllers/forms/postFormController';
+import { submitForm } from '../../controllers/forms/loginFormController';
 import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 
@@ -20,8 +20,7 @@ const Register = () => {
             confirm_password: formData.get('confirm_password'),
         };
 
-        // console.log(`${BASE_URL}/users/register`);
-        const result = await postForm({
+        const result = await submitForm({
             url: `${BASE_URL}/users/register`,
             payload,
             alertContainerId: 'alertContainer',

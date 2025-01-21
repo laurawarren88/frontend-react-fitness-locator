@@ -87,6 +87,8 @@ const UpdateActivities = () => {
                     longitude: data.activity.longitude !== undefined ? data.activity.longitude : "",
                     logo: data.activity.logo !== undefined ? data.activity.logo : null,
                     facilities_image: data.activity.facilities_image !== undefined ?  data.activity.facilities_image : null,
+                    userID: data.activity.userID || "",
+                    user: data.activity.user || "",
                 });
                 setIsLoading(false);
               } catch (error) {

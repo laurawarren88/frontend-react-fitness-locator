@@ -75,7 +75,7 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
 
 
   useEffect(() => {
-    console.log("Initial form data:", initialData);
+    // console.log("Initial form data:", initialData);
   }, [initialData]);
 
     return (

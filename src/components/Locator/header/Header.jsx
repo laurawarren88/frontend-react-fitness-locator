@@ -68,6 +68,8 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
               <option value="4800">Within 3 miles</option>
               <option value="6400">Within 4 miles</option>
               <option value="8000">Within 5 miles</option>
+              <option value="24000">Within 15 miles</option>
+
             </select>
           </div>
 

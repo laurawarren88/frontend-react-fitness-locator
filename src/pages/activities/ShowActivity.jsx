@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { isAdmin } from '../../controllers/isAdmin';
 
 const showActivity = () => {
 
@@ -8,7 +9,14 @@ const showActivity = () => {
 }; 
 
   const { id } = useParams();
+  const [isAdminUser, setIsAdminUser] = useState(false);
   const [activitiesData, setActivitiesData] = useState(null);
+
+  useEffect(() => {
+    const adminStatus = isAdmin();
+    console.log("Admin status:", adminStatus);
+    setIsAdminUser(adminStatus);
+  }, []);
 
   useEffect(() => {
     if (!id) {
@@ -22,8 +30,9 @@ const showActivity = () => {
               throw new Error(`HTTP error! Status: ${response.status}`);
           }
         const data = await response.json();
-        // console.log("Fetched Data:", data);
-        // console.log("Activity name:", data.name);
+        console.log("Fetched Data:", data);
+        console.log("Activity name:", data.name);
+        console.log("Activity User:", data.user);
         setActivitiesData(data); 
         } catch (error) {
           console.error("Error fetching activity data:", error);
@@ -35,6 +44,8 @@ const showActivity = () => {
   if (!activitiesData) {
     return <div>Loading...</div>; 
   }
+
+  console.log("isAdminUser:", isAdminUser)
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -51,6 +62,7 @@ const showActivity = () => {
         </div>
         <div className="col-span-1 bg-white p-8">
           <h2 className="text-2xl font-semibold mb-4">{activitiesData.name}</h2>
+          <p>Created By {activitiesData.user.username}</p>
           <p className="text-gray-600 mb-4">{activitiesData.description}</p>
           <p className="text-gray-600 mb-4">{activitiesData.address}</p>
           <p className="text-gray-600 mb-4">{activitiesData.phone}</p>
@@ -70,13 +82,16 @@ const showActivity = () => {
             />
         </div>
       </div>
-
-      <div className="mt-8">
-        <Link to={`/activities/${id}/edit`} onClick={handleClick} className="link">Edit</Link>
-        <Link to={`/activities/${id}/delete`} onClick={handleClick} className="link">Delete</Link>
-      </div>
+      {isAdminUser && (
+        <>
+          <div className="my-8">
+            <Link to={`/activities/${id}/edit`} onClick={handleClick} className="link pr-8">Edit</Link>
+            <Link to={`/activities/${id}/delete`} onClick={handleClick} className="link">Delete</Link>
+          </div>
+        </>
+      )}
     </section>
   )
 }
 
-export default showActivity
+export default showActivity;

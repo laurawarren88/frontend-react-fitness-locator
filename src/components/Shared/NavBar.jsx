@@ -45,7 +45,9 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-3">
               <NavLink to="/" onClick={handleClick} className={navLink}>Home</NavLink>
               <NavLink to="/activities/locator" onClick={handleClick} className={navLink}>Locator</NavLink>
+            {isLoggedIn ? (
               <NavLink to="/activities/new" onClick={handleClick} className={navLink}>Add Activity</NavLink>
+            ) : null}
             </div>
           </div>
           {/* <!-- right side --> */}
@@ -79,8 +81,10 @@ const Navbar = () => {
         ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
         style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}>
         <NavLink to="/" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Home</NavLink>
-        <NavLink to="/activities" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Activities</NavLink>
         <NavLink to="/activities/locator" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Locator</NavLink>
+        {isLoggedIn ? (
+        <NavLink to="/activities/new" onClick={handleClick} className="block py-2 px-4 rounded hover:bg-lightGray transition-colors mx-auto w-fit">Add Activity</NavLink>
+        ) : null}
       </div>
     </nav>  
   )
