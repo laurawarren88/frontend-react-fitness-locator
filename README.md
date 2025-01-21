@@ -6,18 +6,18 @@ Welcome to the Fitness Locator application! This application helps users find lo
 
 ## Features 🏇
 
-🏉 Find Fitness Locations: Search for gyms, yoga studios, sports clubs, and other fitness-related locations by postcode and radius._
-🏉 Activity Details: View detailed information about each fitness-related activity, including the name, description, facilities, and contact details._
-🏉 User Authentication: Users can log in to manage their activities, and admins can manage all activities._
-🏉 Map Integration: A map displays the fitness locations with different icons for different types of fitness centers._
-🏉 Community Feel: The application encourages interaction and provides users with workout ideas and guidance._
+🏉 Find Fitness Locations: Search for gyms, yoga studios, sports clubs, and other fitness-related locations by postcode and radius.  
+🏉 Activity Details: View detailed information about each fitness-related activity, including the name, description, facilities, and contact details.  
+🏉 User Authentication: Users can log in to manage their activities, and admins can manage all activities.  
+🏉 Map Integration: A map displays the fitness locations with different icons for different types of fitness centers.  
+🏉 Community Feel: The application encourages interaction and provides users with workout ideas and guidance.  
 
 ## Technologies Used 🤿
 
-🏉 Backend: Go, Gin, GORM, PostgreSQL
-🏉 Frontend: React, JSX, Tailwind CSS
-🏉 Authentication: JWT (JSON Web Tokens) for secure authentication
-🏉 Database: PostgreSQL for storing user and activity data
+🏉 Backend: Go, Gin, GORM, PostgreSQL  
+🏉 Frontend: React, JSX, Tailwind CSS  
+🏉 Authentication: JWT (JSON Web Tokens) for secure authentication  
+🏉 Database: PostgreSQL for storing user and activity data  
 
 ## Project Structure 🥋
 
