@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { getCookie } from '../../utils/fetchCookie';
-import logo from '../../assets/images/fitnessTracker.png'
+import logo from '../../assets/images/fitnesstracker.png'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {

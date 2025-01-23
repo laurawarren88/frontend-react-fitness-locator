@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/images/fitnessTracker.png'
+import logo from '../../assets/images/fitnesstracker.png'
 
 const Footer = () => {
     const handleClick = () => {
