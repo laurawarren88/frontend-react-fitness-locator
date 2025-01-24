@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/forms/loginFormController';
-import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 
 const Register = () => {
@@ -11,6 +10,7 @@ const Register = () => {
       };
 
     const handleSubmit = async (e) => {
+        console.log("handleSubmit called");
         e.preventDefault();
         const formData = new FormData(e.target);
         const payload = {
@@ -19,13 +19,14 @@ const Register = () => {
             password: formData.get('password'),
             confirm_password: formData.get('confirm_password'),
         };
+        console.log("payload:", payload);
 
         const result = await submitForm({
-            url: `${BASE_URL}/users/register`,
+            url: '/api/users/register',
             payload,
             alertContainerId: 'alertContainer',
         });
-
+        console.log("register result:", result);
         if (result.success) {
             window.location.href = '/users/login';
         }

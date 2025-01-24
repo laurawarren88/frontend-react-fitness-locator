@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../../utils/config';
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -8,7 +7,7 @@ const Logout = () => {
     useEffect(() => {
         const logoutUser = async () => {
             try {
-                const response = await fetch(`${BASE_URL}/users/logout`, {
+                const response = await fetch('/api/users/logout', {
                     method: 'POST',
                     credentials: 'include', 
                 });

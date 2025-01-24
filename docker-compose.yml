@@ -1,0 +1,13 @@
+services:
+  react-frontend:
+    image: react-containerised-api
+    build:
+      context: .
+    ports:
+      - "5050:5050"
+    networks:
+      - fitness-network
+    container_name: react-frontend
+networks:
+  fitness-network:
+    external: true

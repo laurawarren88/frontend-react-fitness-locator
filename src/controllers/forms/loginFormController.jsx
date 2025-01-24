@@ -1,6 +1,7 @@
 import { showMessage } from '../../utils/messageAlert';
 
 export const submitForm = async ({url, payload, alertContainerId}) => {
+    console.log("submitForm called with url:", url, "payload:", payload);
   try {
     const response = await fetch(url, {
         method: 'POST',
@@ -10,6 +11,7 @@ export const submitForm = async ({url, payload, alertContainerId}) => {
         body: JSON.stringify(payload),
         credentials: 'include', 
     });
+    console.log("response:", response);
 
     if (response.ok) {
         const data = await response.json();

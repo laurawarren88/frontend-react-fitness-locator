@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         };
 
         const result = await submitForm({
-            url: `${BASE_URL}/users/forgot_password`,
+            url: '/api/users/forgot_password',
             payload,
             alertContainerId: 'alertContainer',
         });

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/forms/loginFormController';
-import { BASE_URL } from '../../utils/config';
 import Form from '../../components/Shared/Form';
 
 const Login = () => {
@@ -18,7 +17,7 @@ const Login = () => {
         };
 
         const result = await submitForm({
-            url: `${BASE_URL}/users/login`,
+            url: '/api/users/login',
             payload,
             alertContainerId: 'alertContainer',
         });

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { FetchToken } from "../utils/fetchToken";
-import { BASE_URL } from "../utils/config";
 
 const useFetchUser = (id, token) => {
   const [user, setUser] = useState(null);
@@ -10,7 +9,7 @@ const useFetchUser = (id, token) => {
     // console.log("Fetching user data...");
     const fetchUser = async () => {
       try {
-        const response = await FetchToken(`${BASE_URL}/users/profile/${id}`, {
+        const response = await FetchToken(`/api/users/profile/${id}`, {
           method: "GET",
           headers: {
               "Authorization": `Bearer ${token}`,
