@@ -1,13 +1,12 @@
 services:
-  react-frontend:
-    image: react-containerised-api
+  web:
+    image: lmwcode/react-fitness-custom:latest
     build:
       context: .
     ports:
       - "5050:5050"
     networks:
       - fitness-network
-    container_name: react-frontend
 networks:
   fitness-network:
     external: true
