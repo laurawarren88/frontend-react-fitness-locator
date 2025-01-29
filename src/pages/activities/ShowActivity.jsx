@@ -63,16 +63,16 @@ const showActivity = () => {
   console.log("isActivityOwner:", isActivityOwner)
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto py-12 px-6">
       <div className="title-section">
         <h1 className="h1-primary">{activitiesData.name}</h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="col-span-1">
         <img
         src={`/images/logos/${activitiesData.logo.split('/').pop()}`}
           alt={`${activitiesData.name} logo`}
-          className="w-full h-full object-cover"
+          className="w-full h-96 object-cover rounded-lg shadow-lg"
         />
         </div>
         <div className="col-span-1 bg-white p-8">

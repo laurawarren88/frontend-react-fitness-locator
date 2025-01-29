@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d262dec4.css",
+    "main.js": "/static/js/main.272e995d.js",
+    "static/media/default_gym.jpg": "/static/media/default_gym.4a89d3a73ccc9ead1b58.jpg",
+    "static/media/fitnesstracker.png": "/static/media/fitnesstracker.e21b25c5f2659eed82b6.png",
+    "static/media/fitnesstracker-highlighted.png": "/static/media/fitnesstracker-highlighted.831fdcd02d44f2108e81.png",
+    "static/media/youarehere.png": "/static/media/youarehere.eb4434d2f9e40e1d99df.png",
+    "index.html": "/index.html",
+    "main.d262dec4.css.map": "/static/css/main.d262dec4.css.map",
+    "main.272e995d.js.map": "/static/js/main.272e995d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d262dec4.css",
+    "static/js/main.272e995d.js"
+  ]
+}
