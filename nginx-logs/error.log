@@ -1,0 +1,5 @@
+2025/01/29 15:29:03 [error] 36#36: *9 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.18.0.1, server: _, request: "GET / HTTP/1.1", host: "localhost"
+2025/01/29 15:29:03 [error] 30#30: *11 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.18.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/01/29 15:29:19 [error] 30#30: *14 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.18.0.1, server: _, request: "GET / HTTP/1.1", host: "localhost"
+2025/01/29 15:29:19 [error] 30#30: *16 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.18.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/01/29 15:49:12 [emerg] 1#1: host not found in upstream "fitness_api:8080" in /etc/nginx/nginx.conf:18

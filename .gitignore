@@ -3,5 +3,8 @@ dist
 dist-ssr
 *.local
 
+nginx-selfsigned.crt
+nginx-selfsigned.key
+
 # Editor directories and files
 .vscode/*
