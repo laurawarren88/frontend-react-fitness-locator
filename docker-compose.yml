@@ -1,8 +1,10 @@
 services:
-  web:
-    image: lmwcode/react-fitness-custom:latest
+  webserver:
     build:
       context: .
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
       - "5050:5050"
     networks:
