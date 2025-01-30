@@ -1,15 +1,14 @@
 services:
-  web:
-    image: lmwcode/react-fitness-custom:latest
+  webserver:
     build:
       context: .
-    volumes:
-      - .:/app
-      - /app/node_modules
+      dockerfile: Dockerfile
+    container_name: fitness_webserver
     ports:
-      - "5050:5050"
+       - "5050:5050"
     networks:
       - fitness-network
+
 networks:
   fitness-network:
     external: true
