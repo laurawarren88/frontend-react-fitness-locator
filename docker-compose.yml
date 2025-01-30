@@ -5,18 +5,10 @@ services:
       dockerfile: Dockerfile
     container_name: fitness_webserver
     ports:
-      - "443:443"
+       - "5050:5050"
     networks:
       - fitness-network
-    volumes:
-      - ./webserver/default.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx-logs:/var/log/nginx
-      - ./nginx-selfsigned.crt:/etc/nginx/nginx-selfsigned.crt:ro
-      - ./nginx-selfsigned.key:/etc/nginx/nginx-selfsigned.key:ro
 
 networks:
   fitness-network:
     external: true
-  
-volumes:
-  nginx-logs:
