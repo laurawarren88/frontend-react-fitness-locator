@@ -17,11 +17,12 @@ export default defineConfig({
       },
       '/images': {
         // target: 'http://localhost:8080',
-        target: 'http://api8080',
+        target: 'http://api:8080',
       }
     },
     port: 5050,
     host: '0.0.0.0',
+    strictPort: true,
   },
 })
 

@@ -79,7 +79,7 @@ const CreateActivity = () => {
                 buttonText="Create"
                 footer={
                     <>
-                        <Link to="/home" onClick={handleClick} className="link">Cancel</Link>
+                        <Link to="/" onClick={handleClick} className="link">Cancel</Link>
                     </>
                 }
             />
