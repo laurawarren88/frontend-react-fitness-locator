@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getPlacesData } from '../../controllers/dataController';
 import activityTypes  from '../../utils/activityTypes';
-import Header from '../../components/Locator/Header/Header';
+import Header from '../../components/Locator/header/Header';
 import List from '../../components/Locator/ListItem/List';
 import LeafletMap from '../../components/Locator/Map/LeafletMap';
 
