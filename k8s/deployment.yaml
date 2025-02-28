@@ -1,0 +1,122 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: fitness-locator
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: lmwcode/fitness_locator-webserver:V1.0.0
+        ports:
+        - containerPort: 5050
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5050
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+          periodSeconds: 120
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5050
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+          periodSeconds: 120
+          failureThreshold: 3
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: fitness-locator
+spec:
+  selector:
+    app: frontend
+  type: NodePort
+  ports:
+  - port: 5050
+    targetPort: 5050
+    nodePort: 31313
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+  namespace: fitness-locator
+data:
+  default.conf: |
+    upstream api {
+      server backend-service:8080;
+    }
+
+    server {
+      listen 5050;
+      server_name _;
+      error_log /var/log/nginx/error.log warn;
+
+      location /api/ {
+        proxy_pass http://backend-service:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+      }
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+      }
+    }
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: fitness-locator
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: fitness-app.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 5050 
