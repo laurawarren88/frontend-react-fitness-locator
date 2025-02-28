@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
-  namespace: fitness-locator
+  namespace: lmwprac
   labels:
     app: frontend
 spec:
@@ -58,7 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
-  namespace: fitness-locator
+  namespace: lmwprac
 spec:
   selector:
     app: frontend
@@ -72,7 +72,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: configmap
-  namespace: fitness-locator
+  namespace: lmwprac
 data:
   default.conf: |
     upstream api {
@@ -104,7 +104,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  namespace: fitness-locator
+  namespace: lmwprac
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
