@@ -11,13 +11,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'http://localhost:8080',
-        target: 'http://backend-service:8080',
+        // target: 'http://localhost:8081',
+        target: 'http://backend-service:8081',
         changeOrigin: true,
       },
       '/images': {
-        // target: 'http://localhost:8080',
-        target: 'http://backend-service:8080',
+        // target: 'http://localhost:8081',
+        target: 'http://backend-service:8081',
       }
     },
     port: 5050,
