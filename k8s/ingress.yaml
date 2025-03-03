@@ -18,10 +18,3 @@ spec:
             name: frontend-service
             port:
               number: 5050 
-      - path: /api
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: backend-service
-            port:
-              number: 8080
