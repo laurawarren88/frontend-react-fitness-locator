@@ -3,7 +3,10 @@ kind: Ingress
 metadata:
   name: ingress
   namespace: lmwprac
+  app.kubernetes.io/managed-by: Helm
   annotations:
+    meta.helm.sh/release-name: react-frontend-fitness-locator
+    meta.helm.sh/release-namespace: lmwprac
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx

@@ -3,6 +3,10 @@ kind: Service
 metadata:
   name: frontend-service
   namespace: lmwprac
+  app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: react-frontend-fitness-locator
+    meta.helm.sh/release-namespace: lmwprac
 spec:
   selector:
     app: frontend
