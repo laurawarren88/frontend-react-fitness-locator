@@ -18,6 +18,7 @@ spec:
       containers:
       - name: frontend
         image: lmwcode/fitness_locator-webserver:V1.0.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 5050
           name: http
