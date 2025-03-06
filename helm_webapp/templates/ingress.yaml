@@ -1,9 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: ingress-lmw
   namespace: lmwprac
-  app.kubernetes.io/managed-by: Helm
+  labels:
+    app.kubernetes.io/managed-by: Helm
   annotations:
     meta.helm.sh/release-name: react-frontend-fitness-locator
     meta.helm.sh/release-namespace: lmwprac
@@ -18,6 +19,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend-lmw-service
             port:
               number: 5050 
