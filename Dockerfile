@@ -11,4 +11,4 @@ FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY webserver/default.conf /opt/homebrew/etc/nginx/nginx.conf
 EXPOSE 5050
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]file
