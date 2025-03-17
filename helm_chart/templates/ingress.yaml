@@ -14,7 +14,7 @@ spec:
   rules:
   - host: {{ .Values.webserver.host }}
     http:
-      ppaths:
+      paths:
       - path: {{ .Values.webserver.path }}
         pathType: {{ .Values.webserver.pathType }}
         backend:
