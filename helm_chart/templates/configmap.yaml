@@ -1,26 +1,22 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap-lmw
-  namespace: lmwprac
+  name: {{ .Release.Name }}-frontend-configmap
+  namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/managed-by: Helm
   annotations:
-    meta.helm.sh/release-name: react-frontend-fitness-locator
-    meta.helm.sh/release-namespace: lmwprac
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Values.namespace }}
 data:
   default.conf: |
-    upstream api {
-      server backend-lmw-service:8081;
-    }
-
-    server {
-      listen 5050;
+   server {
+      listen {{ .Values.webserver.port }};
       server_name _;
       error_log /var/log/nginx/error.log warn;
 
-      location /api/ {
-        proxy_pass http://backend-lmw-service:8081;
+      location {{ .Values.api.path }} {
+        proxy_pass http://lmw-fitness-backend-service:{{ .Values.api.port }}/;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -32,5 +28,11 @@ data:
         root /usr/share/nginx/html;
         index index.html;
         try_files $uri $uri/ /index.html;
+      }
+
+      # Add error page
+      error_page 500 502 503 504 /50x.html;
+      location = /50x.html {
+        root /usr/share/nginx/html;
       }
     }
