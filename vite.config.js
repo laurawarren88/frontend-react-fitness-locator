@@ -4,6 +4,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
 
+  const backendUrl = isProduction 
+    ? process.env.VITE_BACKEND_URL || 'https://api.lmw-fitness.com' 
+    : 'http://localhost:8081';
+
   return {
     resolve: {
       alias: {
@@ -14,15 +18,12 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: isProduction 
-            ? 'http://localhost:8081' 
-            : 'http://localhost:8081',
+          target: backendUrl,
           changeOrigin: true,
         },
         '/images': {
-          target: isProduction 
-            ? 'http://localhost:8081' 
-            : 'http://localhost:8081',
+          target: backendUrl,
+          changeOrigin: true,
         }
       },
       port: 5050,
@@ -31,7 +32,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: "dist",
-      sourcemap: false,
+      sourcemap: isProduction ? false : true,
       chunkSizeWarningLimit: 500,
     },
     define: {
