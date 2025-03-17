@@ -22,7 +22,7 @@ const Register = () => {
         console.log("payload:", payload);
 
         const result = await submitForm({
-            url: 'http://localhost:8081/api/users/register',
+            url: '/api/users/register',
             payload,
             alertContainerId: 'alertContainer',
         });
