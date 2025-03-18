@@ -12,6 +12,7 @@ export const submitForm = async ({url, payload, alertContainerId}) => {
         credentials: 'include', 
     });
     console.log("response:", response);
+    console.log("Login Form:", url);
 
     if (response.ok) {
         const data = await response.json();
