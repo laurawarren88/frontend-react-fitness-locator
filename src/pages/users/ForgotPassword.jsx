@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Form from '../../components/Shared/Form';
+import { submitForm } from '../../controllers/forms/loginFormController';
 
 const ForgotPassword = () => {
     const handleClick = () => {

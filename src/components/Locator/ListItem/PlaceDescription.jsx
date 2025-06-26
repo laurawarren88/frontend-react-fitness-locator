@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import defaultImage from '../../../assets/images/default_gym.jpg'
 import { isAdmin } from '../../../controllers/isAdmin';
+import PropTypes from 'prop-types';
 
 const PlaceDescription = ({ place, selected, refProp }) => {
   const handleClick = () => {
@@ -93,3 +94,27 @@ const PlaceDescription = ({ place, selected, refProp }) => {
 };
 
 export default PlaceDescription;
+
+PlaceDescription.propTypes = {
+  place: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    address: PropTypes.string,
+    vicinity: PropTypes.string,
+    openingHours: PropTypes.arrayOf(PropTypes.string), 
+    opening_hours: PropTypes.shape({
+      weekday_text: PropTypes.arrayOf(PropTypes.string)
+    }),
+    formatted_phone_number: PropTypes.string,
+    phone: PropTypes.string,
+    website: PropTypes.string,
+    logo: PropTypes.string,
+    description: PropTypes.string,
+    city: PropTypes.string,
+    postcode: PropTypes.string,
+  }).isRequired,
+  selected: PropTypes.bool.isRequired,
+  refProp: PropTypes.shape({
+    current: PropTypes.instanceOf(Element),
+  }),
+};

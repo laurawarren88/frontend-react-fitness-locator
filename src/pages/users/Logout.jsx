@@ -16,7 +16,7 @@ const Logout = () => {
                     throw new Error('Failed to log out');
                 }
 
-                const data = await response.json();
+                // const data = await response.json();
                 // console.log(data.message);
                 navigate('/users/login'); 
             } catch (error) {

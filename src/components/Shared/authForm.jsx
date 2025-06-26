@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
     return (
         <section className="bg-softWhite">
@@ -30,3 +32,18 @@ const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
 };
 
 export default AuthForm;
+
+AuthForm.propTypes = {
+    fields: PropTypes.arrayOf(
+        PropTypes.shape({   
+            label: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            placeholder: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    title: PropTypes.string.isRequired,
+    buttonText: PropTypes.string.isRequired,
+    footer: PropTypes.node,
+    onSubmit: PropTypes.func.isRequired,
+    };

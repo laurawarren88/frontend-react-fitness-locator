@@ -1,5 +1,6 @@
 import { useState, useEffect, createRef } from 'react';
 import PlaceDescription from './PlaceDescription'
+import PropTypes from 'prop-types';
 
 const List = ({ places, childClicked, setChildClicked, isLoading }) => {
   const [elRefs, setElRefs] = useState([]);
@@ -63,3 +64,10 @@ const List = ({ places, childClicked, setChildClicked, isLoading }) => {
 };
 
 export default List;
+
+  List.propTypes = {
+    places: PropTypes.arrayOf(PropTypes.object).isRequired,
+    childClicked: PropTypes.number,
+    setChildClicked: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+  };

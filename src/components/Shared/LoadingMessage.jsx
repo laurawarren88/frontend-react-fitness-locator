@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const LoadingMessage = ({ message }) => (
   <section className="loading-container">
     <div className="loading-layout">
@@ -7,3 +9,7 @@ const LoadingMessage = ({ message }) => (
 );
 
 export default LoadingMessage;
+
+LoadingMessage.propTypes = {
+  message: PropTypes.string,
+};

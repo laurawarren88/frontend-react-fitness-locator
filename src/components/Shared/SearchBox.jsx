@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LiaSearchLocationSolid } from "react-icons/lia";
+import PropTypes from 'prop-types';
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
 
@@ -103,3 +104,7 @@ const SearchBox = ({ setCoordinates }) => {
 };
 
 export default SearchBox;
+
+SearchBox.propTypes = {
+  setCoordinates: PropTypes.func.isRequired,
+};

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import activityTypes from '../../utils/activityTypes';
 import useActivityForm from '../../hooks/useActivityForm';
 import SearchBox from '../Shared/SearchBox';
+import PropTypes from 'prop-types';
 
 const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, footer }) => {
 
@@ -351,3 +352,11 @@ const ActivitiesForm = ({ formData: initialData, onSubmit, title, buttonText, fo
 };
 
 export default ActivitiesForm;
+
+ActivitiesForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired, 
+  buttonText: PropTypes.string.isRequired,
+  footer: PropTypes.node,
+};

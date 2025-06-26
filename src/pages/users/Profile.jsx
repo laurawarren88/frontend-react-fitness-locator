@@ -3,6 +3,7 @@ import { getCookie } from "../../utils/fetchCookie";
 import useFetchUser from "../../hooks/useFetchUser";
 import ErrorMessage from "../../components/Shared/ErrorMessage";
 import LoadingMessage from "../../components/Shared/LoadingMessage";
+import PropTypes from 'prop-types';
 
 const Profile = () => {
   const handleClick = () => {
@@ -105,3 +106,13 @@ const Profile = () => {
     );
     
     export default Profile;
+
+AdminControls.propTypes = {
+  navigate: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
+
+UserControls.propTypes = {
+  navigate: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};

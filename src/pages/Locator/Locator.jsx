@@ -4,6 +4,7 @@ import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/header/Header';
 import List from '../../components/Locator/ListItem/List';
 import LeafletMap from '../../components/Locator/Map/LeafletMap';
+import L from 'leaflet';
 
 const Locator = () => {
   const [places, setPlaces] = useState([]);

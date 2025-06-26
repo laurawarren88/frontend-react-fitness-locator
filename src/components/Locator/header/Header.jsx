@@ -1,4 +1,5 @@
 import SearchBox from '../../Shared/SearchBox';
+import PropTypes from 'prop-types';
 
 const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {
 
@@ -83,3 +84,29 @@ const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius
 };
 
 export default Header;
+
+Header.propTypes = {
+  setType: PropTypes.func.isRequired,
+  activityTypes: PropTypes.arrayOf(
+    PropTypes.shape({ 
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  coordinates: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+  setCoordinates: PropTypes.func.isRequired,
+  setRadius: PropTypes.func.isRequired,
+  setLeafletRadius: PropTypes.func.isRequired,
+  places: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+    })
+  ).isRequired,
+  setFilteredPlaces: PropTypes.func.isRequired,
+  leafletMap: PropTypes.object.isRequired,
+};

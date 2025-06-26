@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const ErrorMessage = ({ message }) => (
   <section className="message-container">
@@ -10,3 +11,7 @@ const ErrorMessage = ({ message }) => (
 );
 
 export default ErrorMessage;
+
+ErrorMessage.propTypes = {
+  message: PropTypes.string,
+};

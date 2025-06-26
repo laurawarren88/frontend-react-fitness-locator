@@ -6,6 +6,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import youAreHereLocationIcon from '../../../assets/images/youarehere.png';
 import fitnessIcon from '../../../assets/images/fitnesstracker.png';
 import highlightedFitnessIcon from '../../../assets/images/fitnesstracker-highlighted.png';
+import PropTypes from 'prop-types';
 
 const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap}) => {
   var youAreHereIcon = L.icon({
@@ -145,3 +146,22 @@ const LeafletMap = ({coordinates, radius, places, setChildClicked, setLeafletMap
 };
 
 export default LeafletMap;
+
+LeafletMap.propTypes = {
+  coordinates: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+  radius: PropTypes.number.isRequired,
+  places: PropTypes.arrayOf(
+    PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      name: PropTypes.string,
+      address: PropTypes.string,
+      postcode: PropTypes.string,
+    })
+  ).isRequired,
+  setChildClicked: PropTypes.func.isRequired,
+  setLeafletMap: PropTypes.func.isRequired,
+};
