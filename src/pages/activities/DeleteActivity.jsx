@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { deleteForm } from '../../controllers/forms/deleteFormController';
 import ActivitiesForm from '../../components/Activity/ActivitiesForm';
@@ -9,7 +9,7 @@ const DleteActivity = () => {
     }; 
     
   const { id } = useParams();
-  const [activitiesData, setActivitiesData] = useState(null);
+  const [setActivitiesData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({});
 

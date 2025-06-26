@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { postForm } from '../../controllers/forms/postFormController';
 import ActivitiesForm from '../../components/Activity/ActivitiesForm'; 

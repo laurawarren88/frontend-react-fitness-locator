@@ -1,5 +1,5 @@
 export const handleAddressChange = async (e, formData, setFormData, handleChange) => {
-  const { name, value } = e.target;
+  const { name } = e.target;
 
   handleChange(e);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getPlacesData } from '../../controllers/dataController';
 import activityTypes  from '../../utils/activityTypes';
 import Header from '../../components/Locator/header/Header';
@@ -14,7 +14,7 @@ const Locator = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState('');
   const [radius, setRadius] = useState('1600');
-  const [error, setError] = useState(null);
+  const [setError] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(

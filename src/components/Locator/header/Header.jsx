@@ -1,4 +1,3 @@
-import React from 'react'
 import SearchBox from '../../Shared/SearchBox';
 
 const Header = ({ setType, activityTypes, coordinates, setCoordinates, setRadius, setLeafletRadius, places, setFilteredPlaces, leafletMap }) => {

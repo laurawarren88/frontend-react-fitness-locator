@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom'
 import { submitForm } from '../../controllers/forms/loginFormController';
 import Form from '../../components/Shared/Form';

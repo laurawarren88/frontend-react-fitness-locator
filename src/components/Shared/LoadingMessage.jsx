@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoadingMessage = ({ message }) => (
   <section className="loading-container">
     <div className="loading-layout">

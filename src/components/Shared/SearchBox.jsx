@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { LiaSearchLocationSolid } from "react-icons/lia";
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";

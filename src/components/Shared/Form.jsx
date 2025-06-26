@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Form = ({ fields, onSubmit, title, buttonText, footer }) => {
     return (
         <section className="bg-white py-20">

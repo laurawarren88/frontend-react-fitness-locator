@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AuthForm = ({ fields, onSubmit, title, buttonText, footer }) => {
     return (
         <section className="bg-softWhite">

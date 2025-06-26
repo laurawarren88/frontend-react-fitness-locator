@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import defaultImage from '../../../assets/images/default_gym.jpg'
 import { isAdmin } from '../../../controllers/isAdmin';
@@ -9,8 +9,8 @@ const PlaceDescription = ({ place, selected, refProp }) => {
   };
 
   const [isAdminUser, setIsAdminUser] = useState(false);
-  const [placeImage, setPlaceImage] = useState(null);
-  const [placeDetails, setPlaceDetails] = useState({
+  const [placeImage] = useState(null);
+  const [placeDetails] = useState({
     name: place?.name || 'Unknown Place',
     vicinity: place?.address || place?.vicinity || 'No address available',
     openingHours: place?.openingHours || place?.opening_hours?.weekday_text || [],

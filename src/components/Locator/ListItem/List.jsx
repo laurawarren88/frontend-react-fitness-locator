@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react';
+import { useState, useEffect, createRef } from 'react';
 import PlaceDescription from './PlaceDescription'
 
 const List = ({ places, childClicked, setChildClicked, isLoading }) => {
