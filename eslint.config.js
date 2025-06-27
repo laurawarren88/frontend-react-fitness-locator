@@ -19,5 +19,12 @@ export default defineConfig([
     "rules": {
       "react/react-in-jsx-scope": "off"
     }
+  },
+    {
+    ignores: [
+      "harness/build/**",
+      "build/", 
+      "dist/"   
+    ]
   }
 ]);
