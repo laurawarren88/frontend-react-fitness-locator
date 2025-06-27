@@ -15,7 +15,8 @@ service:
                   connectorRef: githubconnector
                   gitFetchType: Branch
                   paths:
-                    - helm_chart
+                    - helm_chart/chart.yaml
+                    - helm_chart/templates
                   branch: main
               valuesPaths:
                 - helm_chart/values.yaml
