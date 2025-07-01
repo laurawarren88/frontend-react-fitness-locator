@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-frontend-configmap
+  name: lmw-fitness-frontend-configmap
   namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/managed-by: Helm
   annotations:
-    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-name: lmw-fitness
     meta.helm.sh/release-namespace: {{ .Values.namespace }}
 data:
   default.conf: |
@@ -16,7 +16,7 @@ data:
       error_log /var/log/nginx/error.log warn;
 
       location {{ .Values.api.path }} {
-        proxy_pass http://{{ .Values.namespace }}-backend-service:{{ .Values.api.port }}/;
+        proxy_pass http://lmw-fitness-backend-service:{{ .Values.api.port }}/;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
