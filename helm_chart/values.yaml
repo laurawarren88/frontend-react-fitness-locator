@@ -9,8 +9,9 @@ webserver:
   pathType: Prefix
 
 image:
-  repository: lmwcode/lmw_fitness_webserver:latest
+  repository: lmwcode/lmw_fitness_webserver
   pullPolicy: Always
+  tag: v.<+pipeline.sequenceId>
 
 replicaCount: 1
 
