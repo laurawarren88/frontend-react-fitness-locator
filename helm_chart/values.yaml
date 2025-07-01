@@ -4,12 +4,12 @@ webserver:
   port: 5052
   type: NodePort
   nodePort: 31313
-  host: lmw-fitness-webserver.lmw-harness.svc.cluster.local
+  host: lmw-fitness.lmw-harness.svc.cluster.local
   path: /
   pathType: Prefix
 
 image:
-  repository: <+artifact.image.repository>
+  repository: frontend-react-fitness-locator
   pullPolicy: Always
   tag: v.<+pipeline.sequenceId>
 
