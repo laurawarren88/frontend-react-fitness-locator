@@ -1,0 +1,39 @@
+service:
+  name: deploy-helm-dev
+  identifier: deployhelmdev
+  serviceDefinition:
+    type: NativeHelm
+    spec:
+      manifests:
+        - manifest:
+            identifier: helmgitdeploydev
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: githubconnector
+                  gitFetchType: Branch
+                  folderPath: /helm_chart
+                  branch: main
+              subChartPath: ""
+              valuesPaths:
+                - helm_chart/values.yaml
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: docker_connector
+                imagePath: library/nginx
+                tag: stable-alpine
+                digest: ""
+              identifier: dockerhubfixednginx
+              type: DockerRegistry
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: infratask

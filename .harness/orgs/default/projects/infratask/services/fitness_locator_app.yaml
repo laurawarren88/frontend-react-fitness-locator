@@ -1,0 +1,34 @@
+service:
+  name: fitness locator app
+  identifier: fitness_locator_app
+  serviceDefinition:
+    type: Kubernetes
+    spec:
+      manifests:
+        - manifest:
+            identifier: fitnessLocator
+            type: K8sManifest
+            spec:
+              store:
+                type: Harness
+                spec:
+                  files:
+                    - /fitness-locator-helm-chart
+              valuesPaths:
+                - /fitness-locator-helm-chart/values.yaml
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: docker_connector
+                imagePath: library/nginx
+                tag: <+input>
+                digest: ""
+              identifier: lmwdockerhub
+              type: DockerRegistry
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: infratask

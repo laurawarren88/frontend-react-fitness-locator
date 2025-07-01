@@ -1,0 +1,37 @@
+service:
+  name: repo-chart
+  identifier: repochart
+  serviceDefinition:
+    type: Kubernetes
+    spec:
+      manifests:
+        - manifest:
+            identifier: repochart
+            type: K8sManifest
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: githubconnector
+                  gitFetchType: Branch
+                  paths:
+                    - helm_chart
+                  branch: main
+              valuesPaths:
+                - helm_chart/values.yaml
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: docker_connector
+                imagePath: library/nginx
+                tag: <+input>
+                digest: ""
+              identifier: dockerhub
+              type: DockerRegistry
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: infratask
