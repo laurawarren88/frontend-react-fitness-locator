@@ -15,4 +15,3 @@ spec:
   ports:
   - port: {{ .Values.webserver.port }}
     targetPort: {{ .Values.webserver.port }}
-    nodePort: {{ .Values.webserver.nodePort }}
