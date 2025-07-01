@@ -9,7 +9,7 @@ webserver:
   pathType: Prefix
 
 image:
-  repository: lmwcode/frontend-react-fitness-locator
+  repository: <+artifact.image.repository>
   pullPolicy: Always
   tag: v.<+pipeline.sequenceId>
 
